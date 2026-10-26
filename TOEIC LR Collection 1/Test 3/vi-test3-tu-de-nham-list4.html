@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 4/6 (Vi, C1 Test 3)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 4/6</h1>
+    <p>Part 7 · câu 176–178 · Câu 76–99/152. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • TOEIC LR Collection 1 – Test 3</div>
+  </div>
+
+  <div class="nav">
+    <a class="" href="vi-test3-tu-de-nham-list1.html">List 1 · P5</a>
+    <a class="" href="vi-test3-tu-de-nham-list2.html">List 2 · 153–155</a>
+    <a class="" href="vi-test3-tu-de-nham-list3.html">List 3 · 159–161</a>
+    <a class="active" href="vi-test3-tu-de-nham-list4.html">List 4 · 176–178</a>
+    <a class="" href="vi-test3-tu-de-nham-list5.html">List 5 · 191–195</a>
+    <a class="" href="vi-test3-tu-de-nham-list6.html">List 6 · 198–200</a>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/24 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "The city ______ allows visitors to view the planets through large telescopes.", "options": ["observer", "observatory", "conservatory", "observation"], "answer": 1, "explain": "Nơi ngắm hành tinh bằng kính thiên văn = ĐÀI THIÊN VĂN. conservatory = nhà kính / nhạc viện.", "translation": "Đài thiên văn thành phố cho phép khách ngắm các hành tinh qua kính thiên văn lớn.", "meanings": ["người quan sát (người)", "đài thiên văn — đúng", "nhà kính; nhạc viện (sai nghĩa)", "sự quan sát (việc, không phải nơi)"]}, {"q": "She studied ______ at university because she loved the stars.", "options": ["anatomy", "astrology", "astronomy", "economy"], "answer": 2, "explain": "astronomy = THIÊN VĂN HỌC (khoa học). astrology = chiêm tinh học.", "translation": "Cô ấy học thiên văn học ở đại học vì yêu thích các vì sao.", "meanings": ["giải phẫu học (sai nghĩa)", "chiêm tinh học (bói sao, sai)", "thiên văn học — đúng", "kinh tế (sai nghĩa)"]}, {"q": "Through the ______, we could clearly see the rings of Saturn.", "options": ["telescope", "stethoscope", "periscope", "microscope"], "answer": 0, "explain": "Nhìn sao Thổ → KÍNH THIÊN VĂN. microscope = kính hiển vi.", "translation": "Qua kính thiên văn, chúng tôi thấy rõ các vành đai sao Thổ.", "meanings": ["kính thiên văn — đúng", "ống nghe (sai nghĩa)", "kính tiềm vọng (sai nghĩa)", "kính hiển vi (sai nghĩa)"]}, {"q": "Visitors can relax on the outdoor ______ and enjoy the view.", "options": ["terrace", "tenant", "territory", "terrain"], "answer": 0, "explain": "terrace = SÂN HIÊN / sân thượng ngoài trời.", "translation": "Khách có thể thư giãn trên sân hiên ngoài trời và ngắm cảnh.", "meanings": ["sân hiên — đúng", "người thuê nhà (sai nghĩa)", "lãnh thổ (sai nghĩa)", "địa hình (sai nghĩa)"]}, {"q": "The park is not safe after ______, so please leave before 7 p.m.", "options": ["darkness", "darkly", "dark", "darken"], "answer": 2, "explain": "Cụm cố định: after dark = sau khi trời tối (không có mạo từ).", "translation": "Công viên không an toàn sau khi trời tối, nên vui lòng rời đi trước 7 giờ tối.", "meanings": ["bóng tối (danh từ, không dùng trong cụm này)", "một cách u ám (trạng từ)", "after dark — đúng", "làm tối (động từ)"]}, {"q": "The observatory will ______ a new evening program in June.", "options": ["latch", "launch", "lounge", "lunch"], "answer": 1, "explain": "launch a program = KHỞI ĐỘNG / ra mắt chương trình.", "translation": "Đài thiên văn sẽ khởi động chương trình buổi tối mới vào tháng 6.", "meanings": ["cái chốt cửa (sai nghĩa)", "khởi động, ra mắt — đúng", "phòng chờ (sai nghĩa)", "bữa trưa (sai nghĩa)"]}, {"q": "Each yoga ______ lasts about one hour.", "options": ["section", "season", "cession", "session"], "answer": 3, "explain": "session = BUỔI (học, tập).", "translation": "Mỗi buổi yoga kéo dài khoảng một tiếng.", "meanings": ["phần, khu (sai nghĩa)", "mùa (sai nghĩa)", "sự nhượng lại (sai nghĩa)", "buổi — đúng"]}, {"q": "This ______ course is designed for people with no experience.", "options": ["introduced", "advanced", "introduction", "introductory"], "answer": 3, "explain": "ADJ + N; 'no experience' → NHẬP MÔN = introductory.", "translation": "Khóa nhập môn này dành cho người chưa có kinh nghiệm.", "meanings": ["đã được giới thiệu (V3, sai nghĩa)", "nâng cao (trái nghĩa)", "phần giới thiệu (danh từ)", "nhập môn — đúng"]}, {"q": "The workshop is for ______ users who already know the basics.", "options": ["introductory", "advanced", "advancing", "advance"], "answer": 1, "explain": "'already know the basics' → NÂNG CAO = advanced.", "translation": "Buổi hội thảo dành cho người dùng nâng cao đã biết kiến thức cơ bản.", "meanings": ["nhập môn (trái nghĩa)", "nâng cao — đúng", "đang tiến lên (sai nghĩa)", "sự tiến bộ; trước (danh từ/tính từ khác nghĩa)"]}, {"q": "Seats for each tour are ______ at 15, so book early.", "options": ["captured", "capped", "capable", "capital"], "answer": 1, "explain": "be capped at + số = GIỚI HẠN TỐI ĐA (= limited to).", "translation": "Mỗi tour tối đa 15 chỗ, nên hãy đặt sớm.", "meanings": ["bị bắt giữ (sai nghĩa)", "giới hạn tối đa — đúng", "có khả năng (sai nghĩa)", "thủ đô; vốn (sai nghĩa)"]}, {"q": "Teamwork is ______ to the success of this project.", "options": ["centered", "central", "centre", "centrally"], "answer": 1, "explain": "be central to sth = TRỌNG TÂM, cốt lõi của. Sau be cần tính từ.", "translation": "Làm việc nhóm là cốt lõi cho thành công của dự án này.", "meanings": ["được đặt ở giữa (centered on, sai giới từ)", "trọng tâm (tính từ) — đúng", "danh từ", "trạng từ"]}, {"q": "The lab has a ______ installed microscope.", "options": ["newly", "new", "newness", "news"], "answer": 0, "explain": "Bổ nghĩa cho tính từ/V3 'installed' → TRẠNG TỪ newly.", "translation": "Phòng thí nghiệm có kính hiển vi mới lắp đặt.", "meanings": ["mới (trạng từ) — đúng", "mới (tính từ, không bổ nghĩa cho V3)", "sự mới mẻ (danh từ)", "tin tức (danh từ)"]}, {"q": "This room is ______ to quiet study only.", "options": ["decided", "delicate", "dedicated", "dictated"], "answer": 2, "explain": "be dedicated to sth = DÀNH RIÊNG cho.", "translation": "Phòng này chỉ dành riêng cho việc học yên tĩnh.", "meanings": ["đã quyết định (sai nghĩa)", "mỏng manh (sai nghĩa)", "dành riêng — đúng", "được đọc chính tả (sai nghĩa)"]}, {"q": "The new lounge is available ______ to premium members.", "options": ["exclusively", "expensively", "excessively", "extensively"], "answer": 0, "explain": "available exclusively to = CHỈ dành cho.", "translation": "Phòng chờ mới chỉ dành cho hội viên cao cấp.", "meanings": ["chỉ, độc quyền — đúng", "đắt đỏ (sai nghĩa)", "quá mức (sai nghĩa)", "rộng rãi (sai nghĩa)"]}, {"q": "The antique vase requires careful ______.", "options": ["handed", "handling", "handle", "handful"], "answer": 1, "explain": "careful + DANH TỪ (V-ing): careful handling = sử dụng cẩn thận.", "translation": "Bình cổ cần được cầm nắm cẩn thận.", "meanings": ["V3 (sai)", "việc cầm nắm, sử dụng — đúng", "tay cầm (danh từ đếm được, cần mạo từ — sai nghĩa)", "một nắm (sai nghĩa)"]}, {"q": "The restaurant uses only the ______ ingredients.", "options": ["finally", "finest", "fined", "finance"], "answer": 1, "explain": "the + so sánh nhất của fine → finest = TỐT NHẤT.", "translation": "Nhà hàng chỉ dùng nguyên liệu tốt nhất.", "meanings": ["cuối cùng (trạng từ)", "tốt nhất — đúng", "bị phạt (V3)", "tài chính (danh từ)"]}, {"q": "Clean water has become ______ in the region after months without rain.", "options": ["scared", "scarce", "scary", "scarcely"], "answer": 1, "explain": "become + ADJ: scarce = KHAN HIẾM. scared = sợ hãi.", "translation": "Nước sạch trở nên khan hiếm trong vùng sau nhiều tháng không mưa.", "meanings": ["sợ hãi (sai nghĩa)", "khan hiếm — đúng", "đáng sợ (sai nghĩa)", "hầu như không (trạng từ)"]}, {"q": "The program gives local ______ a chance to learn about the stars.", "options": ["residents", "residences", "presidents", "resistance"], "answer": 0, "explain": "Người được mời là CƯ DÂN = residents. residences = nhà ở.", "translation": "Chương trình cho cư dân địa phương cơ hội tìm hiểu về các vì sao.", "meanings": ["cư dân — đúng", "nơi ở (vật)", "chủ tịch (sai nghĩa)", "sự kháng cự (sai nghĩa)"]}, {"q": "Due to low demand, the airline has ______ its flights to Lima until further notice.", "options": ["suspended", "suspected", "ceased", "reduced"], "answer": 0, "explain": "'until further notice' (đến khi có thông báo mới) → TẠM NGỪNG, có thể mở lại = suspend. cease = ngừng hẳn.", "translation": "Do nhu cầu thấp, hãng đã tạm ngừng các chuyến bay đến Lima cho đến khi có thông báo mới.", "meanings": ["tạm ngừng — đúng", "nghi ngờ (sai nghĩa)", "ngừng hẳn (không hợp 'until further notice')", "giảm (vẫn bay, không hợp 'until further notice')"]}, {"q": "The factory has ______ its working hours from 10 to 8 per day.", "options": ["reduced", "suspended", "produced", "ceased"], "answer": 0, "explain": "from 10 to 8 → GIẢM, vẫn hoạt động = reduce.", "translation": "Nhà máy đã giảm giờ làm từ 10 xuống 8 tiếng mỗi ngày.", "meanings": ["giảm — đúng", "tạm ngừng (không hợp 'từ 10 xuống 8')", "sản xuất (sai nghĩa)", "ngừng hẳn (sai)"]}, {"q": "The newspaper ______ publication permanently after 100 years.", "options": ["suspended", "ceased", "seized", "reduced"], "answer": 1, "explain": "permanently → NGỪNG HẲN = cease. seize = chiếm lấy.", "translation": "Tờ báo ngừng xuất bản vĩnh viễn sau 100 năm.", "meanings": ["tạm ngừng (mâu thuẫn với permanently)", "ngừng hẳn — đúng", "chiếm lấy (đồng âm, sai nghĩa)", "giảm (sai)"]}, {"q": "Following a ______ of its spending, the council closed two libraries.", "options": ["preview", "revue", "view", "review"], "answer": 3, "explain": "a review of spending = sự RÀ SOÁT chi tiêu.", "translation": "Sau đợt rà soát chi tiêu, hội đồng đã đóng cửa hai thư viện.", "meanings": ["bản xem trước (sai nghĩa)", "buổi diễn tạp kỹ (sai nghĩa)", "quang cảnh; quan điểm (sai nghĩa)", "sự rà soát — đúng"]}, {"q": "Many small businesses are under financial ______ this year.", "options": ["prescription", "presser", "pleasure", "pressure"], "answer": 3, "explain": "under financial pressure = chịu ÁP LỰC tài chính.", "translation": "Nhiều doanh nghiệp nhỏ đang chịu áp lực tài chính năm nay.", "meanings": ["đơn thuốc (sai nghĩa)", "người ủi đồ (sai nghĩa)", "niềm vui (sai nghĩa)", "áp lực — đúng"]}, {"q": "There are few ______ to see a total eclipse in this country.", "options": ["changes", "choices", "charges", "chances"], "answer": 3, "explain": "few chances to do sth = ít CƠ HỘI (= opportunities, câu 178).", "translation": "Ở nước này có rất ít cơ hội ngắm nhật thực toàn phần.", "meanings": ["thay đổi (sai nghĩa)", "lựa chọn (không đi với 'to see' theo nghĩa này)", "khoản phí (sai nghĩa)", "cơ hội — đúng"]}];
+const QSTART = 76;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

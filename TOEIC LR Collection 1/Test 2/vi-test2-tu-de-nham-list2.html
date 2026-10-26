@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 2/5 (Vi, C1 Test 2)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 2/5</h1>
+    <p>Part 6–7 · câu 131–134 · Câu 24–46/112. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • TOEIC LR Collection 1 – Test 2</div>
+  </div>
+
+  <div class="nav">
+    <a class="" href="vi-test2-tu-de-nham-list1.html">List 1 · P5</a>
+    <a class="active" href="vi-test2-tu-de-nham-list2.html">List 2 · 131–134</a>
+    <a class="" href="vi-test2-tu-de-nham-list3.html">List 3 · 139–142</a>
+    <a class="" href="vi-test2-tu-de-nham-list4.html">List 4 · 165–167</a>
+    <a class="" href="vi-test2-tu-de-nham-list5.html">List 5 · 168–170</a>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/23 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "Rosewood Driving School ______ a part-time coordinator to start in May.", "options": ["requires", "acquires", "requirement", "inquires"], "answer": 0, "explain": "Trong tin tuyển dụng, \"require + người\" = cần tuyển. Dễ nhầm với acquire (mua lại, đạt được) và inquire (hỏi thăm).", "translation": "Trường lái xe Rosewood cần tuyển một điều phối viên bán thời gian, bắt đầu từ tháng 5.", "meanings": ["cần, yêu cầu (cần tuyển) — đúng", "mua lại, đạt được (sai nghĩa)", "yêu cầu (danh từ, sai từ loại)", "hỏi, tìm hiểu (sai nghĩa)"]}, {"q": "We need a ______ employee who always finishes tasks on time.", "options": ["depending", "dependable", "dependent", "depend"], "answer": 1, "explain": "\"dependable\" = đáng tin cậy. Khác \"dependent\" = phụ thuộc (dependent on sb).", "translation": "Chúng tôi cần một nhân viên đáng tin cậy, luôn hoàn thành công việc đúng hạn.", "meanings": ["tùy vào (V-ing, sai)", "đáng tin cậy — đúng", "phụ thuộc (sai nghĩa)", "phụ thuộc (động từ, sai từ loại)"]}, {"q": "She works ______, only four hours a day.", "options": ["halftime", "part-time", "full-time", "overtime"], "answer": 1, "explain": "\"only four hours a day\" → làm BÁN thời gian = part-time.", "translation": "Cô ấy làm bán thời gian, chỉ bốn tiếng mỗi ngày.", "meanings": ["giờ nghỉ giữa trận (sai nghĩa)", "bán thời gian — đúng", "toàn thời gian (trái nghĩa)", "làm thêm giờ (sai nghĩa)"]}, {"q": "The event ______ called all the speakers to confirm their schedules.", "options": ["coordinate", "coordination", "coordinated", "coordinator"], "answer": 3, "explain": "The + N + called → chủ ngữ gọi điện phải là NGƯỜI → coordinator (câu 133).", "translation": "Điều phối viên sự kiện đã gọi cho tất cả diễn giả để xác nhận lịch.", "meanings": ["điều phối (động từ, sai từ loại)", "sự điều phối (việc, không thể 'gọi điện')", "đã được điều phối (V3, sai)", "điều phối viên (người) — đúng"]}, {"q": "Good ______ between departments is essential for the project.", "options": ["coordinate", "coordination", "coordinator", "coordinating"], "answer": 1, "explain": "Adj (Good) + N + is → cần danh từ chỉ VIỆC: coordination (sự phối hợp).", "translation": "Sự phối hợp tốt giữa các phòng ban là điều thiết yếu cho dự án.", "meanings": ["điều phối (động từ)", "sự điều phối, phối hợp — đúng", "điều phối viên (người, sai nghĩa)", "đang điều phối (V-ing)"]}, {"q": "Ms. Lee will ______ the training sessions for new staff.", "options": ["coordinate", "coordination", "coordinating", "coordinator"], "answer": 0, "explain": "Sau will → động từ nguyên mẫu: coordinate.", "translation": "Cô Lee sẽ điều phối các buổi đào tạo cho nhân viên mới.", "meanings": ["điều phối (V nguyên mẫu) — đúng", "sự điều phối (danh từ)", "V-ing (sai sau will)", "điều phối viên (danh từ)"]}, {"q": "Please ______ the files by date so they are easy to find.", "options": ["organize", "organization", "organizer", "organized"], "answer": 0, "explain": "Please + V nguyên mẫu → organize (sắp xếp).", "translation": "Hãy sắp xếp hồ sơ theo ngày để dễ tìm.", "meanings": ["sắp xếp (V nguyên mẫu) — đúng", "tổ chức (danh từ)", "người tổ chức (danh từ)", "V3/ed (sai sau Please)"]}, {"q": "Please keep everyone ______ of any changes to the schedule.", "options": ["informing", "informed", "inform", "information"], "answer": 1, "explain": "Cấu trúc keep sb informed = thông báo cập nhật cho ai (keep + O + V3/adj).", "translation": "Hãy thông báo cho mọi người về mọi thay đổi trong lịch.", "meanings": ["V-ing (sai cấu trúc)", "được thông báo (keep sb informed) — đúng", "V nguyên mẫu (sai cấu trúc)", "thông tin (danh từ, sai)"]}, {"q": "The job offers ______ hours, so you can choose when to work.", "options": ["flexible", "previous", "steady", "demanding"], "answer": 0, "explain": "\"you can choose when to work\" → giờ làm LINH HOẠT = flexible hours.", "translation": "Công việc có giờ làm linh hoạt nên bạn có thể chọn thời gian làm.", "meanings": ["linh hoạt — đúng", "trước đây (sai nghĩa)", "ổn định, đều đặn (không khớp 'tự chọn giờ')", "đòi hỏi cao (sai nghĩa)"]}, {"q": "Many students try to fit part-time work ______ their classes.", "options": ["along", "among", "about", "around"], "answer": 3, "explain": "Cụm fit work around sth = sắp xếp công việc xen với việc khác.", "translation": "Nhiều sinh viên cố sắp xếp việc làm thêm xen với giờ học.", "meanings": ["dọc theo (sai cụm)", "giữa (nhiều thứ) — sai cụm", "về (sai cụm)", "xen quanh (fit … around) — đúng"]}, {"q": "I can't join the trip because of other ______.", "options": ["comments", "committees", "commitments", "commissions"], "answer": 2, "explain": "\"other commitments\" = những việc bận / cam kết khác. Đừng nhầm committee (ủy ban).", "translation": "Tôi không thể tham gia chuyến đi vì còn những việc bận khác.", "meanings": ["lời bình luận (sai nghĩa)", "ủy ban (sai nghĩa)", "việc bận, cam kết — đúng", "tiền hoa hồng; ủy ban (sai nghĩa)"]}, {"q": "The secretary ______ a meeting with the client for Monday morning.", "options": ["attended", "arrived", "arranged", "attracted"], "answer": 2, "explain": "\"arrange a meeting for + thời gian\" = sắp xếp cuộc họp vào lúc nào.", "translation": "Thư ký đã sắp xếp cuộc họp với khách hàng vào sáng thứ Hai.", "meanings": ["đã tham dự (không đi với 'for Monday' — sai nghĩa)", "đã đến (nội động từ, không có tân ngữ)", "đã sắp xếp — đúng", "đã thu hút (sai nghĩa)"]}, {"q": "Learners can choose a lesson ______ that fits their timetable.", "options": ["slide", "slot", "slogan", "lot"], "answer": 1, "explain": "\"lesson slot\" = khung giờ học.", "translation": "Học viên có thể chọn khung giờ học phù hợp với thời gian biểu.", "meanings": ["cầu trượt; trang chiếu (sai nghĩa)", "khung giờ — đúng", "khẩu hiệu (sai nghĩa)", "lô đất, bãi (sai nghĩa)"]}, {"q": "The instructor gives clear advice to every ______.", "options": ["learner", "learning", "leaner", "lender"], "answer": 0, "explain": "\"learner\" = học viên, người học. Cẩn thận nhầm chính tả với lender (người cho vay), leaner (gầy hơn).", "translation": "Giáo viên đưa lời khuyên rõ ràng cho từng học viên.", "meanings": ["học viên — đúng", "việc học (danh từ không đếm được, sai sau every)", "gầy hơn (so sánh hơn của lean)", "người cho vay (sai nghĩa)"]}, {"q": "After months of change, sales have been ______ this year.", "options": ["study", "steady", "steadily", "sturdy"], "answer": 1, "explain": "Sau have been (linking verb) cần TÍNH TỪ: steady = ổn định. sturdy = chắc chắn (đồ vật).", "translation": "Sau nhiều tháng biến động, doanh số năm nay đã ổn định.", "meanings": ["học (sai nghĩa)", "ổn định, đều đặn — đúng", "một cách đều đặn (trạng từ, sai sau be)", "chắc chắn, vững (dùng cho đồ vật)"]}, {"q": "Working in an emergency room is a very ______ job.", "options": ["demand", "demanded", "demandingly", "demanding"], "answer": 3, "explain": "a + very + ADJ + job → demanding = đòi hỏi cao, vất vả (tính từ V-ing mô tả tính chất công việc).", "translation": "Làm việc ở phòng cấp cứu là một công việc rất vất vả.", "meanings": ["nhu cầu (danh từ)", "được yêu cầu (V3, sai nghĩa)", "trạng từ (sai từ loại)", "đòi hỏi cao, vất vả — đúng"]}, {"q": "New employees receive full ______ from their supervisors.", "options": ["guide", "guiding", "guided", "guidance"], "answer": 3, "explain": "full + N không đếm được → guidance (sự hướng dẫn).", "translation": "Nhân viên mới được cấp trên hướng dẫn đầy đủ.", "meanings": ["hướng dẫn viên / sách hướng dẫn (danh từ đếm được, cần mạo từ)", "V-ing", "được hướng dẫn (V3)", "sự hướng dẫn — đúng"]}, {"q": "A good driving instructor must be ______ with nervous learners.", "options": ["patients", "patiently", "patient", "patience"], "answer": 2, "explain": "be + ADJ + with sb → patient (kiên nhẫn).", "translation": "Một giáo viên dạy lái giỏi phải kiên nhẫn với học viên hay lo lắng.", "meanings": ["các bệnh nhân (danh từ số nhiều)", "một cách kiên nhẫn (trạng từ)", "kiên nhẫn (tính từ) — đúng", "sự kiên nhẫn (danh từ)"]}, {"q": "The ideal candidate is friendly and clearly ______.", "options": ["spoken", "speaking", "spoke", "speech"], "answer": 0, "explain": "Cụm tính từ clearly spoken = nói năng rõ ràng.", "translation": "Ứng viên lý tưởng thân thiện và nói năng rõ ràng.", "meanings": ["(được) nói — clearly spoken — đúng", "V-ing (sai cụm)", "quá khứ đơn (sai)", "bài phát biểu (danh từ)"]}, {"q": "Try to stay ______ during the job interview.", "options": ["calmly", "clam", "calm", "claim"], "answer": 2, "explain": "stay (linking verb) + TÍNH TỪ → stay calm. Không dùng trạng từ calmly.", "translation": "Hãy cố giữ bình tĩnh trong buổi phỏng vấn.", "meanings": ["một cách bình tĩnh (trạng từ, sai sau stay)", "con nghêu (sai chính tả/nghĩa)", "bình tĩnh (tính từ) — đúng", "yêu cầu, tuyên bố (sai nghĩa)"]}, {"q": "______ experience in sales is welcome but not required.", "options": ["Precious", "Previous", "Previously", "Prior to"], "answer": 1, "explain": "ADJ + N (experience) → Previous (trước đây). Đừng nhầm precious (quý giá).", "translation": "Kinh nghiệm bán hàng trước đây là điểm cộng nhưng không bắt buộc.", "meanings": ["quý giá (sai nghĩa)", "trước đây (tính từ) — đúng", "trước đây (trạng từ, sai từ loại)", "trước khi (giới từ, sai)"]}, {"q": "Speaking two languages is a big ______ in this job.", "options": ["advantageous", "advantage", "adventure", "advance"], "answer": 1, "explain": "a big + N → advantage (lợi thế, điểm cộng) — paraphrase của 'is welcome' (câu 134).", "translation": "Nói được hai ngôn ngữ là lợi thế lớn trong công việc này.", "meanings": ["có lợi (tính từ, sai từ loại)", "lợi thế — đúng", "cuộc phiêu lưu (sai nghĩa)", "sự tiến bộ, khoản ứng trước (sai nghĩa)"]}, {"q": "The successful ______ will start work on June 1.", "options": ["coordinate", "candidacy", "candidate", "candid"], "answer": 2, "explain": "The + adj + N chỉ NGƯỜI bắt đầu làm việc → candidate (ứng viên); 'the successful candidate' = paraphrase của 'the right coordinator'.", "translation": "Ứng viên trúng tuyển sẽ bắt đầu làm việc vào ngày 1/6.", "meanings": ["điều phối (động từ)", "sự ứng cử (danh từ việc)", "ứng viên — đúng", "thẳng thắn (tính từ)"]}];
+const QSTART = 24;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

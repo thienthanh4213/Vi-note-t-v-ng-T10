@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm (Tường Vi, 15/10)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp</h1>
+    <p>Tổng 30 câu. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Tường Vi (TOEIC 1-1) • Buổi 15/10</div>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/30 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"cluster": "productive", "q": "The new software made our approval process much more ______, saving us two hours a day.", "options": ["productive", "effective", "production", "efficient"], "answer": 3, "explain": "\"efficient\" là đạt kết quả mà TỐN ÍT thời gian, công sức — khớp với việc tiết kiệm hai tiếng mỗi ngày.", "translation": "Phần mềm mới làm quy trình phê duyệt của chúng tôi hiệu suất hơn nhiều, tiết kiệm hai tiếng mỗi ngày.", "meanings": ["năng suất cao, làm ra nhiều kết quả — không diễn tả ý tiết kiệm thời gian", "hiệu quả, đạt được mục tiêu — nói về kết quả chứ không nói về việc tiết kiệm thời gian", "việc sản xuất (danh từ) — sai từ loại sau \"more\"", "hiệu suất cao, ít tốn thời gian công sức — đúng"]}, {"cluster": "productive", "q": "The medicine proved very ______; the patient recovered within a week.", "options": ["effect", "productive", "effective", "efficient"], "answer": 2, "explain": "\"effective\" là có tác dụng thật, ĐẠT ĐƯỢC mục tiêu — đúng với việc bệnh nhân khỏi bệnh.", "translation": "Loại thuốc này tỏ ra rất hiệu quả; bệnh nhân đã hồi phục trong vòng một tuần.", "meanings": ["ảnh hưởng (danh từ) — sai từ loại sau \"very\"", "năng suất cao — dùng cho người, đội nhóm, nhà máy làm ra sản phẩm", "hiệu quả, có tác dụng thật — đúng", "hiệu suất cao, ít tốn nguồn lực — thuốc thì nói về tác dụng, không nói về tiết kiệm công sức"]}, {"cluster": "productive", "q": "It was a very ______ meeting: we finished three reports and set next month's targets.", "options": ["efficient", "production", "productively", "productive"], "answer": 3, "explain": "\"productive\" là làm ra được NHIỀU KẾT QUẢ — khớp với việc xong ba báo cáo và đặt xong mục tiêu.", "translation": "Đó là một cuộc họp rất hiệu quả về mặt sản lượng: chúng tôi xong ba báo cáo và đặt xong mục tiêu tháng sau.", "meanings": ["hiệu suất cao, ít tốn nguồn lực — nhấn vào tiết kiệm chứ không phải khối lượng làm được", "việc sản xuất (danh từ) — sai từ loại trước \"meeting\"", "một cách năng suất (trạng từ) — sai từ loại trước danh từ", "năng suất cao, cho ra nhiều kết quả — đúng"]}, {"cluster": "amenity", "q": "The apartment building offers many ______, including a gym and a swimming pool.", "options": ["amenity", "utilities", "facility", "amenities"], "answer": 3, "explain": "Phòng gym và hồ bơi là TIỆN NGHI của tòa nhà, tiếng Anh gọi là \"amenities\".", "translation": "Tòa chung cư có nhiều tiện nghi, bao gồm phòng gym và hồ bơi.", "meanings": ["tiện nghi (số ít) — sau \"many\" phải dùng số nhiều", "các dịch vụ tiện ích (điện, nước, ga, internet) — không phải phòng gym hay hồ bơi", "cơ sở vật chất (số ít) — sai số, và câu cần nghĩa \"tiện nghi\"", "các tiện nghi (gym, hồ bơi, bãi đỗ xe) — đúng"]}, {"cluster": "amenity", "q": "The monthly rent is 500 dollars, and ______ such as water and electricity are included.", "options": ["amenities", "utilities", "utility of", "facilities"], "answer": 1, "explain": "Điện, nước, ga, internet là các dịch vụ TIỆN ÍCH, tiếng Anh gọi là \"utilities\".", "translation": "Tiền thuê hằng tháng là 500 đô la, và các tiện ích như nước và điện đã được bao gồm.", "meanings": ["các tiện nghi (gym, hồ bơi) — không phải điện nước", "các dịch vụ tiện ích (điện, nước, ga) — đúng", "sai cấu trúc — thừa giới từ \"of\"", "cơ sở vật chất, nhà xưởng — không phải điện nước"]}, {"cluster": "amenity", "q": "The company has just opened a new training ______ in the industrial park.", "options": ["amenity", "facility", "utility", "facilitate"], "answer": 1, "explain": "\"facility\" là cơ sở vật chất, khu nhà dùng cho một mục đích — hợp với một khu đào tạo trong khu công nghiệp.", "translation": "Công ty vừa mở một cơ sở đào tạo mới trong khu công nghiệp.", "meanings": ["tiện nghi kèm theo của một tòa nhà — không phải bản thân khu nhà", "cơ sở, khu nhà phục vụ một mục đích — đúng", "dịch vụ tiện ích (điện, nước) — không phải một tòa nhà", "tạo điều kiện (động từ) — sai từ loại"]}, {"cluster": "linking", "q": "Even after the long flight, she still looked ______.", "options": ["fresh", "freshness", "freshly", "refresh"], "answer": 0, "explain": "\"look\" ở đây là ĐỘNG TỪ NỐI nên theo sau phải là TÍNH TỪ tả chủ ngữ, không phải trạng từ.", "translation": "Ngay cả sau chuyến bay dài, trông cô ấy vẫn tươi tắn.", "meanings": ["tươi tắn (tính từ) — đúng", "sự tươi mới (danh từ) — sai từ loại", "một cách tươi mới (trạng từ) — sau động từ nối không dùng trạng từ", "làm tươi mới lại (động từ) — sai từ loại"]}, {"cluster": "linking", "q": "The inspector looked ______ at every cable before signing the report.", "options": ["closely", "closed", "close", "closeness"], "answer": 0, "explain": "Ở đây \"look at\" là ĐỘNG TỪ THƯỜNG (nhìn, xem xét) nên cần TRẠNG TỪ tả cách nhìn.", "translation": "Thanh tra viên đã xem xét kỹ lưỡng từng sợi cáp trước khi ký vào biên bản.", "meanings": ["một cách sát sao, kỹ lưỡng (trạng từ) — đúng", "đã đóng (tính từ) — sai nghĩa và sai từ loại", "gần (tính từ) — ở đây cần trạng từ vì \"look at\" là hành động", "sự gần gũi (danh từ) — sai từ loại"]}, {"cluster": "obj-adj", "q": "A protective case will keep your laptop ______ for years.", "options": ["newness", "renew", "new", "newly"], "answer": 2, "explain": "\"keep + O + adj\" — tính từ ở đây tả TÂN NGỮ \"your laptop\", nên dùng tính từ chứ không dùng trạng từ.", "translation": "Một chiếc vỏ bảo vệ sẽ giữ cho máy tính của bạn như mới trong nhiều năm.", "meanings": ["sự mới mẻ (danh từ) — sai từ loại", "làm mới lại (động từ) — sai từ loại", "mới (tính từ) — đúng", "mới đây, vừa mới (trạng từ) — sai từ loại trong cấu trúc keep + O + adj"]}, {"cluster": "obj-adj", "q": "Most of the staff found the new system ______ and easy to use.", "options": ["helpful", "helping", "helpfully", "help"], "answer": 0, "explain": "\"find + O + adj\" nghĩa là thấy rằng cái gì thế nào — sau tân ngữ cần TÍNH TỪ, và nó phải song song với \"easy\" ở vế sau.", "translation": "Phần lớn nhân viên thấy hệ thống mới hữu ích và dễ dùng.", "meanings": ["hữu ích (tính từ) — đúng", "đang giúp (V-ing) — sai từ loại", "một cách hữu ích (trạng từ) — không song song được với tính từ \"easy\"", "sự giúp đỡ (danh từ) — sai từ loại"]}, {"cluster": "ly-adj", "q": "All visitors said the hotel staff were extremely ______.", "options": ["friends", "friend", "friendlily", "friendly"], "answer": 3, "explain": "\"friendly\" tuy tận cùng -ly nhưng là TÍNH TỪ (danh từ friend + ly), dùng được sau \"were extremely\".", "translation": "Tất cả khách đều nói nhân viên khách sạn cực kỳ thân thiện.", "meanings": ["các người bạn (danh từ số nhiều) — sai từ loại", "bạn (danh từ số ít) — sai từ loại sau \"extremely\"", "không tồn tại trong tiếng Anh — \"friendly\" không có dạng trạng từ", "thân thiện (tính từ) — đúng"]}, {"cluster": "ly-adj", "q": "The technician responded ______ and fixed the problem the same morning.", "options": ["quickly", "timely", "quickness", "quick"], "answer": 0, "explain": "Sau động từ thường \"responded\" cần TRẠNG TỪ. \"timely\" tận cùng -ly nhưng lại là TÍNH TỪ nên không dùng được ở đây.", "translation": "Kỹ thuật viên đã phản hồi nhanh chóng và sửa xong vấn đề ngay trong sáng đó.", "meanings": ["một cách nhanh chóng (trạng từ) — đúng", "kịp thời (tính từ, dù tận cùng -ly) — không bổ nghĩa được cho động từ", "sự nhanh chóng (danh từ) — sai từ loại", "nhanh (tính từ) — sau động từ thường phải dùng trạng từ"]}, {"cluster": "throughout", "q": "The shop stays busy ______ the whole year, not just at the holidays.", "options": ["throughout", "among", "during", "while"], "answer": 0, "explain": "\"throughout\" nhấn mạnh SUỐT TỪ ĐẦU TỚI CUỐI khoảng thời gian — khớp với \"not just at the holidays\".", "translation": "Cửa hàng luôn đông khách suốt cả năm, chứ không chỉ vào dịp lễ.", "meanings": ["suốt từ đầu tới cuối — đúng", "trong số — dùng cho nhóm người/vật, không dùng cho thời gian", "trong khoảng (một thời điểm nào đó trong khoảng) — không nhấn mạnh được ý \"cả năm\" ở đây", "trong khi — là liên từ, cần cả mệnh đề S + V theo sau"]}, {"cluster": "throughout", "q": "His phone rang twice ______ the presentation.", "options": ["among", "during", "throughout", "while"], "answer": 1, "explain": "\"during\" chỉ MỘT THỜI ĐIỂM nào đó trong khoảng — khớp với việc chuông reo hai lần, không phải reo suốt.", "translation": "Điện thoại của anh ấy reo hai lần trong lúc thuyết trình.", "meanings": ["trong số — không dùng cho thời gian", "trong khoảng (vào một lúc nào đó) — đúng", "suốt từ đầu tới cuối — sẽ thành ý chuông reo liên tục cả buổi", "trong khi — là liên từ, cần mệnh đề S + V, không đi thẳng với danh từ"]}, {"cluster": "period", "q": "The construction will be completed in three ______, with the roof finished last.", "options": ["phase", "periods", "phases", "stage"], "answer": 2, "explain": "\"phase\" là giai đoạn của một quá trình có nhiều bước nối tiếp — đúng với việc thi công chia làm ba đợt.", "translation": "Công trình sẽ được hoàn thành trong ba giai đoạn, phần mái làm sau cùng.", "meanings": ["giai đoạn (số ít) — sau \"three\" phải dùng số nhiều", "các khoảng thời gian — chỉ độ dài thời gian, không chỉ các bước của công trình", "các giai đoạn của một quá trình — đúng", "chặng, bước (số ít) — sau \"three\" phải dùng số nhiều"]}, {"cluster": "period", "q": "Employees may take unpaid leave for a ______ of up to six months.", "options": ["periodic", "stage", "phase", "period"], "answer": 3, "explain": "\"a period of + thời gian\" là một khoảng thời gian dài bao nhiêu — đây là cụm cố định.", "translation": "Nhân viên có thể nghỉ không lương trong một khoảng thời gian tối đa sáu tháng.", "meanings": ["định kỳ (tính từ) — sai từ loại sau \"a\"", "chặng, bước trong tiến trình — sai nghĩa ở đây", "giai đoạn của một quá trình — không dùng để đo độ dài thời gian như vậy", "khoảng thời gian — \"a period of six months\" — đúng"]}, {"cluster": "increase", "q": "Staff receive a salary ______ of three percent every January.", "options": ["reduction", "increment", "increase of", "incremental"], "answer": 1, "explain": "\"increment\" là mức tăng theo TỪNG ĐỢT, từng nấc đều đặn — đúng với việc tăng lương mỗi tháng Một.", "translation": "Nhân viên được tăng lương ba phần trăm vào mỗi tháng Một.", "meanings": ["sự cắt giảm — ngược hẳn nghĩa", "mức tăng theo từng đợt, từng nấc — đúng", "sự tăng lên — thừa \"of\" vì câu đã có \"of\" ngay sau chỗ trống", "mang tính tăng dần (tính từ) — sai từ loại sau \"a salary\""]}, {"cluster": "increase", "q": "The company announced a significant ______ in operating costs this quarter.", "options": ["increment", "reduce", "reductive", "reduction"], "answer": 3, "explain": "Sau \"a significant\" cần một DANH TỪ, và \"reduction\" nghĩa là sự cắt giảm.", "translation": "Công ty đã công bố mức cắt giảm đáng kể chi phí vận hành trong quý này.", "meanings": ["mức tăng theo đợt — nói về tăng, không phải giảm, và thường dùng cho lương", "giảm (động từ) — sai từ loại sau \"a significant\"", "mang tính giản lược (tính từ) — sai từ loại và sai nghĩa", "sự cắt giảm (danh từ) — đúng"]}, {"cluster": "pleased", "q": "We are very ______ to announce the opening of our second branch.", "options": ["pleased", "pleasing", "pleasure", "please"], "answer": 0, "explain": "\"be pleased to + V\" là cụm cố định nghĩa là rất vui mừng được làm gì — sau \"are very\" cần tính từ.", "translation": "Chúng tôi rất vui mừng được thông báo việc khai trương chi nhánh thứ hai.", "meanings": ["hài lòng, vui mừng (tính từ) — đúng", "dễ chịu, làm vừa lòng (tính từ) — tả sự vật gây cảm giác, không tả người đang vui mừng", "niềm vinh hạnh (danh từ) — phải là \"It is a pleasure to…\"", "làm hài lòng (động từ) — sai từ loại sau \"are very\""]}, {"cluster": "pleased", "q": "It is a great ______ to work with such a dedicated team.", "options": ["please", "pleasure", "pleased", "pleasant"], "answer": 1, "explain": "Sau \"a great\" cần một DANH TỪ, và \"pleasure\" nghĩa là niềm vinh hạnh, niềm vui.", "translation": "Thật là một niềm vinh hạnh khi được làm việc với một đội ngũ tận tụy như vậy.", "meanings": ["làm hài lòng (động từ) — sai từ loại", "niềm vinh hạnh, niềm vui (danh từ) — đúng", "hài lòng (tính từ) — sai từ loại sau \"a great\"", "dễ chịu (tính từ) — sai từ loại sau \"a great\""]}, {"cluster": "generous", "q": "Thanks to a ______ donation, the library could buy two hundred new books.", "options": ["generosity", "generally", "generous", "general"], "answer": 2, "explain": "\"generous\" nghĩa là hào phóng, rộng rãi — tả khoản quyên góp. \"general\" viết gần giống nhưng nghĩa là chung chung.", "translation": "Nhờ một khoản quyên góp hào phóng, thư viện đã mua được hai trăm cuốn sách mới.", "meanings": ["sự hào phóng (danh từ) — sai từ loại trước danh từ", "nói chung (trạng từ) — sai từ loại", "hào phóng, rộng lượng (tính từ) — đúng", "chung, tổng quát (tính từ) — viết gần giống nhưng không tả được khoản quyên góp"]}, {"cluster": "generous", "q": "The report gives only a ______ overview; the details are in the appendix.", "options": ["generous", "general", "generosity", "generously"], "answer": 1, "explain": "\"general\" nghĩa là chung, tổng quát — khớp với việc chi tiết nằm ở phụ lục.", "translation": "Bản báo cáo chỉ đưa ra cái nhìn tổng quát; phần chi tiết nằm ở phụ lục.", "meanings": ["hào phóng (tính từ) — sai nghĩa với một bản tóm tắt", "chung, tổng quát (tính từ) — đúng", "sự hào phóng (danh từ) — sai từ loại", "một cách hào phóng (trạng từ) — sai từ loại"]}, {"cluster": "forward", "q": "We look forward to ______ from you at your earliest convenience.", "options": ["be heard", "hearing", "heard", "hear"], "answer": 1, "explain": "Trong \"look forward to\" thì \"to\" là GIỚI TỪ nên sau nó phải dùng V-ing, không dùng động từ nguyên mẫu.", "translation": "Chúng tôi mong sớm nhận được hồi âm của quý vị.", "meanings": ["được nghe (bị động nguyên mẫu) — sai cả dạng lẫn nghĩa", "nghe được, nhận được tin (V-ing) — đúng", "đã nghe (quá khứ) — sai dạng sau giới từ", "nghe (nguyên mẫu) — sau \"to\" ở đây là giới từ nên không dùng nguyên mẫu"]}, {"cluster": "forward", "q": "The manager was ______ to approve the budget until he saw the full figures.", "options": ["reluct", "reluctantly", "reluctant", "reluctance"], "answer": 2, "explain": "\"be reluctant to + V\" là cụm cố định nghĩa là ngần ngại làm gì — sau \"was\" cần tính từ.", "translation": "Vị quản lý đã ngần ngại phê duyệt ngân sách cho tới khi ông ấy xem đủ các con số.", "meanings": ["không phải một từ thông dụng trong tiếng Anh", "một cách miễn cưỡng (trạng từ) — không tạo thành cụm \"be … to + V\"", "ngần ngại, miễn cưỡng (tính từ) — đúng", "sự ngần ngại (danh từ) — sai từ loại sau \"was\""]}, {"cluster": "among", "q": "______ the thirty applicants, only five had the required credentials.", "options": ["Toward", "Between", "During", "Among"], "answer": 3, "explain": "\"among\" dùng cho nhóm từ BA người/vật trở lên. \"between\" chỉ dùng cho hai.", "translation": "Trong số ba mươi ứng viên, chỉ năm người có đủ bằng cấp yêu cầu.", "meanings": ["về phía — chỉ hướng di chuyển, không chỉ nhóm", "giữa (chỉ dùng cho hai đối tượng) — ở đây có tới ba mươi ứng viên", "trong khoảng thời gian — không dùng cho một nhóm người", "trong số (từ ba trở lên) — đúng"]}, {"cluster": "among", "q": "The customer leaned ______ the counter to read the small print.", "options": ["throughout", "toward", "among", "between"], "answer": 1, "explain": "\"lean toward + N\" là nghiêng người về phía cái gì — \"toward\" chỉ HƯỚNG.", "translation": "Vị khách nghiêng người về phía quầy để đọc dòng chữ nhỏ.", "meanings": ["suốt — dùng cho thời gian hoặc phạm vi, không chỉ hướng", "về phía (chỉ hướng) — đúng", "trong số — dùng cho một nhóm, không chỉ hướng", "giữa hai thứ — câu chỉ có một cái quầy"]}, {"cluster": "provided", "q": "You may use the gym free of charge ______ you show your membership card.", "options": ["provided that", "in order to", "considering that", "throughout"], "answer": 0, "explain": "\"provided that\" (= as long as) nêu ĐIỀU KIỆN để được hưởng điều vừa nói.", "translation": "Bạn có thể dùng phòng gym miễn phí miễn là bạn xuất trình thẻ thành viên.", "meanings": ["miễn là, với điều kiện là — nêu điều kiện — đúng", "để mà — chỉ mục đích và phải đi với động từ nguyên mẫu", "xét rằng — nêu bối cảnh để đánh giá, không nêu điều kiện", "suốt — là giới từ chỉ thời gian, không nối được mệnh đề"]}, {"cluster": "provided", "q": "______ the budget was so small, the result was remarkable.", "options": ["Provided that", "Following", "Throughout", "Considering that"], "answer": 3, "explain": "\"considering that\" nghĩa là xét rằng, xét về việc — nêu bối cảnh để người nghe đánh giá kết quả.", "translation": "Xét rằng ngân sách quá nhỏ, kết quả như vậy là đáng nể.", "meanings": ["miễn là — nêu điều kiện, không hợp vì ngân sách nhỏ là sự thật đã rồi", "sau khi — là giới từ, cần danh từ chứ không phải mệnh đề", "suốt — là giới từ, không nối được mệnh đề S + V", "xét rằng, xét về việc — đúng"]}, {"cluster": "credentials", "q": "Designers are asked to submit a ______ showing the projects they have completed.", "options": ["testimonial", "credential", "portfolio", "registration"], "answer": 2, "explain": "\"portfolio\" là tập hồ sơ năng lực trưng ra các sản phẩm, dự án đã làm.", "translation": "Các nhà thiết kế được yêu cầu nộp hồ sơ năng lực thể hiện những dự án họ đã hoàn thành.", "meanings": ["lời chứng thực của khách hàng cũ — là nhận xét, không phải tập dự án", "bằng cấp, giấy tờ chứng minh (thường dùng số nhiều) — không phải tập sản phẩm", "hồ sơ năng lực, tập sản phẩm đã làm — đúng", "việc đăng ký — sai nghĩa hoàn toàn"]}, {"cluster": "credentials", "q": "The website features several ______ from satisfied customers.", "options": ["credentials", "references of", "testimonials", "portfolios"], "answer": 2, "explain": "\"testimonial\" là lời chứng thực, nhận xét tích cực của khách hàng cũ — đúng với \"from satisfied customers\".", "translation": "Trang web có đăng vài lời chứng thực từ những khách hàng hài lòng.", "meanings": ["bằng cấp, giấy tờ chứng minh tư cách — khách hàng không cung cấp bằng cấp", "sai cấu trúc — thừa giới từ \"of\" trước \"from\"", "các lời chứng thực của khách hàng — đúng", "các hồ sơ năng lực — là tập dự án của người làm nghề, không phải nhận xét của khách"]}];
+const QSTART = 1;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){ gradeOne(qi, false); updateScorebar(); }
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) gradeOne(qi, true);
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){ renderQuiz(); window.scrollTo({top:0, behavior:'smooth'}); }
+
+renderQuiz();
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 5/5 (Vi, C1 Test 2)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 5/5</h1>
+    <p>Part 6–7 · câu 168–170 · Câu 91–112/112. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • TOEIC LR Collection 1 – Test 2</div>
+  </div>
+
+  <div class="nav">
+    <a class="" href="vi-test2-tu-de-nham-list1.html">List 1 · P5</a>
+    <a class="" href="vi-test2-tu-de-nham-list2.html">List 2 · 131–134</a>
+    <a class="" href="vi-test2-tu-de-nham-list3.html">List 3 · 139–142</a>
+    <a class="" href="vi-test2-tu-de-nham-list4.html">List 4 · 165–167</a>
+    <a class="active" href="vi-test2-tu-de-nham-list5.html">List 5 · 168–170</a>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/22 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "______ behalf of the company, I would like to thank all our volunteers.", "options": ["By", "For", "With", "On"], "answer": 3, "explain": "Cụm cố định: on behalf of = thay mặt cho.", "translation": "Thay mặt công ty, tôi xin cảm ơn tất cả tình nguyện viên.", "meanings": ["sai giới từ", "sai giới từ", "sai giới từ", "on behalf of — đúng"]}, {"q": "The planning ______ will meet on Friday to discuss the budget.", "options": ["commitment", "comedy", "committee", "committed"], "answer": 2, "explain": "The + adj + N chỉ nhóm người họp → committee (ủy ban). Đừng nhầm commitment.", "translation": "Ủy ban kế hoạch sẽ họp vào thứ Sáu để bàn ngân sách.", "meanings": ["sự cam kết; việc bận (sai nghĩa)", "hài kịch (sai nghĩa)", "ủy ban — đúng", "tận tâm (tính từ)"]}, {"q": "Our company was chosen as a ______ for the Best Employer Award.", "options": ["finalist", "finally", "finale", "finalize"], "answer": 0, "explain": "a + N chỉ đơn vị/người vào chung kết → finalist.", "translation": "Công ty chúng tôi được chọn vào chung kết giải Nhà tuyển dụng tốt nhất.", "meanings": ["người / đơn vị vào chung kết — đúng", "cuối cùng (trạng từ)", "màn kết (sai nghĩa)", "hoàn tất (động từ)"]}, {"q": "We are pleased to notify you of your ______ for the leadership program.", "options": ["selector", "selective", "select", "selection"], "answer": 3, "explain": "your + N → selection (sự được chọn). Cụm notify sb of their selection (câu 168).", "translation": "Chúng tôi vui mừng thông báo bạn đã được chọn vào chương trình lãnh đạo.", "meanings": ["người chọn (danh từ người)", "có chọn lọc (tính từ)", "chọn (động từ)", "sự được chọn — đúng"]}, {"q": "Being invited to speak at the conference is a ______ honor.", "options": ["significant", "signature", "signify", "significance"], "answer": 0, "explain": "a + ADJ + N → significant (lớn, đáng kể).", "translation": "Được mời phát biểu tại hội nghị là một vinh dự lớn.", "meanings": ["lớn, quan trọng — đúng", "chữ ký (danh từ)", "biểu thị (động từ)", "tầm quan trọng (danh từ)"]}, {"q": "The opening ______ will take place in the main hall.", "options": ["cemetery", "ceremony", "ceremonial", "category"], "answer": 1, "explain": "opening ceremony = lễ khai mạc.", "translation": "Lễ khai mạc sẽ diễn ra tại hội trường chính.", "meanings": ["nghĩa trang (sai nghĩa)", "buổi lễ — đúng", "thuộc nghi lễ (tính từ)", "hạng mục (sai nghĩa)"]}, {"q": "The festival ______ the city's cultural diversity.", "options": ["celebrates", "celebrity", "calibrates", "celebration"], "answer": 0, "explain": "Chủ ngữ + V (chia số ít) → celebrates (tôn vinh).", "translation": "Lễ hội tôn vinh sự đa dạng văn hóa của thành phố.", "meanings": ["tôn vinh — đúng", "người nổi tiếng (danh từ)", "hiệu chỉnh (sai nghĩa)", "lễ kỷ niệm (danh từ)"]}, {"q": "She received an award for her ______ performance this year.", "options": ["outstanding", "outdated", "outgoing", "outstandingly"], "answer": 0, "explain": "her + ADJ + N → outstanding (xuất sắc).", "translation": "Cô ấy nhận giải nhờ thành tích xuất sắc năm nay.", "meanings": ["xuất sắc — đúng", "lỗi thời (sai nghĩa)", "hướng ngoại (sai nghĩa)", "trạng từ (sai từ loại)"]}, {"q": "______ for the award must be sent in before May 1.", "options": ["Nominally", "Nominate", "Nominal", "Nominations"], "answer": 3, "explain": "Chủ ngữ → danh từ: Nominations (các đề cử) (câu 169).", "translation": "Các đề cử cho giải thưởng phải được gửi trước ngày 1/5.", "meanings": ["trạng từ (sai)", "đề cử (động từ)", "danh nghĩa (tính từ)", "các đề cử — đúng"]}, {"q": "Please ______ your application by Friday.", "options": ["submerge", "admit", "summit", "submit"], "answer": 3, "explain": "submit an application = nộp đơn.", "translation": "Vui lòng nộp đơn trước thứ Sáu.", "meanings": ["nhấn chìm (sai nghĩa)", "thừa nhận (sai nghĩa)", "hội nghị thượng đỉnh (danh từ)", "nộp — đúng"]}, {"q": "All proposals will be reviewed by an ______ panel of experts.", "options": ["independence", "independent", "independently", "dependent"], "answer": 1, "explain": "an + ADJ + N → independent (độc lập).", "translation": "Tất cả đề xuất sẽ được một hội đồng chuyên gia độc lập xem xét.", "meanings": ["sự độc lập (danh từ)", "độc lập — đúng", "trạng từ", "phụ thuộc (trái nghĩa)"]}, {"q": "He has worked in the ______ industry for ten years, managing hotels.", "options": ["hospitality", "hostility", "hospital", "hospitable"], "answer": 0, "explain": "managing hotels → ngành nhà hàng – khách sạn = hospitality.", "translation": "Anh ấy làm trong ngành khách sạn – nhà hàng mười năm, quản lý các khách sạn.", "meanings": ["ngành nhà hàng – khách sạn — đúng", "sự thù địch (sai nghĩa)", "bệnh viện (sai nghĩa)", "hiếu khách (tính từ)"]}, {"q": "The winner will receive a ______ prize of $5,000.", "options": ["catch", "cashier", "cache", "cash"], "answer": 3, "explain": "cash prize = giải thưởng tiền mặt.", "translation": "Người thắng cuộc sẽ nhận giải thưởng tiền mặt 5.000 đô.", "meanings": ["bắt (sai nghĩa)", "thu ngân (người)", "bộ nhớ đệm (sai nghĩa)", "tiền mặt — đúng"]}, {"q": "The scholarship will be ______ to students with excellent grades.", "options": ["award", "awarded", "awarding", "rewarded"], "answer": 1, "explain": "award sth TO sb → bị động: be awarded to sb. reward sb FOR sth (thưởng ai vì việc gì).", "translation": "Học bổng sẽ được trao cho học sinh có điểm xuất sắc.", "meanings": ["nguyên mẫu (sai sau be)", "được trao (award … to) — đúng", "V-ing (sai sau be)", "được thưởng (reward sb for — sai cấu trúc với to)"]}, {"q": "The ______ winner of the competition received a trophy.", "options": ["overview", "overtime", "overalls", "overall"], "answer": 3, "explain": "overall winner = người thắng chung cuộc.", "translation": "Người thắng chung cuộc của cuộc thi nhận được cúp.", "meanings": ["cái nhìn tổng quan (danh từ)", "giờ làm thêm (danh từ)", "quần yếm (danh từ)", "chung cuộc, tổng thể — đúng"]}, {"q": "Experienced managers often ______ new employees during their first year.", "options": ["mention", "monitor", "manner", "mentor"], "answer": 3, "explain": "mentor (v) = cố vấn, kèm cặp. Đừng nhầm monitor (giám sát — từ P5) và mention (nhắc đến).", "translation": "Các quản lý giàu kinh nghiệm thường kèm cặp nhân viên mới trong năm đầu.", "meanings": ["nhắc đến (sai nghĩa)", "giám sát (sai sắc thái)", "cách thức (danh từ)", "kèm cặp, cố vấn — đúng"]}, {"q": "Ms. Ford will ______ from her role as director at the end of next year.", "options": ["step back", "step up", "step on", "step in"], "answer": 0, "explain": "step back from a role = rút lui khỏi vai trò (câu 170: chưa nghỉ, NĂM SAU mới rút).", "translation": "Bà Ford sẽ rút khỏi vai trò giám đốc vào cuối năm sau.", "meanings": ["rút lui — đúng", "đẩy mạnh; đứng ra nhận việc (sai nghĩa)", "giẫm lên (sai nghĩa)", "can thiệp, thay thế (sai nghĩa)"]}, {"q": "A ______ with refreshments will be held after the ceremony.", "options": ["receptionist", "recipe", "receipt", "reception"], "answer": 3, "explain": "reception (n) = tiệc chiêu đãi (cũng là 'quầy lễ tân').", "translation": "Sau buổi lễ sẽ có tiệc chiêu đãi kèm đồ ăn nhẹ.", "meanings": ["lễ tân (người)", "công thức nấu ăn (sai nghĩa)", "hóa đơn (sai nghĩa)", "tiệc chiêu đãi — đúng"]}, {"q": "This is an ______ event, so you need a personal invitation to attend.", "options": ["invitation-only", "invited", "invitation", "inviting"], "answer": 0, "explain": "an + ADJ + N (event) → invitation-only (chỉ dành cho khách mời).", "translation": "Đây là sự kiện chỉ dành cho khách mời, nên bạn cần thư mời riêng để tham dự.", "meanings": ["chỉ dành cho khách mời — đúng", "được mời (không đi trước event theo nghĩa này)", "lời mời (danh từ)", "hấp dẫn, mời gọi (sai nghĩa)"]}, {"q": "Please ______ your attendance by replying to this email.", "options": ["confine", "conform", "confirm", "inform"], "answer": 2, "explain": "confirm attendance = xác nhận tham dự.", "translation": "Vui lòng xác nhận tham dự bằng cách trả lời email này.", "meanings": ["giam hãm (sai nghĩa)", "tuân theo (sai nghĩa)", "xác nhận — đúng", "thông báo (inform sb of sth — sai cấu trúc)"]}, {"q": "Seating is ______, so please arrive early.", "options": ["unlimited", "limitless", "limited", "limiting"], "answer": 2, "explain": "Số ghế BỊ giới hạn → limited. 'so please arrive early' → không thể là unlimited.", "translation": "Số ghế có hạn, nên vui lòng đến sớm.", "meanings": ["không giới hạn (trái nghĩa)", "vô hạn (trái nghĩa)", "có hạn — đúng", "gây hạn chế (sai dạng)"]}, {"q": "The award recognizes excellence in retail, hospitality and craft ______.", "options": ["manufactures", "manufacturer", "manufactured", "manufacturing"], "answer": 3, "explain": "Song song với retail, hospitality (các NGÀNH) → craft manufacturing (ngành sản xuất thủ công).", "translation": "Giải thưởng tôn vinh sự xuất sắc trong bán lẻ, nhà hàng – khách sạn và sản xuất thủ công.", "meanings": ["sản xuất (động từ chia ngôi 3)", "nhà sản xuất (người/công ty)", "được sản xuất (V3)", "ngành sản xuất — đúng"]}];
+const QSTART = 91;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

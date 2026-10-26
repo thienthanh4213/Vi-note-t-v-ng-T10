@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 1/2 (Vi, 22/08)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 1/2</h1>
+    <p>Câu 1–28/57. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • Buổi 22/08</div>
+  </div>
+
+  <div class="nav">
+    <a class="active" href="vi-22-08-tu-de-nham-list1.html">List 1 (1–20)</a>
+    <a class="" href="vi-22-08-tu-de-nham-list2.html">List 2 (21–40)</a>
+    
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/28 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "______, everything about the new product launch looks promising.", "options": ["So far", "Thus far", "As far", "So long"], "answer": 0, "explain": "\"so far\": cho đến nay — đồng nghĩa với \"thus far\".", "translation": "Cho đến nay, mọi thứ về đợt ra mắt sản phẩm mới đều có vẻ khả quan.", "meanings": ["cho đến nay", "cho đến nay (trang trọng hơn)", "sai — cần theo sau 'as'", "sai — nghĩa là 'miễn là'"]}, {"q": "______, no issues have been reported regarding the new system.", "options": ["Thus far", "So far", "As far", "So long"], "answer": 0, "explain": "\"thus far\": cho đến nay — đồng nghĩa với \"so far\", trang trọng hơn.", "translation": "Cho đến nay, chưa có vấn đề nào được báo cáo về hệ thống mới.", "meanings": ["cho đến nay (trang trọng)", "cho đến nay (thông dụng)", "sai — cần theo sau 'as'", "sai nghĩa"]}, {"q": "The machine was faulty; ______, production had to be halted.", "options": ["thus", "however", "moreover", "meanwhile"], "answer": 0, "explain": "\"thus\": do đó, vì vậy — đồng nghĩa với hence/so/therefore.", "translation": "Máy bị lỗi; do đó, sản xuất phải tạm dừng.", "meanings": ["do đó, vì vậy", "tuy nhiên", "hơn nữa", "trong khi đó"]}, {"q": "Sales dropped sharply last quarter; ______, the board decided to cut costs.", "options": ["hence", "however", "moreover", "meanwhile"], "answer": 0, "explain": "\"hence\": do đó, vì vậy — đồng nghĩa với thus/so/therefore.", "translation": "Doanh số giảm mạnh quý trước; do đó, ban giám đốc quyết định cắt giảm chi phí.", "meanings": ["do đó, vì vậy", "tuy nhiên", "hơn nữa", "trong khi đó"]}, {"q": "It started raining heavily, ______ we decided to stay indoors.", "options": ["so", "however", "moreover", "meanwhile"], "answer": 0, "explain": "\"so\" (liên từ): do đó, vì vậy — đồng nghĩa với thus/hence/therefore, dùng phổ biến trong văn nói.", "translation": "Trời bắt đầu mưa to, vì vậy chúng tôi quyết định ở trong nhà.", "meanings": ["do đó, vì vậy (văn nói)", "tuy nhiên", "hơn nữa", "trong khi đó"]}, {"q": "The original plan failed; ______, we need to develop a new strategy.", "options": ["therefore", "however", "moreover", "meanwhile"], "answer": 0, "explain": "\"therefore\": do đó, vì vậy — đồng nghĩa với thus/hence/so, trang trọng, thường đứng đầu mệnh đề độc lập sau dấu chấm phẩy.", "translation": "Kế hoạch ban đầu đã thất bại; vì vậy, chúng ta cần phát triển một chiến lược mới.", "meanings": ["do đó, vì vậy (trang trọng)", "tuy nhiên", "hơn nữa", "trong khi đó"]}, {"q": "Every month, she pays her ______ bills, including electricity, water, and gas.", "options": ["utility", "amenity", "utilize", "utensil"], "answer": 0, "explain": "\"utility\" (n): tiện ích công cộng (điện, nước, ga...) — collocation \"utility bills\".", "translation": "Mỗi tháng, cô ấy thanh toán hóa đơn tiện ích, bao gồm điện, nước và ga.", "meanings": ["tiện ích công cộng (điện, nước, ga)", "tiện nghi (khách sạn, chung cư)", "sử dụng (động từ, sai từ loại)", "dụng cụ (sai nghĩa)"]}, {"q": "The hotel offers many ______, such as a pool, gym, and free breakfast.", "options": ["utility", "amenities", "utilize", "utensils"], "answer": 1, "explain": "\"amenity\" (n): tiện nghi — khác với \"utility\" (tiện ích công cộng cơ bản như điện nước).", "translation": "Khách sạn cung cấp nhiều tiện nghi, chẳng hạn như hồ bơi, phòng gym và bữa sáng miễn phí.", "meanings": ["tiện ích công cộng (sai ở đây)", "tiện nghi (số nhiều — đúng)", "sử dụng (sai từ loại)", "dụng cụ (sai nghĩa)"]}, {"q": "The team was encouraged to ______ all available resources to finish the project on time.", "options": ["utility", "amenity", "utilize", "utensil"], "answer": 2, "explain": "\"utilize\" (v): sử dụng (một cách hiệu quả) — động từ, khác với \"utility\"/\"amenity\" (danh từ).", "translation": "Nhóm được khuyến khích sử dụng mọi nguồn lực sẵn có để hoàn thành dự án đúng hạn.", "meanings": ["tiện ích công cộng (sai từ loại)", "tiện nghi (sai từ loại)", "sử dụng (v — đúng)", "dụng cụ (sai nghĩa)"]}, {"q": "A thick layer of ______ had settled on the old bookshelf.", "options": ["dust", "smoke", "ash", "soot"], "answer": 0, "explain": "\"dust\" (n): bụi — KHÁC hẳn \"smoke\" (khói), không đồng nghĩa dù đôi khi bị nhầm.", "translation": "Một lớp bụi dày đã phủ lên kệ sách cũ.", "meanings": ["bụi", "khói (sai nghĩa — dễ nhầm)", "tro (sai nghĩa)", "bồ hóng (sai nghĩa)"]}, {"q": "Thick ______ filled the sky after the factory fire broke out.", "options": ["dust", "smoke", "dusty", "smoky"], "answer": 1, "explain": "\"smoke\" (n): khói — khác hẳn \"dust\" (bụi).", "translation": "Khói dày đặc bao phủ bầu trời sau khi đám cháy nhà máy bùng phát.", "meanings": ["bụi (sai nghĩa)", "khói", "đầy bụi (tính từ, sai từ loại)", "đầy khói (tính từ, sai từ loại)"]}, {"q": "Please ______ the shelves before the guests arrive; they're covered in dirt.", "options": ["dust", "sweep", "wipe", "swipe"], "answer": 0, "explain": "\"dust\" (v): lau bụi, phủi bụi — khác với \"sweep\" (quét sàn).", "translation": "Vui lòng lau bụi các kệ trước khi khách đến; chúng đang phủ đầy bụi bẩn.", "meanings": ["lau bụi, phủi bụi (đúng — dùng cho bề mặt/kệ)", "quét sàn (sai ở đây)", "lau bàn/mặt phẳng (gần nghĩa nhưng câu này chọn dust)", "quẹt thẻ (sai nghĩa)"]}, {"q": "He grabbed a broom to ______ the kitchen floor after dinner.", "options": ["dust", "sweep", "wipe", "swipe"], "answer": 1, "explain": "\"sweep\" (v): quét (sàn nhà) — khác với \"dust\" (lau/phủi bụi trên bề mặt).", "translation": "Anh ấy lấy chổi để quét sàn bếp sau bữa tối.", "meanings": ["lau bụi, phủi bụi (sai ở đây)", "quét sàn (đúng — collocation với 'floor')", "lau (bàn/mặt phẳng, sai ở đây)", "quẹt thẻ (sai nghĩa)"]}, {"q": "Could you please ______ the table before we set out the plates?", "options": ["wipe", "swipe", "dust", "sweep"], "answer": 0, "explain": "\"wipe\" (v): lau (bàn, mặt phẳng) — đây mới là từ đúng cho \"lau bàn\", dễ nhầm với \"swipe\".", "translation": "Bạn có thể lau bàn trước khi chúng ta bày đĩa ra không?", "meanings": ["lau (bàn, mặt phẳng — đúng)", "quẹt thẻ; vuốt màn hình (sai nghĩa — dễ nhầm)", "lau bụi, phủi bụi (gần nghĩa nhưng không hợp collocation 'table')", "quét sàn (sai nghĩa)"]}, {"q": "Please ______ your card at the terminal to complete the payment.", "options": ["wipe", "swipe", "dust", "sweep"], "answer": 1, "explain": "\"swipe\" (v): quẹt (thẻ); vuốt (màn hình) — KHÔNG phải \"lau bàn\", dễ nhầm với \"wipe\" vì chính tả gần giống.", "translation": "Vui lòng quẹt thẻ của bạn tại máy để hoàn tất thanh toán.", "meanings": ["lau (bàn, mặt phẳng — sai nghĩa ở đây)", "quẹt thẻ; vuốt màn hình (đúng)", "lau bụi (sai nghĩa)", "quét sàn (sai nghĩa)"]}, {"q": "Everyone was won over by her ______ smile and warm personality.", "options": ["charming", "appealing", "attractive", "elegant"], "answer": 0, "explain": "\"charming\" (a): quyến rũ, duyên dáng — đồng nghĩa với appealing/attractive.", "translation": "Mọi người đều bị chinh phục bởi nụ cười quyến rũ và tính cách ấm áp của cô ấy.", "meanings": ["quyến rũ, duyên dáng", "hấp dẫn", "thu hút, hấp dẫn", "thanh lịch"]}, {"q": "The company's new offer seems very ______ to potential investors.", "options": ["charming", "appealing", "attractive", "elegant"], "answer": 1, "explain": "\"appealing\" (a): hấp dẫn — đồng nghĩa với charming/attractive.", "translation": "Đề nghị mới của công ty có vẻ rất hấp dẫn đối với các nhà đầu tư tiềm năng.", "meanings": ["quyến rũ, duyên dáng", "hấp dẫn", "thu hút, hấp dẫn", "thanh lịch"]}, {"q": "The new packaging design is far more ______ than the previous one.", "options": ["charming", "appealing", "attractive", "elegant"], "answer": 2, "explain": "\"attractive\" (a): thu hút, hấp dẫn — đồng nghĩa với charming/appealing.", "translation": "Thiết kế bao bì mới hấp dẫn hơn hẳn so với thiết kế trước đó.", "meanings": ["quyến rũ, duyên dáng", "hấp dẫn", "thu hút, hấp dẫn", "thanh lịch"]}, {"q": "From the top of the mountain, they had a ______ view of the whole valley.", "options": ["stunning", "amazing", "elegant", "charming"], "answer": 0, "explain": "\"stunning\" (a): tuyệt đẹp — đồng nghĩa với amazing.", "translation": "Từ đỉnh núi, họ có tầm nhìn tuyệt đẹp ra toàn bộ thung lũng.", "meanings": ["tuyệt đẹp", "đáng kinh ngạc", "thanh lịch (sai nghĩa)", "quyến rũ (sai nghĩa)"]}, {"q": "The gymnast delivered an absolutely ______ performance that stunned the judges.", "options": ["stunning", "amazing", "elegant", "charming"], "answer": 1, "explain": "\"amazing\" (a): đáng kinh ngạc — đồng nghĩa với stunning.", "translation": "Vận động viên thể dục dụng cụ đã trình diễn một màn biểu diễn đáng kinh ngạc khiến ban giám khảo sửng sốt.", "meanings": ["tuyệt đẹp", "đáng kinh ngạc", "thanh lịch (sai nghĩa)", "quyến rũ (sai nghĩa)"]}, {"q": "He drinks his morning coffee from a large ______ with his name on it.", "options": ["mug", "cup", "pot", "bowl"], "answer": 0, "explain": "\"mug\" (n): cốc có tay cầm, thường to hơn \"cup\" — collocation \"coffee mug\".", "translation": "Anh ấy uống cà phê buổi sáng bằng một chiếc cốc lớn có in tên mình.", "meanings": ["cốc có tay cầm, to hơn cup", "cốc/tách, nhỏ hơn, thường cho trà", "nồi, chậu (sai nghĩa)", "bát, tô (sai nghĩa)"]}, {"q": "She poured him a delicate ______ of tea in the fine china set.", "options": ["mug", "cup", "pot", "bowl"], "answer": 1, "explain": "\"cup\" (n): cốc, tách — gần nghĩa \"mug\" nhưng nhỏ hơn, thường dùng cho trà.", "translation": "Cô ấy rót cho anh một tách trà tinh tế trong bộ đồ sứ cao cấp.", "meanings": ["cốc có tay cầm, to hơn (sai ở đây)", "cốc/tách, nhỏ hơn — đúng, hợp với trà", "nồi, chậu (sai nghĩa)", "bát, tô (sai nghĩa)"]}, {"q": "Farmers in the region expect a good ______ this year thanks to favorable weather.", "options": ["harvest", "crops", "harvesting", "crop"], "answer": 0, "explain": "\"harvest\" (n): vụ thu hoạch — gần nghĩa với \"crops\" (mùa màng).", "translation": "Nông dân trong khu vực kỳ vọng một vụ thu hoạch tốt trong năm nay nhờ thời tiết thuận lợi.", "meanings": ["vụ thu hoạch (n — đúng, sau 'a good')", "mùa màng, cây trồng (số nhiều, sai vị trí)", "đang thu hoạch (sai từ loại)", "một loại cây trồng (số ít, sai)"]}, {"q": "Heavy rains this season have damaged the rice ______ across the province.", "options": ["harvest", "crops", "harvested", "cropped"], "answer": 1, "explain": "\"crops\" (n): mùa màng, cây trồng — gần nghĩa với \"harvest\" (vụ thu hoạch).", "translation": "Mưa lớn mùa này đã làm hư hại mùa màng lúa trên khắp tỉnh.", "meanings": ["vụ thu hoạch (sai vị trí — cần số nhiều)", "mùa màng, cây trồng (n, số nhiều — đúng)", "đã thu hoạch (sai từ loại)", "đã xén, cắt (sai nghĩa)"]}, {"q": "The company conducted ______ research across multiple markets before launching the product.", "options": ["extensive", "intensive", "expensive", "extended"], "answer": 0, "explain": "\"extensive\" (a): sâu rộng, trên diện rộng — khác với \"intensive\" (chuyên sâu, tập trung cao độ), dễ nhầm dù viết gần giống.", "translation": "Công ty đã tiến hành nghiên cứu sâu rộng trên nhiều thị trường trước khi ra mắt sản phẩm.", "meanings": ["sâu rộng, trên diện rộng", "chuyên sâu, tập trung cao độ (sai nghĩa — dễ nhầm)", "đắt đỏ (sai nghĩa)", "kéo dài (sai nghĩa)"]}, {"q": "New hires must complete a two-week ______ training program before starting work.", "options": ["extensive", "intensive", "expensive", "extended"], "answer": 1, "explain": "\"intensive\" (a): chuyên sâu, tập trung cao độ — khác với \"extensive\" (sâu rộng, diện rộng).", "translation": "Nhân viên mới phải hoàn thành chương trình đào tạo chuyên sâu kéo dài hai tuần trước khi bắt đầu làm việc.", "meanings": ["sâu rộng, diện rộng (sai nghĩa)", "chuyên sâu, tập trung cao độ — đúng", "đắt đỏ (sai nghĩa)", "kéo dài (sai nghĩa)"]}, {"q": "She came up with a ______ solution that saved the company thousands of dollars.", "options": ["clever", "smart", "elegant", "charming"], "answer": 0, "explain": "\"clever\" (a): thông minh — đồng nghĩa với smart.", "translation": "Cô ấy đã nghĩ ra một giải pháp thông minh giúp công ty tiết kiệm hàng ngàn đô la.", "meanings": ["thông minh", "thông minh (đồng nghĩa nhưng câu này chọn clever)", "thanh lịch (sai nghĩa)", "quyến rũ (sai nghĩa)"]}, {"q": "Choosing to invest early was a ______ decision that paid off years later.", "options": ["clever", "smart", "elegant", "charming"], "answer": 1, "explain": "\"smart\" (a): thông minh — đồng nghĩa với clever.", "translation": "Việc chọn đầu tư sớm là một quyết định thông minh đã mang lại lợi ích nhiều năm sau.", "meanings": ["thông minh (đồng nghĩa nhưng câu này chọn smart)", "thông minh", "thanh lịch (sai nghĩa)", "quyến rũ (sai nghĩa)"]}];
+const QSTART = 1;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

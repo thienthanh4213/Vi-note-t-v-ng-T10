@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#1D9E75" />
+<title>🎯 ETS 5 – Reading Test 10 – Từ vựng</title>
+<style>
+  :root{
+    --green:#1D9E75; --green-d:#158A63; --green-l:#E7F6F0;
+    --teal:#12B3A0;
+    --red:#E4574C; --red-l:#FCEBEA;
+    --ink:#1F2A28; --muted:#6B7A76; --bg:#F1F5F3;
+    --card:#FFFFFF; --line:#E3EAE7; --gold:#F4B740;
+    --grad:linear-gradient(135deg,#1D9E75,#12B3A0);
+    --grad-warm:linear-gradient(135deg,#F4B740,#F08A5D);
+    --glow:0 22px 45px -14px rgba(29,158,117,.32),0 4px 12px rgba(21,138,99,.08);
+    --page:radial-gradient(1100px 560px at 50% -12%,#E7F6F0 0%,#F1F5F3 55%);
+  }
+  [data-theme="dark"]{
+    --green:#25B487; --green-d:#5FD3AE; --green-l:#123329;
+    --teal:#2ED0BE;
+    --red:#F0736A; --red-l:#3A201E;
+    --ink:#EAF2EF; --muted:#9DB0AA; --bg:#0E1413;
+    --card:#18211F; --line:#28352F; --gold:#F4B740;
+    --grad:linear-gradient(135deg,#25B487,#2ED0BE);
+    --grad-warm:linear-gradient(135deg,#F4B740,#F0736A);
+    --glow:0 22px 48px -14px rgba(0,0,0,.55),0 4px 14px rgba(0,0,0,.35);
+    --page:radial-gradient(1100px 560px at 50% -12%,#14201C 0%,#0E1413 55%);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+    background:var(--page);background-attachment:fixed;color:var(--ink);
+    min-height:100dvh;display:flex;justify-content:center;padding:14px;
+    transition:background .25s,color .25s;
+  }
+  .layout{width:100%;max-width:700px;display:flex;align-items:flex-start;justify-content:center;gap:16px}
+  .app{width:100%;max-width:440px;flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
+  :focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:8px}
+
+  /* Sidebar chủ đề — mỗi chủ đề 1 hàng, nằm bên trái */
+  .sidebar{
+    flex:none;width:220px;
+    display:flex;flex-direction:column;gap:6px;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:12px;position:sticky;top:14px;
+  }
+  .sidebar-label{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:2px 6px 6px}
+  .group-chip{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    border:1px solid var(--line);background:var(--bg);color:var(--muted);
+    font-family:inherit;font-weight:700;font-size:13px;text-align:left;
+    padding:10px 12px;border-radius:12px;cursor:pointer;
+  }
+  .group-chip .chip-label{overflow-wrap:anywhere}
+  .group-chip .cnt{flex:none;font-size:11px;font-weight:700;color:var(--muted);background:var(--card);padding:2px 8px;border-radius:999px}
+  .group-chip:active{transform:scale(.98)}
+  .group-chip.on{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .group-chip.on .cnt{background:#fff;color:var(--green-d)}
+
+  @media (max-width: 760px){
+    /* Không đủ chỗ cho cột trái + thẻ cạnh nhau: sidebar chủ đề xếp lên trên,
+       nhưng vẫn giữ mỗi chủ đề một hàng riêng (không gộp thành lưới ngang). */
+    .layout{flex-direction:column}
+    .sidebar{width:100%;position:static}
+  }
+
+  /* Header */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .title{font-size:20px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+  /* Icon (emoji) hiển thị nguyên màu — KHÔNG áp gradient-clip lên emoji, vì trình
+     duyệt sẽ tô phẳng glyph màu thành một khối đơn sắc trông giống lỗi. Gradient
+     chỉ áp cho phần chữ. */
+  .title-icon{margin-right:2px}
+  .title-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .title small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+  .btn-ghost{
+    border:1px solid var(--line);background:var(--card);color:var(--green-d);
+    font-family:inherit;font-weight:700;font-size:12px;
+    padding:8px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;
+  }
+  .btn-ghost:active{transform:scale(.96)}
+  .icon-btn{
+    border:1px solid var(--line);background:var(--card);
+    width:38px;height:36px;border-radius:12px;cursor:pointer;font-size:16px;display:grid;place-items:center;
+  }
+  .icon-btn:active{transform:scale(.94)}
+
+  /* Stats */
+  .stats{
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:8px 10px;font-size:13px;font-weight:600;
+  }
+  .stat{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px}
+  .stat.ok{color:var(--green-d);background:var(--green-l)}
+  .stat.no{color:var(--red);background:var(--red-l)}
+  .stat.left{color:var(--muted);background:var(--bg)}
+  .dot{display:none}
+  .round{margin-left:auto;background:var(--green-l);color:var(--green-d);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .shuffle{background:none;border:none;font-family:inherit;font-weight:700;color:var(--green-d);cursor:pointer;font-size:13px;padding:4px}
+  .shuffle:active{transform:scale(.94)}
+
+  /* Progress */
+  .prog{height:6px;background:var(--line);border-radius:999px;overflow:hidden}
+  .prog > i{display:block;height:100%;background:var(--grad);width:0%;transition:width .35s ease}
+
+  /* Card scene */
+  .scene{position:relative;perspective:1400px;height:340px}
+  .swipe-hint{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    font-size:20px;font-weight:800;color:#fff;padding:8px 16px;border-radius:14px;
+    opacity:0;pointer-events:none;transition:opacity .08s;
+  }
+  .swipe-hint.know{right:16px;background:var(--green)}
+  .swipe-hint.forget{left:16px;background:var(--red)}
+  .drag{position:absolute;inset:0;transition:transform .25s ease;will-change:transform;touch-action:pan-y}
+  .card{
+    position:relative;width:100%;height:100%;cursor:pointer;
+    transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.flip{transform:rotateY(180deg)}
+  .face{
+    position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;
+    box-shadow:var(--glow);
+    display:flex;flex-direction:column;
+    padding:18px 24px 16px;text-align:center;
+  }
+  .face::before{content:"";position:absolute;top:0;left:0;right:0;height:6px}
+  .front::before{background:var(--grad)}
+  .back::before{background:var(--grad-warm)}
+  /* 3 vùng theo chiều dọc: kicker/tools ở trên, nội dung chính giữa (chiếm hết
+     khoảng trống còn lại để không để trống một mảng lớn giữa thẻ), chấm+gợi ý
+     ở dưới — không còn absolute nên chiều cao thẻ tự phân bổ đều. */
+  .face-top{display:flex;align-items:center;justify-content:space-between;min-height:38px}
+  .face .kicker{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .back{transform:rotateY(180deg)}
+  .face-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0}
+  .icon{font-size:44px;line-height:1;margin-bottom:8px}
+  .icon:empty{display:none;margin:0}
+  .word{font-size:42px;font-weight:800;line-height:1.12;letter-spacing:-.02em;word-break:break-word}
+  .pron{margin-top:6px;color:var(--muted);font-size:14px;font-weight:500}
+  .meaning{font-size:26px;font-weight:700;line-height:1.25;color:var(--ink)}
+  .example{margin-top:14px;font-size:14px;color:var(--muted);font-weight:500;font-style:italic;max-width:90%}
+  .face-bottom{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .hint{font-size:12px;color:var(--muted);font-weight:600}
+  .dots{display:flex;gap:5px}
+  .dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+  .dots i.on{background:var(--green)}
+  .face-tools{display:flex;gap:6px}
+  .tool{border:1px solid var(--line);background:var(--card);border-radius:12px;width:38px;height:38px;font-size:16px;cursor:pointer;display:grid;place-items:center}
+  .tool:active{transform:scale(.9);background:var(--green-l)}
+
+  /* Controls */
+  .controls{display:grid;grid-template-columns:1fr 1.2fr 1.2fr 1fr;gap:8px}
+  .ctl{border:none;font-family:inherit;font-weight:700;font-size:14px;padding:14px 6px;border-radius:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px}
+  .ctl:active{transform:translateY(1px) scale(.98)}
+  .ctl.nav{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+  .ctl.forget{background:var(--red-l);color:var(--red)}
+  .ctl.know{background:var(--grad);color:#fff;box-shadow:0 8px 20px -4px rgba(29,158,117,.5)}
+  .ctl:disabled{opacity:.4;cursor:not-allowed}
+  .swipe-tip{text-align:center;font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+
+  /* Overlays */
+  .overlay{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px 22px;text-align:center}
+  .overlay .emoji{font-size:52px}
+  .overlay h2{margin:10px 0 6px;font-size:22px}
+  .overlay p{margin:0;color:var(--muted);font-weight:500}
+  .review-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0}
+  .chip{background:var(--red-l);color:var(--red);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600}
+  .btn-primary{margin-top:18px;background:var(--grad);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:16px;padding:14px 22px;border-radius:16px;cursor:pointer;width:100%;box-shadow:0 8px 20px -4px rgba(29,158,117,.45)}
+  .btn-primary:active{transform:scale(.98)}
+  .btn-outline{margin-top:10px;background:var(--card);color:var(--green-d);border:1px solid var(--green);font-family:inherit;font-weight:700;font-size:15px;padding:12px 22px;border-radius:16px;cursor:pointer;width:100%}
+  .btn-outline.danger{color:var(--red);border-color:var(--red)}
+  .hidden{display:none !important}
+
+  /* Modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(10,18,16,.55);display:flex;align-items:flex-end;justify-content:center;z-index:50}
+  .modal{background:var(--card);width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:20px;max-height:88dvh;overflow:auto}
+  .modal h3{margin:0 0 4px;font-size:18px}
+  .modal .sub{color:var(--muted);font-size:13px;font-weight:500;margin:0 0 14px}
+  .modal label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
+  .modal input,.modal textarea,.modal select{width:100%;font-family:inherit;font-size:15px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+  .modal textarea{min-height:150px;line-height:1.5}
+  .modal input:focus,.modal textarea:focus,.modal select:focus{outline:none;border-color:var(--green)}
+  .row{display:flex;gap:8px}
+  .count-note{font-size:12px;color:var(--muted);font-weight:600;margin-top:6px}
+  .seg{display:flex;gap:6px}
+  .seg button{flex:1;padding:10px 4px;border:1px solid var(--line);background:var(--card);border-radius:12px;font-family:inherit;font-weight:700;font-size:13px;color:var(--muted);cursor:pointer}
+  .seg button.on{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-weight:600;font-size:14px}
+  .switch{width:48px;height:28px;border-radius:999px;border:none;background:var(--line);position:relative;cursor:pointer;transition:.2s;flex:none}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .switch.on{background:var(--green)} .switch.on::after{left:23px}
+
+  /* Hoạt ảnh thẻ mới xuất hiện + ăn mừng */
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+  .scene.enter .drag{animation:cardIn .32s cubic-bezier(.2,.8,.2,1)}
+  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.05)}100%{transform:scale(1)}}
+  .scene.knowpop{animation:pop .34s ease}
+  .confetti{position:absolute;top:24%;left:50%;z-index:8;pointer-events:none}
+  .confetti i{position:absolute;width:9px;height:9px;border-radius:2px;opacity:0}
+  @keyframes conf{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(var(--cr))}}
+
+  .wm-footer{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);text-align:center;font-size:11px;color:var(--muted);opacity:.7}
+
+  @media (prefers-reduced-motion: reduce){
+    .card,.drag,.prog>i,body,.switch,.switch::after{transition:none !important}
+    .scene.enter .drag,.scene.knowpop,.confetti i{animation:none !important}
+  }
+
+  /* ===== Chuyen che do Flashcard / Kiem tra tu vung ===== */
+  .page-wrap{width:100%;max-width:700px;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .mode-tabs{display:flex;gap:8px;width:100%;max-width:440px}
+  .mode-tab{
+    flex:1;border:1px solid var(--line);background:var(--card);color:var(--muted);
+    font-family:inherit;font-weight:700;font-size:13px;padding:12px 8px;border-radius:14px;cursor:pointer;transition:.15s;
+  }
+  .mode-tab.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 20px -6px rgba(29,158,117,.45)}
+  .mode-tab:active{transform:scale(.98)}
+
+  /* ===== Kiem tra tu vung (trac nghiem 4 dap an) ===== */
+  .quiz-card{
+    position:relative;overflow:hidden;
+    background:var(--card);border:1px solid var(--line);border-radius:26px;
+    box-shadow:var(--glow);padding:24px 22px 20px;text-align:center;
+    display:flex;flex-direction:column;gap:4px;min-height:150px;justify-content:center;
+  }
+  .quiz-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad)}
+  .quiz-kicker{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .quiz-question{font-size:22px;font-weight:800;line-height:1.32;margin:8px 0 2px;word-break:break-word}
+  .quiz-options{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+  .opt-btn{
+    display:flex;align-items:center;gap:10px;text-align:left;
+    border:1.5px solid var(--line);background:var(--card);color:var(--ink);
+    font-family:inherit;font-size:14px;font-weight:600;line-height:1.35;
+    padding:12px 14px;border-radius:14px;cursor:pointer;transition:.12s;
+  }
+  .opt-btn .opt-key{
+    flex:none;width:26px;height:26px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);
+  }
+  .opt-btn:active{transform:scale(.98)}
+  .opt-btn:disabled{cursor:default}
+  .opt-btn.correct{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .opt-btn.correct .opt-key{background:var(--green);border-color:var(--green);color:#fff}
+  .opt-btn.wrong{background:var(--red-l);border-color:var(--red);color:var(--red)}
+  .opt-btn.wrong .opt-key{background:var(--red);border-color:var(--red);color:#fff}
+  .quiz-sub{font-size:12px;color:var(--muted);font-weight:600;text-align:center;margin-top:2px}
+
+  .student-bar{display:flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px}
+  .student-bar input{
+    flex:1;min-width:0;font-family:inherit;font-size:14px;
+    padding:10px 12px;border:1px solid var(--line);border-radius:12px;
+    background:var(--bg);color:var(--ink);
+  }
+  .student-bar input:focus{outline:none;border-color:var(--green)}
+  .student-bar .ctl{flex:none;padding:10px 16px}
+
+  .submit-status{font-weight:700;margin-top:4px}
+  .submit-status.sending{color:var(--muted)}
+  .submit-status.ok{color:var(--green-d)}
+  .submit-status.fail{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="mode-tabs" id="modeTabs">
+    <button type="button" class="mode-tab active" data-mode="flash">🗂️ Flashcard</button>
+    <button type="button" class="mode-tab" data-mode="quiz">📝 Kiểm tra từ vựng</button>
+  </div>
+
+  <div class="layout" id="flashMode">
+  <!-- Sidebar chủ đề (trái, mỗi chủ đề 1 hàng) — chỉ hiện khi thẻ có field 'group' -->
+  <aside class="sidebar hidden" id="groupSidebar"></aside>
+
+  <div class="app">
+  <!-- Header -->
+  <div class="top">
+    <div class="title" id="deckTitle"><span class="title-icon" id="titleIcon">🎯</span><span class="title-text" id="titleText">Flashcard</span><small id="deckSub">Tự soạn từ vựng</small></div>
+    <div class="row">
+      <button class="icon-btn" id="btnSettings" aria-label="Cài đặt">⚙️</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <span class="stat ok">✓ Nhớ: <b id="sKnow">0</b></span><span class="dot"></span>
+    <span class="stat no">✗ Quên: <b id="sForget">0</b></span><span class="dot"></span>
+    <span class="stat left">◎ Còn: <b id="sLeft">0</b></span>
+    <span class="round">Vòng <b id="sRound">1</b></span>
+    <button class="shuffle" id="btnShuffle">🔀 Trộn</button>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+
+  <!-- Study view -->
+  <div id="studyView">
+    <div class="scene" id="scene">
+      <div class="swipe-hint forget" id="hintForget">😕 Quên</div>
+      <div class="swipe-hint know" id="hintKnow">✓ Nhớ</div>
+      <div class="drag" id="drag">
+        <div class="card" id="card">
+          <div class="face front">
+            <div class="face-top">
+              <div class="kicker" id="frontKicker">Từ vựng</div>
+              <div class="face-tools">
+                <button class="tool" id="btnSpeak" aria-label="Nghe phát âm">🔊</button>
+                <button class="tool" id="btnImage" aria-label="Xem hình gợi ý">🖼️</button>
+              </div>
+            </div>
+            <div class="face-body">
+              <div class="icon" id="frontIcon"></div>
+              <div class="word" id="frontWord">—</div>
+              <div class="pron" id="frontPron"></div>
+            </div>
+            <div class="face-bottom">
+              <div class="dots" id="frontDots"></div>
+              <div class="hint">👆 Nhấn để lật · ↔ vuốt để chấm</div>
+            </div>
+          </div>
+          <div class="face back">
+            <div class="face-top">
+              <div class="kicker" id="backKicker">Nghĩa</div>
+            </div>
+            <div class="face-body">
+              <div class="icon" id="backIcon"></div>
+              <div class="meaning" id="backMeaning">—</div>
+              <div class="example" id="backExample"></div>
+            </div>
+            <div class="face-bottom">
+              <div class="hint">👆 Nhấn để lật lại</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls" style="margin-top:14px">
+      <button class="ctl nav" id="btnPrev">← Trước</button>
+      <button class="ctl forget" id="btnForget">😕 Quên</button>
+      <button class="ctl know" id="btnKnow">✓ Nhớ</button>
+      <button class="ctl nav" id="btnNext">Sau →</button>
+    </div>
+    <div class="swipe-tip">Mẹo: vuốt trái = Quên · vuốt phải = Nhớ</div>
+  </div>
+
+  <!-- Review round -->
+  <div id="reviewView" class="overlay hidden">
+    <div class="emoji">😕</div>
+    <h2 id="reviewTitle">Còn 0 từ chưa nhớ</h2>
+    <p>Hãy ôn lại những từ này:</p>
+    <div class="review-list" id="reviewList"></div>
+    <button class="btn-primary" id="btnReviewNow">🔁 Ôn lại ngay</button>
+  </div>
+
+  <!-- Done -->
+  <div id="doneView" class="overlay hidden">
+    <div class="emoji">🏆</div>
+    <h2>Xuất sắc!</h2>
+    <p id="doneSub">Bạn đã nhớ tất cả từ vựng!</p>
+    <button class="btn-primary" id="btnRestart">🔄 Học lại từ đầu</button>
+  </div>
+
+  <!-- Empty -->
+  <div id="emptyView" class="overlay hidden">
+    <div class="emoji">📭</div>
+    <h2>Bộ thẻ trống</h2>
+    <p>Bộ từ vựng chưa có nội dung. Hãy liên hệ giáo viên của bạn.</p>
+  </div>
+  </div><!-- /.app -->
+  </div><!-- /.layout -->
+
+  <div class="app hidden" id="quizMode">
+    <div class="top">
+      <div class="title"><span class="title-icon">📝</span><span class="title-text">Kiểm tra từ vựng</span><small>Anh–Việt &amp; Việt–Anh · trắc nghiệm 4 đáp án</small></div>
+    </div>
+
+    <div class="stats">
+      <span class="stat ok">✓ Đúng: <b id="qKnow">0</b></span><span class="dot"></span>
+      <span class="stat no">✗ Sai: <b id="qWrong">0</b></span><span class="dot"></span>
+      <span class="stat left">◎ Còn: <b id="qLeft">0</b></span>
+      <span class="round">Vòng <b id="qRound">1</b></span>
+    </div>
+    <div class="prog"><i id="qProgBar"></i></div>
+
+    <div class="student-bar" id="quizStudentBar">
+      <input type="text" id="quizStudentName" placeholder="Nhập họ tên học sinh…" autocomplete="name" />
+      <button type="button" class="ctl know" id="btnQuizStart" style="width:auto">Bắt đầu →</button>
+    </div>
+    <div class="quiz-sub" id="quizNameWarn" style="display:none;color:var(--red)">⚠️ Vui lòng nhập họ tên trước khi bắt đầu.</div>
+
+    <div id="quizStudyView" class="hidden">
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-kicker" id="quizKicker">Từ vựng → Nghĩa</div>
+        <div class="quiz-question" id="quizQuestion">—</div>
+      </div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <button type="button" class="ctl know hidden" id="btnQuizNext" style="width:100%;margin-top:10px">Câu tiếp theo →</button>
+      <div class="quiz-sub">Chọn đáp án đúng · bấm "Câu tiếp theo" để qua câu kế · câu sai sẽ quay lại ở vòng học sau</div>
+    </div>
+
+    <div id="quizReviewView" class="overlay hidden">
+      <div class="emoji">😕</div>
+      <h2 id="quizReviewTitle">Còn 0 câu chưa đúng</h2>
+      <p>Hãy làm lại các câu này:</p>
+      <div class="review-list" id="quizReviewList"></div>
+      <button class="btn-primary" id="btnQuizReviewNow">🔁 Làm lại ngay</button>
+    </div>
+
+    <div id="quizDoneView" class="overlay hidden">
+      <div class="emoji">🏆</div>
+      <h2>Hoàn thành!</h2>
+      <p id="quizDoneSub">Bạn đã trả lời đúng tất cả!</p>
+      <button class="btn-primary hidden" id="btnQuizSubmitScore">📤 Chấm điểm &amp; gửi kết quả</button>
+      <div class="quiz-sub submit-status" id="quizSubmitStatus"></div>
+      <button class="btn-primary" id="btnQuizRestart">🔄 Làm lại từ đầu</button>
+    </div>
+  </div><!-- /#quizMode -->
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+</div><!-- /.page-wrap -->
+
+<!-- (Đã gỡ trình soạn thẻ – học sinh không chỉnh sửa nội dung) -->
+
+<!-- Settings modal -->
+<div class="modal-bg hidden" id="setModal">
+  <div class="modal">
+    <h3>⚙️ Cài đặt học</h3>
+    <p class="sub">Điều chỉnh cách ôn cho phù hợp với bạn.</p>
+    <label>Chiều học</label>
+    <div class="seg" id="segDir">
+      <button data-v="fwd">Từ → Nghĩa</button>
+      <button data-v="rev">Nghĩa → Từ</button>
+      <button data-v="mix">Trộn</button>
+    </div>
+    <div class="toggle-row"><span>🔊 Tự phát âm khi hiện thẻ</span><button class="switch" id="tglAudio" aria-label="Tự phát âm"></button></div>
+    <div class="toggle-row"><span>🌙 Giao diện tối</span><button class="switch" id="tglDark" aria-label="Giao diện tối"></button></div>
+    <div class="toggle-row"><span>🎯 Ưu tiên từ chưa thuộc</span><button class="switch" id="tglWeak" aria-label="Ưu tiên từ yếu"></button></div>
+    <button class="btn-outline danger" id="btnResetProg">↺ Đặt lại tiến độ thuộc</button>
+    <button class="btn-primary" id="btnCloseSet">Xong</button>
+  </div>
+</div>
+
+<script>
+/* ---------- Lưu trữ an toàn ---------- */
+const store = {
+  save(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} },
+  load(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+};
+
+/* ---------- Bộ thẻ nhúng sẵn (giáo viên soạn) ---------- */
+const DECK = {"title": "🎯 ETS 5 – Reading Test 10 – Từ vựng", "lang": "en-US", "cards": [{"front": "anticipate / predict / forecast / project (v)", "back": "dự đoán, dự báo", "ex": "Analysts anticipate a rise in prices.", "pron": "/ænˈtɪsɪpeɪt/", "img": "🔮", "group": "Từ vựng"}, {"front": "anticipation / prediction / forecast / projection (n)", "back": "sự dự đoán, sự dự báo", "ex": "the weather forecast for tomorrow", "pron": "/ænˌtɪsɪˈpeɪʃn/", "img": "📊", "group": "Từ vựng"}, {"front": "subsequent", "back": "sau đó, tiếp theo (tính từ)", "ex": "Subsequent research confirmed the results.", "pron": "/ˈsʌbsɪkwənt/", "img": "➡️", "group": "Từ vựng"}, {"front": "reputation", "back": "danh tiếng (danh từ)", "ex": "The company has a good reputation.", "pron": "/ˌrepjuˈteɪʃn/", "img": "⭐", "group": "Từ vựng"}, {"front": "sound (a)", "back": "vững chắc, đáng tin cậy, hợp lý", "ex": "The company has a sound financial reputation.", "pron": "/saʊnd/", "img": "✅", "group": "Từ vựng"}, {"front": "aspire", "back": "khao khát, mong muốn (đạt được điều gì) (động từ)", "ex": "She aspires to become a manager.", "pron": "/əˈspaɪər/", "img": "🌟", "group": "Từ vựng"}, {"front": "flourish", "back": "phát triển mạnh mẽ, thịnh vượng, nở rộ (động từ)", "ex": "The business flourished last year.", "pron": "/ˈflɜːrɪʃ/", "img": "🌸", "group": "Từ vựng"}, {"front": "flourishing / potential / prospective / promising (a)", "back": "đang phát triển mạnh (flourishing); có tiềm năng (potential); tương lai, sắp tới (prospective); đầy hứa hẹn (promising)", "ex": "a promising young talent", "pron": "/ˈflɜːrɪʃɪŋ/", "img": "📈", "group": "Từ vựng"}, {"front": "garments / clothes", "back": "quần áo, y phục (danh từ)", "ex": "The factory produces garments.", "pron": "/ˈɡɑːrmənts/", "img": "👕", "group": "Từ vựng"}, {"front": "fabric / cloth", "back": "vải (danh từ)", "ex": "This shirt is made of soft fabric.", "pron": "/ˈfæbrɪk/", "img": "🧵", "group": "Từ vựng"}, {"front": "a diplomat", "back": "nhà ngoại giao (danh từ)", "ex": "a career diplomat", "pron": "/ˈdɪpləmæt/", "img": "🤝", "group": "Từ vựng"}, {"front": "widespread / popular", "back": "phổ biến rộng rãi, lan rộng (tính từ)", "ex": "widespread use of smartphones", "pron": "/ˈwaɪdspred/", "img": "🌍", "group": "Từ vựng"}, {"front": "significant / considerable / substantial / noticeable", "back": "đáng kể, quan trọng, dễ nhận thấy (tính từ)", "ex": "a significant improvement", "pron": "/sɪɡˈnɪfɪkənt/", "img": "📌", "group": "Từ vựng"}, {"front": "minutes", "back": "biên bản cuộc họp (danh từ)", "ex": "Please take the minutes of the meeting.", "pron": "/ˈmɪnɪts/", "img": "📝", "group": "Từ vựng"}, {"front": "junior >< senior", "back": "cấp dưới, ít thâm niên hơn >< cấp trên, thâm niên hơn (tính từ)", "ex": "a junior staff member vs. a senior manager", "pron": "/ˈdʒuːniər/ - /ˈsiːniər/", "img": "🧑‍💼", "group": "Từ vựng"}, {"front": "motivate", "back": "tạo động lực, thúc đẩy (động từ)", "ex": "Good pay motivates employees.", "pron": "/ˈmoʊtɪveɪt/", "img": "🔥", "group": "Từ vựng"}, {"front": "dependent", "back": "phụ thuộc (tính từ)", "ex": "dependent on the weather", "pron": "/dɪˈpendənt/", "img": "🔗", "group": "Từ vựng"}, {"front": "independent", "back": "độc lập (tính từ)", "ex": "an independent decision", "pron": "/ˌɪndɪˈpendənt/", "img": "🔓", "group": "Từ vựng"}, {"front": "allow / enable / permit", "back": "cho phép (allow, permit); giúp có thể, tạo điều kiện (enable)", "ex": "This tool enables us to work faster.", "pron": "/əˈlaʊ/", "img": "✅", "group": "Từ vựng"}, {"front": "construct / build", "back": "xây dựng (động từ)", "ex": "construct a new building", "pron": "/kənˈstrʌkt/", "img": "🏗️", "group": "Từ vựng"}, {"front": "reconstruct", "back": "xây dựng lại, tái thiết (động từ)", "ex": "reconstruct the old bridge", "pron": "/ˌriːkənˈstrʌkt/", "img": "🔨", "group": "Từ vựng"}, {"front": "container", "back": "thùng chứa, công-ten-nơ (danh từ)", "ex": "a shipping container", "pron": "/kənˈteɪnər/", "img": "📦", "group": "Từ vựng"}, {"front": "contain", "back": "chứa đựng (động từ)", "ex": "The box contains books.", "pron": "/kənˈteɪn/", "img": "📥", "group": "Từ vựng"}, {"front": "initial", "back": "ban đầu (tính từ)", "ex": "the initial stage of the project", "pron": "/ɪˈnɪʃl/", "img": "🔰", "group": "Từ vựng"}, {"front": "imitate", "back": "bắt chước (động từ)", "ex": "Children imitate their parents.", "pron": "/ˈɪmɪteɪt/", "img": "🎭", "group": "Từ vựng"}, {"front": "imitation", "back": "bản sao, hàng nhái; sự bắt chước (danh từ)", "ex": "an imitation leather bag", "pron": "/ˌɪmɪˈteɪʃn/", "img": "🎭", "group": "Từ vựng"}, {"front": "auction", "back": "cuộc đấu giá (danh từ)", "ex": "The painting sold at auction.", "pron": "/ˈɔːkʃn/", "img": "🔨", "group": "Từ vựng"}, {"front": "caution", "back": "sự cẩn thận, thận trọng (n); cảnh báo (v)", "ex": "Handle with caution.", "pron": "/ˈkɔːʃn/", "img": "⚠️", "group": "Từ vựng"}, {"front": "inferior", "back": "thấp kém (hơn) (tính từ)", "ex": "inferior quality", "pron": "/ɪnˈfɪriər/", "img": "⬇️", "group": "Từ vựng"}, {"front": "superior", "back": "vượt trội, cao cấp hơn (tính từ)", "ex": "superior quality", "pron": "/suːˈpɪriər/", "img": "⬆️", "group": "Từ vựng"}, {"front": "directory", "back": "sổ danh bạ (danh từ)", "ex": "a telephone directory", "pron": "/dəˈrektəri/", "img": "📇", "group": "Từ vựng"}, {"front": "rate (price)", "back": "giá, mức giá (danh từ)", "ex": "a discounted rate", "pron": "/reɪt/", "img": "💲", "group": "Từ vựng"}, {"front": "convince / persuade", "back": "thuyết phục (động từ)", "ex": "convince him to join", "pron": "/kənˈvɪns/", "img": "🗣️", "group": "Từ vựng"}, {"front": "absent", "back": "vắng mặt (tính từ)", "ex": "He was absent from work.", "pron": "/ˈæbsənt/", "img": "🚫", "group": "Từ vựng"}, {"front": "reasonable", "back": "hợp lý (tính từ)", "ex": "a reasonable price", "pron": "/ˈriːznəbl/", "img": "👍", "group": "Từ vựng"}, {"front": "cite", "back": "trích dẫn (động từ)", "ex": "cite a source", "pron": "/saɪt/", "img": "📖", "group": "Từ vựng"}, {"front": "crate", "back": "thùng gỗ, sọt đựng hàng (≈ container) (danh từ)", "ex": "a crate of fruit", "pron": "/kreɪt/", "img": "📦", "group": "Từ vựng"}, {"front": "freight", "back": "hàng hóa vận chuyển, cước vận chuyển (danh từ)", "ex": "freight charges", "pron": "/freɪt/", "img": "🚚", "group": "Từ vựng"}, {"front": "argue", "back": "tranh cãi, tranh luận (động từ)", "ex": "They argued about the plan.", "pron": "/ˈɑːrɡjuː/", "img": "💬", "group": "Từ vựng"}, {"front": "appeal / attraction", "back": "sự thu hút, sức hấp dẫn (danh từ)", "ex": "the appeal of the countryside", "pron": "/əˈpiːl/", "img": "✨", "group": "Từ vựng"}, {"front": "complicated / complex", "back": "phức tạp (tính từ)", "ex": "a complicated process", "pron": "/ˈkɑːmplɪkeɪtɪd/", "img": "🧩", "group": "Từ vựng"}, {"front": "confusing", "back": "(gây) khó hiểu, bối rối (tính từ)", "ex": "confusing instructions", "pron": "/kənˈfjuːzɪŋ/", "img": "❓", "group": "Từ vựng"}, {"front": "criticism", "back": "sự chỉ trích, lời phê bình (danh từ)", "ex": "harsh criticism", "pron": "/ˈkrɪtɪsɪzəm/", "img": "😠", "group": "Từ vựng"}, {"front": "complaint", "back": "lời phàn nàn, khiếu nại (danh từ)", "ex": "file a complaint", "pron": "/kəmˈpleɪnt/", "img": "📢", "group": "Từ vựng"}, {"front": "abundance", "back": "sự dư thừa, dồi dào (danh từ)", "ex": "an abundance of resources", "pron": "/əˈbʌndəns/", "img": "🌾", "group": "Từ vựng"}, {"front": "narrative / story", "back": "câu chuyện, mạch truyện (danh từ)", "ex": "the narrative of the film", "pron": "/ˈnærətɪv/", "img": "📖", "group": "Từ vựng"}, {"front": "depth", "back": "chiều sâu (danh từ)", "ex": "the depth of the river", "pron": "/depθ/", "img": "📏", "group": "Từ vựng"}, {"front": "appear >< disappear", "back": "xuất hiện >< biến mất (động từ)", "ex": "The sun appeared / disappeared behind the clouds.", "pron": "/əˈpɪr/ - /ˌdɪsəˈpɪr/", "img": "👻", "group": "Từ vựng"}, {"front": "separate (a)", "back": "riêng biệt, tách rời", "ex": "a separate room", "pron": "/ˈseprət/", "img": "🔀", "group": "Từ vựng"}, {"front": "invention", "back": "phát minh (danh từ)", "ex": "a new invention", "pron": "/ɪnˈvenʃn/", "img": "💡", "group": "Từ vựng"}, {"front": "facilitate", "back": "tạo điều kiện (động từ)", "ex": "facilitate communication", "pron": "/fəˈsɪlɪteɪt/", "img": "🤲", "group": "Từ vựng"}, {"front": "communication", "back": "sự giao tiếp (danh từ)", "ex": "clear communication", "pron": "/kəˌmjuːnɪˈkeɪʃn/", "img": "💬", "group": "Từ vựng"}, {"front": "measure / method / solution (n)", "back": "biện pháp, phương pháp, giải pháp", "ex": "take measures to reduce costs", "pron": "/ˈmeʒər/", "img": "📐", "group": "Từ vựng"}, {"front": "measurement", "back": "sự đo lường (danh từ)", "ex": "accurate measurement", "pron": "/ˈmeʒərmənt/", "img": "📏", "group": "Từ vựng"}, {"front": "intend to V / tend to V", "back": "dự định làm gì / có xu hướng làm gì", "ex": "She intends to travel. / He tends to arrive late.", "pron": "", "img": "🎯", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "along with", "back": "cùng với", "ex": "Along with the report, he sent photos.", "pron": "", "img": "➕", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "given that / now that / because + S+V", "back": "bởi vì, vì (+ mệnh đề)", "ex": "Given that it's raining, we'll stay home.", "pron": "", "img": "🌧️", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "given / because of / owing to / due to + N", "back": "bởi vì, do (+ danh từ)", "ex": "Due to the rain, the event was cancelled.", "pron": "", "img": "🌧️", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "provided that / as long as", "back": "miễn là", "ex": "You can go provided that you finish your homework.", "pron": "", "img": "✅", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "if / unless", "back": "nếu / trừ khi (nếu không)", "ex": "Unless you hurry, you'll be late.", "pron": "", "img": "❓", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "preferably, …", "back": "tốt nhất là, nên là (diễn tả lựa chọn ưu tiên)", "ex": "Preferably, arrive before 9 a.m.", "pron": "", "img": "👍", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "ahead of + N, S+V.", "back": "trước, đi trước (thời gian/tiến độ)", "ex": "Ahead of the deadline, she finished the report.", "pron": "", "img": "⏩", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "in total, …", "back": "tổng cộng, tính tổng", "ex": "In total, 50 people attended.", "pron": "", "img": "🧮", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "overall, … / generally, …", "back": "nhìn chung", "ex": "Overall, the project was a success.", "pron": "", "img": "🌐", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "otherwise, …", "back": "nếu không thì", "ex": "Hurry up, otherwise you'll miss the bus.", "pron": "", "img": "⚠️", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "likewise, …", "back": "tương tự vậy", "ex": "He enjoys reading; likewise, his sister does too.", "pron": "", "img": "🔁", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "be hired to work as …", "back": "được thuê làm việc như là…", "ex": "She was hired to work as a translator.", "pron": "", "img": "💼", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "allow someone to V", "back": "cho phép ai đó làm gì", "ex": "The manager allowed him to leave early.", "pron": "", "img": "✅", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "minimize the need for + N", "back": "giảm thiểu nhu cầu về…", "ex": "This system minimizes the need for paperwork.", "pron": "", "img": "📉", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "thereby + V-ing", "back": "do đó, nhờ đó, bằng cách đó (diễn tả kết quả/cách thức)", "ex": "He studied hard, thereby improving his grades.", "pron": "", "img": "➡️", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "in contrast, … / on the contrary, …", "back": "ngược lại, trái lại", "ex": "In contrast, sales dropped last quarter.", "pron": "", "img": "🔄", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "to sum up, … / to conclude, …", "back": "tóm lại, kết luận lại", "ex": "To sum up, the plan is feasible.", "pron": "", "img": "📝", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "be content to V", "back": "hài lòng, sẵn lòng (làm gì)", "ex": "She was content to wait.", "pron": "", "img": "😊", "group": "Cụm từ, liên từ & cấu trúc câu"}, {"front": "count on sb / sth", "back": "tin tưởng, trông cậy vào ai/cái gì", "ex": "You can count on me.", "pron": "", "img": "🤝", "group": "Cụm từ, liên từ & cấu trúc câu"}]};
+
+/* ---------- Trạng thái ---------- */
+let deck = (DECK && Array.isArray(DECK.cards) && DECK.cards.length) ? DECK
+         : {title:"🎯 Flashcard", lang:"en-US", cards:[]};
+let lang = deck.lang || "en-US";
+let settings = Object.assign({dir:"fwd", autoAudio:false, dark:false, weakFirst:true}, store.load("fc_settings", {}));
+const PKEY = "fc_progress_" + (deck.title||"deck").replace(/\s+/g,"_");
+let progress = store.load(PKEY, {});   // front -> level 0..5
+
+let queue=[], pos=0, roundCards=[], round=1, flipped=false;
+let forgotten=new Set(), cleared=new Set(), scored=new Set(), sideMap={};
+let currentGroupFilter="all";   // "all" hoặc đúng tên group của thẻ
+
+const $ = id => document.getElementById(id);
+
+/* Tách emoji dẫn đầu tiêu đề khỏi phần chữ, để chỉ tô gradient phần chữ —
+   emoji giữ nguyên màu gốc (xem ghi chú tại .title-text trong CSS). */
+function setDeckTitle(){
+  const raw = (deck.title||"🎯 Flashcard").replace(/<.*/,"");
+  const m = raw.match(/^(\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*)\s*/u);
+  $("titleIcon").textContent = m ? m[1] : "";
+  $("titleText").textContent = m ? raw.slice(m[0].length) : raw;
+}
+const shuffleArr = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const getLvl = f => Math.max(0, Math.min(5, progress[f] ?? 0));
+function setLvl(f,v){ progress[f]=Math.max(0,Math.min(5,v)); store.save(PKEY,progress); }
+function saveSettings(){ store.save("fc_settings", settings); }
+
+/* ---------- Lọc theo chủ đề (group) ---------- */
+function uniqueGroups(){
+  const seen=new Set(), list=[];
+  deck.cards.forEach(c=>{ const g=(c.group||"").trim(); if(g && !seen.has(g)){ seen.add(g); list.push(g); } });
+  return list;
+}
+function currentPool(){
+  if(currentGroupFilter==="all") return deck.cards;
+  return deck.cards.filter(c=>c.group===currentGroupFilter);
+}
+function activeIndices(){
+  if(currentGroupFilter==="all") return deck.cards.map((_,i)=>i);
+  const out=[]; deck.cards.forEach((c,i)=>{ if(c.group===currentGroupFilter) out.push(i); }); return out;
+}
+function renderGroupNav(){
+  const nav=$("groupSidebar");
+  const groups=uniqueGroups();
+  nav.innerHTML="";
+  if(!groups.length){ nav.classList.add("hidden"); return; }
+  nav.classList.remove("hidden");
+
+  const label=document.createElement("div");
+  label.className="sidebar-label"; label.textContent="Chủ đề";
+  nav.appendChild(label);
+
+  const counts={};
+  deck.cards.forEach(c=>{ const g=(c.group||"").trim(); if(g) counts[g]=(counts[g]||0)+1; });
+
+  function addChip(label, count, key){
+    const b=document.createElement("button");
+    b.type="button"; b.className="group-chip"+(currentGroupFilter===key?" on":"");
+    b.dataset.g=key;
+    const lab=document.createElement("span"); lab.className="chip-label"; lab.textContent=label;
+    const cnt=document.createElement("span"); cnt.className="cnt"; cnt.textContent=count;
+    b.appendChild(lab); b.appendChild(cnt);
+    b.addEventListener("click", ()=>{
+      if(currentGroupFilter===key) return;
+      currentGroupFilter=key; renderGroupNav(); startSession();
+    });
+    nav.appendChild(b);
+  }
+  addChip("Tất cả", deck.cards.length, "all");
+  groups.forEach(g=> addChip(g, counts[g], g));
+}
+
+/* ---------- Thứ tự học ---------- */
+function orderIndices(){
+  const idxs = activeIndices();
+  const arr = idxs.map(i=>({i, lvl:getLvl(deck.cards[i].front), r:Math.random()}));
+  if(settings.weakFirst) arr.sort((a,b)=> a.lvl-b.lvl || a.r-b.r);
+  else arr.sort((a,b)=> a.r-b.r);
+  return arr.map(o=>o.i);
+}
+function startSession(){
+  round=1; scored=new Set(); sideMap={};
+  if(activeIndices().length===0){ showEmpty(); return; }
+  startRound(orderIndices(), false);
+  showStudy();
+}
+function startRound(indices, doShuffle){
+  roundCards=[...new Set(indices)];
+  queue = doShuffle ? shuffleArr(roundCards.slice()) : roundCards.slice();
+  forgotten=new Set(); cleared=new Set(); pos=0; flipped=false;
+  render();
+}
+
+/* ---------- Hiển thị mặt thẻ ---------- */
+function sideFor(idx){
+  if(settings.dir==="fwd") return "front";
+  if(settings.dir==="rev") return "back";
+  if(!(idx in sideMap)) sideMap[idx] = Math.random()<0.5 ? "front":"back";
+  return sideMap[idx];
+}
+
+function updateStats(){
+  const total = roundCards.length || 1;
+  let nho=0; cleared.forEach(i=>{ if(!forgotten.has(i)) nho++; });
+  $("sKnow").textContent = nho;
+  $("sForget").textContent = forgotten.size;
+  $("sLeft").textContent = Math.max(total - nho - forgotten.size, 0);
+  $("sRound").textContent = round;
+  $("progBar").style.width = Math.min((cleared.size/total)*100,100)+"%";
+  const pool = currentPool();
+  const mastered = pool.filter(c=>getLvl(c.front)>=4).length;
+  $("deckSub").textContent = `Thuộc ${mastered}/${pool.length} từ`;
+}
+
+function render(){
+  setDeckTitle();
+  if(!deck.cards || deck.cards.length===0 || activeIndices().length===0){ showEmpty(); return; }
+  if(pos>=queue.length){ endRound(); return; }
+
+  const idx = queue[pos];
+  const c = deck.cards[idx];
+  const promptWord = sideFor(idx)==="front";   // mặt trước có phải là "từ" không
+
+  flipped=false; $("card").classList.remove("flip");
+  $("frontWord").textContent   = promptWord ? c.front : c.back;
+  $("frontPron").textContent   = promptWord ? (c.pron||"") : "";
+  $("frontKicker").textContent = promptWord ? "Từ vựng" : "Nghĩa";
+  $("backMeaning").textContent = promptWord ? c.back : c.front;
+  $("backKicker").textContent  = promptWord ? "Nghĩa" : "Từ vựng";
+  $("backExample").textContent = c.ex||"";
+  // icon minh họa luôn đi kèm mặt "từ vựng", dù mặt đó là front hay back
+  $("frontIcon").textContent = promptWord ? (c.img||"") : "";
+  $("backIcon").textContent  = promptWord ? "" : (c.img||"");
+  $("btnPrev").disabled = pos===0;
+
+  // độ thuộc (chấm)
+  const lvl=getLvl(c.front), dots=$("frontDots"); dots.innerHTML="";
+  for(let i=0;i<5;i++){ const d=document.createElement("i"); if(i<lvl) d.className="on"; dots.appendChild(d); }
+
+  updateStats();
+  animateEnter();
+  if(settings.autoAudio && promptWord) setTimeout(()=>speakWord(c.front), 260);
+}
+
+function endRound(){
+  if(forgotten.size===0){ showDone(); return; }
+  $("reviewTitle").textContent = `Còn ${forgotten.size} từ chưa nhớ`;
+  const list=$("reviewList"); list.innerHTML="";
+  forgotten.forEach(i=>{ const s=document.createElement("span"); s.className="chip"; s.textContent=deck.cards[i].front; list.appendChild(s); });
+  showReview();
+}
+
+/* ---------- Chuyển màn ---------- */
+function hideAll(){ ["studyView","reviewView","doneView","emptyView"].forEach(v=>$(v).classList.add("hidden")); }
+function showStudy(){ hideAll(); $("studyView").classList.remove("hidden"); render(); }
+function showReview(){ hideAll(); $("reviewView").classList.remove("hidden"); updateStats(); }
+function showDone(){ hideAll(); $("doneView").classList.remove("hidden");
+  const pool=currentPool();
+  const mastered=pool.filter(c=>getLvl(c.front)>=4).length;
+  $("doneSub").textContent=`Bạn đã hoàn thành! Đã thuộc ${mastered}/${pool.length} từ.`;
+  updateStats(); }
+function showEmpty(){ hideAll(); $("emptyView").classList.remove("hidden"); updateStats(); }
+
+/* ---------- Hoạt ảnh ---------- */
+const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function animateEnter(){ if(reduceMotion) return; const s=$("scene"); if(!s) return; s.classList.remove("enter"); void s.offsetWidth; s.classList.add("enter"); }
+function knowFx(){
+  if(reduceMotion) return;
+  const s=$("scene"); if(!s) return;
+  s.classList.remove("knowpop"); void s.offsetWidth; s.classList.add("knowpop");
+  const wrap=document.createElement("div"); wrap.className="confetti";
+  const colors=["#1D9E75","#12B3A0","#F4B740","#F08A5D","#5FD3AE"];
+  for(let i=0;i<14;i++){
+    const p=document.createElement("i"), ang=Math.random()*Math.PI*2, dist=60+Math.random()*70;
+    p.style.background=colors[i%colors.length];
+    p.style.setProperty("--cx", Math.cos(ang)*dist+"px");
+    p.style.setProperty("--cy", (Math.sin(ang)*dist-24)+"px");
+    p.style.setProperty("--cr", (Math.random()*360)+"deg");
+    p.style.animation="conf .7s ease-out forwards";
+    p.style.animationDelay=(Math.random()*.05)+"s";
+    wrap.appendChild(p);
+  }
+  s.appendChild(wrap); setTimeout(()=>wrap.remove(), 820);
+}
+
+/* ---------- Hành động cốt lõi ---------- */
+function toggleFlip(){ flipped=!flipped; $("card").classList.toggle("flip", flipped); }
+function doKnow(){
+  if(pos>=queue.length) return;
+  const idx=queue[pos], f=deck.cards[idx].front;
+  cleared.add(idx); knowFx();
+  if(!scored.has(idx)){ scored.add(idx); setLvl(f, getLvl(f)+1); }
+  for(let i=queue.length-1;i>pos;i--){ if(queue[i]===idx) queue.splice(i,1); }
+  pos++; render();
+}
+function doForget(){
+  if(pos>=queue.length) return;
+  const idx=queue[pos], f=deck.cards[idx].front;
+  forgotten.add(idx); cleared.delete(idx);
+  if(!scored.has(idx)){ scored.add(idx); setLvl(f, getLvl(f)-1); }
+  let ahead=false;
+  for(let i=pos+1;i<queue.length;i++){ if(queue[i]===idx){ ahead=true; break; } }
+  if(!ahead){ const at=pos+1+Math.floor(Math.random()*(queue.length-pos)); queue.splice(at,0,idx); }
+  pos++; render();
+}
+function doNext(){ if(pos<queue.length-1){ pos++; render(); } }
+function doPrev(){ if(pos>0){ pos--; render(); } }
+
+$("btnKnow").addEventListener("click", doKnow);
+$("btnForget").addEventListener("click", doForget);
+$("btnNext").addEventListener("click", doNext);
+$("btnPrev").addEventListener("click", doPrev);
+$("btnReviewNow").addEventListener("click", ()=>{ round++; startRound([...forgotten], true); showStudy(); });
+$("btnRestart").addEventListener("click", startSession);
+$("btnShuffle").addEventListener("click", ()=>{ const h=queue.slice(0,pos), t=shuffleArr(queue.slice(pos)); queue=h.concat(t); render(); });
+
+/* ---------- Vuốt + chạm ---------- */
+const drag=$("drag");
+let sx=0, dx=0, down=false, moved=false;
+drag.addEventListener("pointerdown", e=>{
+  if(e.target.closest(".tool")) return;
+  if(pos>=queue.length) return;
+  down=true; moved=false; sx=e.clientX; dx=0;
+  drag.style.transition="none";
+  try{ drag.setPointerCapture(e.pointerId); }catch(_){}
+});
+drag.addEventListener("pointermove", e=>{
+  if(!down) return;
+  dx=e.clientX-sx; if(Math.abs(dx)>8) moved=true;
+  drag.style.transform=`translateX(${dx}px) rotate(${dx/45}deg)`;
+  $("hintKnow").style.opacity   = dx>0 ? Math.min(dx/90,1) : 0;
+  $("hintForget").style.opacity = dx<0 ? Math.min(-dx/90,1) : 0;
+});
+function resetDrag(){ drag.style.transition="transform .25s ease"; drag.style.transform=""; $("hintKnow").style.opacity=0; $("hintForget").style.opacity=0; }
+drag.addEventListener("pointerup", ()=>{
+  if(!down) return; down=false;
+  const d=dx, T=90; resetDrag();
+  if(d>T) doKnow();
+  else if(d<-T) doForget();
+  else if(!moved) toggleFlip();
+});
+drag.addEventListener("pointercancel", ()=>{ down=false; resetDrag(); });
+
+/* ---------- Phát âm ---------- */
+function speakWord(text){
+  try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang=lang; u.rate=.9; speechSynthesis.speak(u); }catch(e){}
+}
+$("btnSpeak").addEventListener("click", e=>{ e.stopPropagation(); const c=deck.cards[queue[pos]]; if(c) speakWord(c.front); });
+$("btnImage").addEventListener("click", e=>{ e.stopPropagation(); const c=deck.cards[queue[pos]]; if(c) window.open("https://www.google.com/search?tbm=isch&q="+encodeURIComponent(c.front),"_blank"); });
+
+/* ---------- Cài đặt ---------- */
+function applySettings(){
+  document.documentElement.setAttribute("data-theme", settings.dark?"dark":"light");
+  [...$("segDir").children].forEach(b=> b.classList.toggle("on", b.dataset.v===settings.dir));
+  $("tglAudio").classList.toggle("on", settings.autoAudio);
+  $("tglDark").classList.toggle("on", settings.dark);
+  $("tglWeak").classList.toggle("on", settings.weakFirst);
+}
+$("btnSettings").addEventListener("click", ()=> $("setModal").classList.remove("hidden"));
+$("btnCloseSet").addEventListener("click", ()=> $("setModal").classList.add("hidden"));
+$("segDir").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; settings.dir=b.dataset.v; saveSettings(); applySettings(); render(); });
+$("tglAudio").addEventListener("click", ()=>{ settings.autoAudio=!settings.autoAudio; saveSettings(); applySettings(); });
+$("tglDark").addEventListener("click", ()=>{ settings.dark=!settings.dark; saveSettings(); applySettings(); });
+$("tglWeak").addEventListener("click", ()=>{ settings.weakFirst=!settings.weakFirst; saveSettings(); applySettings(); });
+$("btnResetProg").addEventListener("click", ()=>{
+  if(confirm("Đặt lại toàn bộ độ thuộc của các từ về 0?")){
+    progress={}; store.save(PKEY,progress);
+    $("setModal").classList.add("hidden"); startSession();
+  }
+});
+
+/* ---------- Đóng modal khi chạm nền ---------- */
+document.querySelectorAll(".modal-bg").forEach(bg=> bg.addEventListener("click", e=>{ if(e.target===bg) bg.classList.add("hidden"); }));
+
+/* ---------- Bàn phím ---------- */
+let activeMode = "flash";   // "flash" | "quiz"
+
+document.addEventListener("keydown", e=>{
+  if(activeMode!=="flash") return;
+  if($("studyView").classList.contains("hidden")) return;
+  if(e.key===" "){ e.preventDefault(); toggleFlip(); }
+  else if(e.key==="ArrowRight") doNext();
+  else if(e.key==="ArrowLeft") doPrev();
+  else if(e.key==="Enter") doKnow();
+  else if(e.key==="Backspace"){ e.preventDefault(); doForget(); }
+});
+
+/* =====================================================================
+   KIEM TRA TU VUNG - trac nghiem 4 dap an (a/b/c/d), tron 2 chieu
+   Anh->Viet / Viet->Anh. Bo cau hoi + thu tu + dap an nhieu duoc soan
+   SAN luc build (xem mang QUIZ) nen moi lan mo lai file, de bai giu
+   nguyen thu tu - KHONG xao tron lai. Cau tra loi sai se quay lai lam
+   o vong hoc ke tiep, lap lai cho den khi dung het.
+   ===================================================================== */
+const QUIZ = [{"front": "reputation", "direction": "en2vi", "prompt": "reputation", "options": ["sau đó, tiếp theo (tính từ)", "danh tiếng (danh từ)", "sự thu hút, sức hấp dẫn (danh từ)", "hài lòng, sẵn lòng (làm gì)"], "correctIndex": 1}, {"front": "in contrast, … / on the contrary, …", "direction": "en2vi", "prompt": "in contrast, … / on the contrary, …", "options": ["nếu không thì", "ngược lại, trái lại", "tạo động lực, thúc đẩy (động từ)", "xây dựng (động từ)"], "correctIndex": 1}, {"front": "junior >< senior", "direction": "vi2en", "prompt": "cấp dưới, ít thâm niên hơn >< cấp trên, thâm niên hơn (tính từ)", "options": ["cite", "aspire", "minutes", "junior >< senior"], "correctIndex": 3}, {"front": "minimize the need for + N", "direction": "en2vi", "prompt": "minimize the need for + N", "options": ["phức tạp (tính từ)", "bản sao, hàng nhái; sự bắt chước (danh từ)", "giảm thiểu nhu cầu về…", "lời phàn nàn, khiếu nại (danh từ)"], "correctIndex": 2}, {"front": "depth", "direction": "en2vi", "prompt": "depth", "options": ["phổ biến rộng rãi, lan rộng (tính từ)", "chiều sâu (danh từ)", "độc lập (tính từ)", "phụ thuộc (tính từ)"], "correctIndex": 1}, {"front": "crate", "direction": "vi2en", "prompt": "thùng gỗ, sọt đựng hàng (≈ container) (danh từ)", "options": ["measurement", "significant / considerable / substantial / noticeable", "caution", "crate"], "correctIndex": 3}, {"front": "anticipation / prediction / forecast / projection (n)", "direction": "en2vi", "prompt": "anticipation / prediction / forecast / projection (n)", "options": ["chiều sâu (danh từ)", "sự dự đoán, sự dự báo", "(gây) khó hiểu, bối rối (tính từ)", "xây dựng (động từ)"], "correctIndex": 1}, {"front": "be hired to work as …", "direction": "en2vi", "prompt": "be hired to work as …", "options": ["biện pháp, phương pháp, giải pháp", "chứa đựng (động từ)", "giảm thiểu nhu cầu về…", "được thuê làm việc như là…"], "correctIndex": 3}, {"front": "abundance", "direction": "vi2en", "prompt": "sự dư thừa, dồi dào (danh từ)", "options": ["in total, …", "provided that / as long as", "intend to V / tend to V", "abundance"], "correctIndex": 3}, {"front": "overall, … / generally, …", "direction": "en2vi", "prompt": "overall, … / generally, …", "options": ["nhìn chung", "câu chuyện, mạch truyện (danh từ)", "tóm lại, kết luận lại", "thùng gỗ, sọt đựng hàng (≈ container) (danh từ)"], "correctIndex": 0}, {"front": "reasonable", "direction": "vi2en", "prompt": "hợp lý (tính từ)", "options": ["argue", "overall, … / generally, …", "reasonable", "appeal / attraction"], "correctIndex": 2}, {"front": "invention", "direction": "en2vi", "prompt": "invention", "options": ["sổ danh bạ (danh từ)", "câu chuyện, mạch truyện (danh từ)", "danh tiếng (danh từ)", "phát minh (danh từ)"], "correctIndex": 3}, {"front": "superior", "direction": "vi2en", "prompt": "vượt trội, cao cấp hơn (tính từ)", "options": ["anticipate / predict / forecast / project (v)", "intend to V / tend to V", "superior", "preferably, …"], "correctIndex": 2}, {"front": "confusing", "direction": "vi2en", "prompt": "(gây) khó hiểu, bối rối (tính từ)", "options": ["confusing", "absent", "criticism", "appeal / attraction"], "correctIndex": 0}, {"front": "to sum up, … / to conclude, …", "direction": "en2vi", "prompt": "to sum up, … / to conclude, …", "options": ["tóm lại, kết luận lại", "(gây) khó hiểu, bối rối (tính từ)", "riêng biệt, tách rời", "sự giao tiếp (danh từ)"], "correctIndex": 0}, {"front": "measure / method / solution (n)", "direction": "vi2en", "prompt": "biện pháp, phương pháp, giải pháp", "options": ["along with", "given that / now that / because + S+V", "narrative / story", "measure / method / solution (n)"], "correctIndex": 3}, {"front": "sound (a)", "direction": "vi2en", "prompt": "vững chắc, đáng tin cậy, hợp lý", "options": ["reputation", "narrative / story", "sound (a)", "absent"], "correctIndex": 2}, {"front": "intend to V / tend to V", "direction": "en2vi", "prompt": "intend to V / tend to V", "options": ["cho phép ai đó làm gì", "tương tự vậy", "tranh cãi, tranh luận (động từ)", "dự định làm gì / có xu hướng làm gì"], "correctIndex": 3}, {"front": "rate (price)", "direction": "vi2en", "prompt": "giá, mức giá (danh từ)", "options": ["ahead of + N, S+V.", "absent", "rate (price)", "auction"], "correctIndex": 2}, {"front": "reconstruct", "direction": "en2vi", "prompt": "reconstruct", "options": ["nếu / trừ khi (nếu không)", "đang phát triển mạnh (flourishing); có tiềm năng (potential); tương lai, sắp tới (prospective); đầy hứa hẹn (promising)", "xây dựng lại, tái thiết (động từ)", "bởi vì, vì (+ mệnh đề)"], "correctIndex": 2}, {"front": "inferior", "direction": "en2vi", "prompt": "inferior", "options": ["lời phàn nàn, khiếu nại (danh từ)", "biên bản cuộc họp (danh từ)", "thấp kém (hơn) (tính từ)", "miễn là"], "correctIndex": 2}, {"front": "fabric / cloth", "direction": "en2vi", "prompt": "fabric / cloth", "options": ["tương tự vậy", "biên bản cuộc họp (danh từ)", "vải (danh từ)", "cuộc đấu giá (danh từ)"], "correctIndex": 2}, {"front": "contain", "direction": "vi2en", "prompt": "chứa đựng (động từ)", "options": ["directory", "contain", "sound (a)", "inferior"], "correctIndex": 1}, {"front": "be content to V", "direction": "en2vi", "prompt": "be content to V", "options": ["hài lòng, sẵn lòng (làm gì)", "câu chuyện, mạch truyện (danh từ)", "nếu / trừ khi (nếu không)", "tốt nhất là, nên là (diễn tả lựa chọn ưu tiên)"], "correctIndex": 0}, {"front": "in total, …", "direction": "vi2en", "prompt": "tổng cộng, tính tổng", "options": ["widespread / popular", "in total, …", "be hired to work as …", "minimize the need for + N"], "correctIndex": 1}, {"front": "significant / considerable / substantial / noticeable", "direction": "vi2en", "prompt": "đáng kể, quan trọng, dễ nhận thấy (tính từ)", "options": ["a diplomat", "allow someone to V", "in contrast, … / on the contrary, …", "significant / considerable / substantial / noticeable"], "correctIndex": 3}, {"front": "criticism", "direction": "en2vi", "prompt": "criticism", "options": ["lời phàn nàn, khiếu nại (danh từ)", "chứa đựng (động từ)", "sự chỉ trích, lời phê bình (danh từ)", "ban đầu (tính từ)"], "correctIndex": 2}, {"front": "otherwise, …", "direction": "vi2en", "prompt": "nếu không thì", "options": ["in contrast, … / on the contrary, …", "otherwise, …", "facilitate", "given / because of / owing to / due to + N"], "correctIndex": 1}, {"front": "caution", "direction": "vi2en", "prompt": "sự cẩn thận, thận trọng (n); cảnh báo (v)", "options": ["caution", "initial", "motivate", "construct / build"], "correctIndex": 0}, {"front": "given / because of / owing to / due to + N", "direction": "vi2en", "prompt": "bởi vì, do (+ danh từ)", "options": ["thereby + V-ing", "count on sb / sth", "appeal / attraction", "given / because of / owing to / due to + N"], "correctIndex": 3}, {"front": "separate (a)", "direction": "en2vi", "prompt": "separate (a)", "options": ["riêng biệt, tách rời", "tóm lại, kết luận lại", "phổ biến rộng rãi, lan rộng (tính từ)", "(gây) khó hiểu, bối rối (tính từ)"], "correctIndex": 0}, {"front": "argue", "direction": "en2vi", "prompt": "argue", "options": ["quần áo, y phục (danh từ)", "tranh cãi, tranh luận (động từ)", "chứa đựng (động từ)", "bởi vì, do (+ danh từ)"], "correctIndex": 1}, {"front": "measurement", "direction": "vi2en", "prompt": "sự đo lường (danh từ)", "options": ["measurement", "garments / clothes", "narrative / story", "allow someone to V"], "correctIndex": 0}, {"front": "a diplomat", "direction": "vi2en", "prompt": "nhà ngoại giao (danh từ)", "options": ["abundance", "given / because of / owing to / due to + N", "a diplomat", "freight"], "correctIndex": 2}, {"front": "absent", "direction": "vi2en", "prompt": "vắng mặt (tính từ)", "options": ["complicated / complex", "reconstruct", "absent", "flourish"], "correctIndex": 2}, {"front": "provided that / as long as", "direction": "vi2en", "prompt": "miễn là", "options": ["depth", "container", "provided that / as long as", "complicated / complex"], "correctIndex": 2}, {"front": "construct / build", "direction": "vi2en", "prompt": "xây dựng (động từ)", "options": ["appeal / attraction", "reasonable", "construct / build", "cite"], "correctIndex": 2}, {"front": "flourish", "direction": "vi2en", "prompt": "phát triển mạnh mẽ, thịnh vượng, nở rộ (động từ)", "options": ["reasonable", "rate (price)", "garments / clothes", "flourish"], "correctIndex": 3}, {"front": "allow / enable / permit", "direction": "en2vi", "prompt": "allow / enable / permit", "options": ["nhà ngoại giao (danh từ)", "cho phép (allow, permit); giúp có thể, tạo điều kiện (enable)", "sổ danh bạ (danh từ)", "trích dẫn (động từ)"], "correctIndex": 1}, {"front": "narrative / story", "direction": "en2vi", "prompt": "narrative / story", "options": ["tóm lại, kết luận lại", "ngược lại, trái lại", "nhà ngoại giao (danh từ)", "câu chuyện, mạch truyện (danh từ)"], "correctIndex": 3}, {"front": "imitation", "direction": "vi2en", "prompt": "bản sao, hàng nhái; sự bắt chước (danh từ)", "options": ["measurement", "measure / method / solution (n)", "imitation", "intend to V / tend to V"], "correctIndex": 2}, {"front": "freight", "direction": "en2vi", "prompt": "freight", "options": ["phức tạp (tính từ)", "được thuê làm việc như là…", "phát triển mạnh mẽ, thịnh vượng, nở rộ (động từ)", "hàng hóa vận chuyển, cước vận chuyển (danh từ)"], "correctIndex": 3}, {"front": "communication", "direction": "en2vi", "prompt": "communication", "options": ["sự giao tiếp (danh từ)", "vải (danh từ)", "thấp kém (hơn) (tính từ)", "giảm thiểu nhu cầu về…"], "correctIndex": 0}, {"front": "facilitate", "direction": "en2vi", "prompt": "facilitate", "options": ["chứa đựng (động từ)", "tin tưởng, trông cậy vào ai/cái gì", "sự thu hút, sức hấp dẫn (danh từ)", "tạo điều kiện (động từ)"], "correctIndex": 3}, {"front": "directory", "direction": "vi2en", "prompt": "sổ danh bạ (danh từ)", "options": ["flourishing / potential / prospective / promising (a)", "thereby + V-ing", "be content to V", "directory"], "correctIndex": 3}, {"front": "auction", "direction": "vi2en", "prompt": "cuộc đấu giá (danh từ)", "options": ["anticipate / predict / forecast / project (v)", "auction", "count on sb / sth", "container"], "correctIndex": 1}, {"front": "minutes", "direction": "en2vi", "prompt": "minutes", "options": ["dự đoán, dự báo", "câu chuyện, mạch truyện (danh từ)", "biên bản cuộc họp (danh từ)", "phức tạp (tính từ)"], "correctIndex": 2}, {"front": "appeal / attraction", "direction": "vi2en", "prompt": "sự thu hút, sức hấp dẫn (danh từ)", "options": ["to sum up, … / to conclude, …", "junior >< senior", "appeal / attraction", "be content to V"], "correctIndex": 2}, {"front": "complicated / complex", "direction": "en2vi", "prompt": "complicated / complex", "options": ["tóm lại, kết luận lại", "phức tạp (tính từ)", "sự giao tiếp (danh từ)", "do đó, nhờ đó, bằng cách đó (diễn tả kết quả/cách thức)"], "correctIndex": 1}, {"front": "convince / persuade", "direction": "vi2en", "prompt": "thuyết phục (động từ)", "options": ["freight", "convince / persuade", "given that / now that / because + S+V", "confusing"], "correctIndex": 1}, {"front": "ahead of + N, S+V.", "direction": "vi2en", "prompt": "trước, đi trước (thời gian/tiến độ)", "options": ["argue", "imitate", "ahead of + N, S+V.", "complicated / complex"], "correctIndex": 2}, {"front": "thereby + V-ing", "direction": "en2vi", "prompt": "thereby + V-ing", "options": ["ban đầu (tính từ)", "dự đoán, dự báo", "tạo động lực, thúc đẩy (động từ)", "do đó, nhờ đó, bằng cách đó (diễn tả kết quả/cách thức)"], "correctIndex": 3}, {"front": "allow someone to V", "direction": "vi2en", "prompt": "cho phép ai đó làm gì", "options": ["caution", "ahead of + N, S+V.", "superior", "allow someone to V"], "correctIndex": 3}, {"front": "anticipate / predict / forecast / project (v)", "direction": "en2vi", "prompt": "anticipate / predict / forecast / project (v)", "options": ["dự đoán, dự báo", "sự cẩn thận, thận trọng (n); cảnh báo (v)", "chiều sâu (danh từ)", "sổ danh bạ (danh từ)"], "correctIndex": 0}, {"front": "initial", "direction": "en2vi", "prompt": "initial", "options": ["xây dựng (động từ)", "thùng gỗ, sọt đựng hàng (≈ container) (danh từ)", "ban đầu (tính từ)", "phát minh (danh từ)"], "correctIndex": 2}, {"front": "if / unless", "direction": "vi2en", "prompt": "nếu / trừ khi (nếu không)", "options": ["if / unless", "a diplomat", "argue", "cite"], "correctIndex": 0}, {"front": "given that / now that / because + S+V", "direction": "en2vi", "prompt": "given that / now that / because + S+V", "options": ["bởi vì, vì (+ mệnh đề)", "giảm thiểu nhu cầu về…", "sự giao tiếp (danh từ)", "trích dẫn (động từ)"], "correctIndex": 0}, {"front": "widespread / popular", "direction": "en2vi", "prompt": "widespread / popular", "options": ["phổ biến rộng rãi, lan rộng (tính từ)", "thuyết phục (động từ)", "thấp kém (hơn) (tính từ)", "trích dẫn (động từ)"], "correctIndex": 0}, {"front": "aspire", "direction": "en2vi", "prompt": "aspire", "options": ["khao khát, mong muốn (đạt được điều gì) (động từ)", "tương tự vậy", "phát minh (danh từ)", "xuất hiện >< biến mất (động từ)"], "correctIndex": 0}, {"front": "imitate", "direction": "en2vi", "prompt": "imitate", "options": ["bắt chước (động từ)", "vững chắc, đáng tin cậy, hợp lý", "sự dư thừa, dồi dào (danh từ)", "hài lòng, sẵn lòng (làm gì)"], "correctIndex": 0}, {"front": "independent", "direction": "en2vi", "prompt": "independent", "options": ["bởi vì, vì (+ mệnh đề)", "trước, đi trước (thời gian/tiến độ)", "độc lập (tính từ)", "phụ thuộc (tính từ)"], "correctIndex": 2}, {"front": "complaint", "direction": "en2vi", "prompt": "complaint", "options": ["lời phàn nàn, khiếu nại (danh từ)", "tranh cãi, tranh luận (động từ)", "giảm thiểu nhu cầu về…", "nhìn chung"], "correctIndex": 0}, {"front": "cite", "direction": "en2vi", "prompt": "cite", "options": ["trích dẫn (động từ)", "xây dựng lại, tái thiết (động từ)", "trước, đi trước (thời gian/tiến độ)", "nếu không thì"], "correctIndex": 0}, {"front": "container", "direction": "en2vi", "prompt": "container", "options": ["vắng mặt (tính từ)", "dự định làm gì / có xu hướng làm gì", "thùng chứa, công-ten-nơ (danh từ)", "chiều sâu (danh từ)"], "correctIndex": 2}, {"front": "preferably, …", "direction": "en2vi", "prompt": "preferably, …", "options": ["tốt nhất là, nên là (diễn tả lựa chọn ưu tiên)", "sổ danh bạ (danh từ)", "sự chỉ trích, lời phê bình (danh từ)", "biện pháp, phương pháp, giải pháp"], "correctIndex": 0}, {"front": "motivate", "direction": "en2vi", "prompt": "motivate", "options": ["bởi vì, vì (+ mệnh đề)", "phức tạp (tính từ)", "tạo động lực, thúc đẩy (động từ)", "tóm lại, kết luận lại"], "correctIndex": 2}, {"front": "along with", "direction": "en2vi", "prompt": "along with", "options": ["nếu / trừ khi (nếu không)", "tạo động lực, thúc đẩy (động từ)", "cùng với", "sổ danh bạ (danh từ)"], "correctIndex": 2}, {"front": "appear >< disappear", "direction": "vi2en", "prompt": "xuất hiện >< biến mất (động từ)", "options": ["communication", "appear >< disappear", "imitation", "reconstruct"], "correctIndex": 1}, {"front": "flourishing / potential / prospective / promising (a)", "direction": "en2vi", "prompt": "flourishing / potential / prospective / promising (a)", "options": ["vắng mặt (tính từ)", "phụ thuộc (tính từ)", "phức tạp (tính từ)", "đang phát triển mạnh (flourishing); có tiềm năng (potential); tương lai, sắp tới (prospective); đầy hứa hẹn (promising)"], "correctIndex": 3}, {"front": "dependent", "direction": "vi2en", "prompt": "phụ thuộc (tính từ)", "options": ["dependent", "be content to V", "inferior", "convince / persuade"], "correctIndex": 0}, {"front": "subsequent", "direction": "en2vi", "prompt": "subsequent", "options": ["tổng cộng, tính tổng", "nếu không thì", "lời phàn nàn, khiếu nại (danh từ)", "sau đó, tiếp theo (tính từ)"], "correctIndex": 3}, {"front": "garments / clothes", "direction": "vi2en", "prompt": "quần áo, y phục (danh từ)", "options": ["confusing", "garments / clothes", "crate", "abundance"], "correctIndex": 1}, {"front": "likewise, …", "direction": "en2vi", "prompt": "likewise, …", "options": ["bởi vì, do (+ danh từ)", "tương tự vậy", "tạo động lực, thúc đẩy (động từ)", "bắt chước (động từ)"], "correctIndex": 1}, {"front": "count on sb / sth", "direction": "vi2en", "prompt": "tin tưởng, trông cậy vào ai/cái gì", "options": ["count on sb / sth", "anticipate / predict / forecast / project (v)", "complaint", "allow / enable / permit"], "correctIndex": 0}];
+const QUIZ_CLASS = "";
+const QUIZ_LEVEL = "";
+const QUIZ_SCORE_ENDPOINT = "";
+
+let qRoundQueue = [], qPos = 0, qRound = 1;
+let qKnowCount = 0, qWrongCount = 0;
+let qWrongThisRound = new Set();
+let qAnswered = false;
+
+let qFirstTryCorrect = 0;
+let qFirstTryDetails = [];
+let quizStudentName = "";
+let quizStartTime = 0;
+let qSubmitted = false;
+
+function qFmtTime(sec){
+  const m = Math.floor(sec/60), s = sec%60;
+  return `${m}:${String(s).padStart(2,"0")}`;
+}
+
+function qSendResultToServer(){
+  const statusEl = $("quizSubmitStatus");
+  const btn = $("btnQuizSubmitScore");
+  if(!QUIZ_SCORE_ENDPOINT){
+    if(statusEl){ statusEl.textContent = "✅ Đã hoàn thành bài kiểm tra." + "\n💡 Chưa cấu hình gửi điểm về giáo viên cho bộ thẻ này."; statusEl.className = "quiz-sub submit-status ok"; }
+    return;
+  }
+  const elapsed = Math.max(0, Math.round((Date.now() - quizStartTime)/1000));
+  if(btn){ btn.disabled = true; btn.textContent = "📤 Đang gửi..."; }
+  if(statusEl){ statusEl.textContent = "📤 Đang gửi kết quả..."; statusEl.className = "quiz-sub submit-status sending"; }
+
+  const payload = new URLSearchParams({
+    name: quizStudentName,
+    class: QUIZ_CLASS,
+    unit: (deck.title || "Flashcard") + " — Kiểm tra từ vựng",
+    level: QUIZ_LEVEL,
+    score: String(qFirstTryCorrect),
+    total: String(QUIZ.length),
+    timeSeconds: String(elapsed),
+    timeFormatted: qFmtTime(elapsed),
+    timestamp: new Date().toISOString(),
+    detailsJson: JSON.stringify(qFirstTryDetails)
+  });
+
+  fetch(QUIZ_SCORE_ENDPOINT, { method: "POST", mode: "no-cors", body: payload })
+    .then(() => {
+      if(statusEl){ statusEl.textContent = "✅ Đã gửi kết quả về giáo viên."; statusEl.className = "quiz-sub submit-status ok"; }
+      if(btn){ btn.classList.add("hidden"); }
+    })
+    .catch(() => {
+      if(statusEl){ statusEl.textContent = "⚠️ Gửi kết quả thất bại (kiểm tra mạng). Bấm nút để thử gửi lại."; statusEl.className = "quiz-sub submit-status fail"; }
+      if(btn){ btn.disabled = false; btn.textContent = "🔁 Thử gửi lại"; btn.classList.remove("hidden"); }
+      qSubmitted = false;
+    });
+}
+
+function qHideAll(){ ["quizStudyView","quizReviewView","quizDoneView"].forEach(id=>$(id)?.classList.add("hidden")); }
+function qShowStudy(){ qHideAll(); $("quizStudyView").classList.remove("hidden"); qRender(); }
+function qShowReview(){ qHideAll(); $("quizReviewView").classList.remove("hidden"); qUpdateStats(); }
+function qShowDone(){
+  qHideAll(); $("quizDoneView").classList.remove("hidden");
+  $("quizDoneSub").textContent = `Bạn đã trả lời đúng tất cả ${QUIZ.length} câu! Điểm lần đầu: ${qFirstTryCorrect}/${QUIZ.length} (tổng số lượt sai khi làm lại: ${qWrongCount - (QUIZ.length - qFirstTryCorrect)})`;
+  qUpdateStats();
+  const btn = $("btnQuizSubmitScore");
+  const statusEl = $("quizSubmitStatus");
+  if(statusEl){ statusEl.textContent = ""; statusEl.className = "quiz-sub submit-status"; }
+  if(QUIZ_SCORE_ENDPOINT){
+    qSubmitted = false;
+    if(btn){ btn.classList.remove("hidden"); btn.disabled = false; btn.textContent = "📤 Chấm điểm & gửi kết quả"; }
+  } else {
+    if(btn){ btn.classList.add("hidden"); }
+    if(!qSubmitted){
+      qSubmitted = true;
+      qSendResultToServer();
+    }
+  }
+}
+
+function qUpdateStats(){
+  const total = qRoundQueue.length || 1;
+  $("qKnow").textContent = qKnowCount;
+  $("qWrong").textContent = qWrongCount;
+  $("qLeft").textContent = Math.max(qRoundQueue.length - qPos, 0);
+  $("qRound").textContent = qRound;
+  $("qProgBar").style.width = Math.min((qPos/total)*100,100)+"%";
+}
+
+function qRender(){
+  if(!QUIZ.length){ return; }
+  if(qPos >= qRoundQueue.length){ qEndRound(); return; }
+  const qi = qRoundQueue[qPos];
+  const item = QUIZ[qi];
+  $("quizKicker").textContent = item.direction === "en2vi" ? "Từ vựng → Nghĩa (Anh → Việt)" : "Nghĩa → Từ vựng (Việt → Anh)";
+  $("quizQuestion").textContent = item.prompt;
+  qAnswered = false;
+  $("btnQuizNext").classList.add("hidden");
+
+  const wrap = $("quizOptions");
+  wrap.innerHTML = "";
+  item.options.forEach((optText, oi) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "opt-btn";
+    const key = document.createElement("span");
+    key.className = "opt-key"; key.textContent = String.fromCharCode(65 + oi);
+    const label = document.createElement("span");
+    label.textContent = optText;
+    b.appendChild(key); b.appendChild(label);
+    b.addEventListener("click", () => qAnswer(qi, oi, b));
+    wrap.appendChild(b);
+  });
+
+  qUpdateStats();
+}
+
+function qAnswer(qi, chosenIdx, btn){
+  if(qAnswered) return;
+  qAnswered = true;
+  const item = QUIZ[qi];
+  const opts = [...document.querySelectorAll("#quizOptions .opt-btn")];
+  opts.forEach(b => b.disabled = true);
+  opts[item.correctIndex].classList.add("correct");
+
+  const isCorrect = chosenIdx === item.correctIndex;
+  if(isCorrect){
+    qKnowCount++;
+  } else {
+    btn.classList.add("wrong");
+    qWrongCount++;
+    qWrongThisRound.add(qi);
+  }
+  if(qRound === 1){
+    if(isCorrect) qFirstTryCorrect++;
+    qFirstTryDetails.push({ front: item.front, direction: item.direction, correct: isCorrect });
+  }
+  qUpdateStats();
+
+  const nextBtn = $("btnQuizNext");
+  nextBtn.textContent = (qPos === qRoundQueue.length - 1) ? "Xem kết quả →" : "Câu tiếp theo →";
+  nextBtn.classList.remove("hidden");
+}
+
+function qGoNext(){
+  $("btnQuizNext").classList.add("hidden");
+  qPos++;
+  qRender();
+}
+
+function qEndRound(){
+  if(qWrongThisRound.size === 0){ qShowDone(); return; }
+  $("quizReviewTitle").textContent = `Còn ${qWrongThisRound.size} câu chưa đúng`;
+  const list = $("quizReviewList"); list.innerHTML = "";
+  qWrongThisRound.forEach(qi => {
+    const s = document.createElement("span");
+    s.className = "chip"; s.textContent = QUIZ[qi].front;
+    list.appendChild(s);
+  });
+  qShowReview();
+}
+
+function qBeginSession(){
+  qRoundQueue = QUIZ.map((_, i) => i);
+  qRound = 1; qPos = 0; qKnowCount = 0; qWrongCount = 0; qWrongThisRound = new Set();
+  qFirstTryCorrect = 0; qFirstTryDetails = [];
+  qSubmitted = false;
+  quizStartTime = Date.now();
+  if($("quizSubmitStatus")){ $("quizSubmitStatus").textContent = ""; $("quizSubmitStatus").className = "quiz-sub submit-status"; }
+  qShowStudy();
+}
+
+$("btnQuizStart")?.addEventListener("click", () => {
+  const input = $("quizStudentName");
+  const name = (input.value || "").trim();
+  if(!name){
+    $("quizNameWarn").style.display = "block";
+    input.focus();
+    return;
+  }
+  quizStudentName = name;
+  $("quizNameWarn").style.display = "none";
+  $("quizStudentBar").classList.add("hidden");
+  qBeginSession();
+});
+$("quizStudentName")?.addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); $("btnQuizStart").click(); } });
+
+$("btnQuizReviewNow")?.addEventListener("click", () => {
+  qRound++;
+  qRoundQueue = [...qWrongThisRound];
+  qWrongThisRound = new Set();
+  qPos = 0;
+  qShowStudy();
+});
+$("btnQuizRestart")?.addEventListener("click", () => {
+  $("quizStudentBar").classList.add("hidden");
+  qBeginSession();
+});
+$("btnQuizSubmitScore")?.addEventListener("click", () => {
+  qSubmitted = true;
+  qSendResultToServer();
+});
+$("btnQuizNext")?.addEventListener("click", qGoNext);
+
+document.addEventListener("keydown", e => {
+  if(activeMode !== "quiz") return;
+  if($("quizStudyView").classList.contains("hidden")) return;
+  if(!qAnswered){
+    const k = e.key.toLowerCase();
+    const map = {"1":0,"2":1,"3":2,"4":3,"a":0,"b":1,"c":2,"d":3};
+    if(k in map){
+      const btn = document.querySelectorAll("#quizOptions .opt-btn")[map[k]];
+      if(btn) btn.click();
+    }
+  } else if(e.key === "Enter" || e.key === " "){
+    e.preventDefault();
+    if(!$("btnQuizNext").classList.contains("hidden")) qGoNext();
+  }
+});
+
+/* ---------- Chuyen tab Flashcard <-> Kiem tra ---------- */
+document.querySelectorAll(".mode-tab").forEach(b => {
+  b.addEventListener("click", () => {
+    const mode = b.dataset.mode;
+    if(mode === activeMode) return;
+    activeMode = mode;
+    document.querySelectorAll(".mode-tab").forEach(x => x.classList.toggle("active", x === b));
+    $("flashMode").classList.toggle("hidden", mode !== "flash");
+    $("quizMode").classList.toggle("hidden", mode !== "quiz");
+    if(mode === "quiz" && !quizStudentName) $("quizStudentName")?.focus();
+  });
+});
+
+/* ---------- Chạy ---------- */
+applySettings();
+renderGroupNav();
+startSession();
+</script>
+</body>
+</html>

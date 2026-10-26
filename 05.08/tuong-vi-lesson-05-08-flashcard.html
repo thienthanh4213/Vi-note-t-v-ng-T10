@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#1D9E75" />
+<title>🎯 Tutoring – Tường Vi – Lesson 05/08</title>
+<style>
+  :root{
+    --green:#1D9E75; --green-d:#158A63; --green-l:#E7F6F0;
+    --teal:#12B3A0;
+    --red:#E4574C; --red-l:#FCEBEA;
+    --ink:#1F2A28; --muted:#6B7A76; --bg:#F1F5F3;
+    --card:#FFFFFF; --line:#E3EAE7; --gold:#F4B740;
+    --grad:linear-gradient(135deg,#1D9E75,#12B3A0);
+    --grad-warm:linear-gradient(135deg,#F4B740,#F08A5D);
+    --glow:0 22px 45px -14px rgba(29,158,117,.32),0 4px 12px rgba(21,138,99,.08);
+    --page:radial-gradient(1100px 560px at 50% -12%,#E7F6F0 0%,#F1F5F3 55%);
+  }
+  [data-theme="dark"]{
+    --green:#25B487; --green-d:#5FD3AE; --green-l:#123329;
+    --teal:#2ED0BE;
+    --red:#F0736A; --red-l:#3A201E;
+    --ink:#EAF2EF; --muted:#9DB0AA; --bg:#0E1413;
+    --card:#18211F; --line:#28352F; --gold:#F4B740;
+    --grad:linear-gradient(135deg,#25B487,#2ED0BE);
+    --grad-warm:linear-gradient(135deg,#F4B740,#F0736A);
+    --glow:0 22px 48px -14px rgba(0,0,0,.55),0 4px 14px rgba(0,0,0,.35);
+    --page:radial-gradient(1100px 560px at 50% -12%,#14201C 0%,#0E1413 55%);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+    background:var(--page);background-attachment:fixed;color:var(--ink);
+    min-height:100dvh;display:flex;justify-content:center;padding:14px;
+    transition:background .25s,color .25s;
+  }
+  .layout{width:100%;max-width:700px;display:flex;align-items:flex-start;justify-content:center;gap:16px}
+  .app{width:100%;max-width:440px;flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
+  :focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:8px}
+
+  /* Sidebar chủ đề — mỗi chủ đề 1 hàng, nằm bên trái */
+  .sidebar{
+    flex:none;width:220px;
+    display:flex;flex-direction:column;gap:6px;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:12px;position:sticky;top:14px;
+  }
+  .sidebar-label{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:2px 6px 6px}
+  .group-chip{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    border:1px solid var(--line);background:var(--bg);color:var(--muted);
+    font-family:inherit;font-weight:700;font-size:13px;text-align:left;
+    padding:10px 12px;border-radius:12px;cursor:pointer;
+  }
+  .group-chip .chip-label{overflow-wrap:anywhere}
+  .group-chip .cnt{flex:none;font-size:11px;font-weight:700;color:var(--muted);background:var(--card);padding:2px 8px;border-radius:999px}
+  .group-chip:active{transform:scale(.98)}
+  .group-chip.on{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .group-chip.on .cnt{background:#fff;color:var(--green-d)}
+
+  @media (max-width: 760px){
+    /* Không đủ chỗ cho cột trái + thẻ cạnh nhau: sidebar chủ đề xếp lên trên,
+       nhưng vẫn giữ mỗi chủ đề một hàng riêng (không gộp thành lưới ngang). */
+    .layout{flex-direction:column}
+    .sidebar{width:100%;position:static}
+  }
+
+  /* Header */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .title{font-size:20px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+  /* Icon (emoji) hiển thị nguyên màu — KHÔNG áp gradient-clip lên emoji, vì trình
+     duyệt sẽ tô phẳng glyph màu thành một khối đơn sắc trông giống lỗi. Gradient
+     chỉ áp cho phần chữ. */
+  .title-icon{margin-right:2px}
+  .title-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .title small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+  .btn-ghost{
+    border:1px solid var(--line);background:var(--card);color:var(--green-d);
+    font-family:inherit;font-weight:700;font-size:12px;
+    padding:8px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;
+  }
+  .btn-ghost:active{transform:scale(.96)}
+  .icon-btn{
+    border:1px solid var(--line);background:var(--card);
+    width:38px;height:36px;border-radius:12px;cursor:pointer;font-size:16px;display:grid;place-items:center;
+  }
+  .icon-btn:active{transform:scale(.94)}
+
+  /* Stats */
+  .stats{
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:8px 10px;font-size:13px;font-weight:600;
+  }
+  .stat{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px}
+  .stat.ok{color:var(--green-d);background:var(--green-l)}
+  .stat.no{color:var(--red);background:var(--red-l)}
+  .stat.left{color:var(--muted);background:var(--bg)}
+  .dot{display:none}
+  .round{margin-left:auto;background:var(--green-l);color:var(--green-d);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .shuffle{background:none;border:none;font-family:inherit;font-weight:700;color:var(--green-d);cursor:pointer;font-size:13px;padding:4px}
+  .shuffle:active{transform:scale(.94)}
+
+  /* Progress */
+  .prog{height:6px;background:var(--line);border-radius:999px;overflow:hidden}
+  .prog > i{display:block;height:100%;background:var(--grad);width:0%;transition:width .35s ease}
+
+  /* Card scene */
+  .scene{position:relative;perspective:1400px;height:340px}
+  .swipe-hint{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    font-size:20px;font-weight:800;color:#fff;padding:8px 16px;border-radius:14px;
+    opacity:0;pointer-events:none;transition:opacity .08s;
+  }
+  .swipe-hint.know{right:16px;background:var(--green)}
+  .swipe-hint.forget{left:16px;background:var(--red)}
+  .drag{position:absolute;inset:0;transition:transform .25s ease;will-change:transform;touch-action:pan-y}
+  .card{
+    position:relative;width:100%;height:100%;cursor:pointer;
+    transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.flip{transform:rotateY(180deg)}
+  .face{
+    position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;
+    box-shadow:var(--glow);
+    display:flex;flex-direction:column;
+    padding:18px 24px 16px;text-align:center;
+  }
+  .face::before{content:"";position:absolute;top:0;left:0;right:0;height:6px}
+  .front::before{background:var(--grad)}
+  .back::before{background:var(--grad-warm)}
+  /* 3 vùng theo chiều dọc: kicker/tools ở trên, nội dung chính giữa (chiếm hết
+     khoảng trống còn lại để không để trống một mảng lớn giữa thẻ), chấm+gợi ý
+     ở dưới — không còn absolute nên chiều cao thẻ tự phân bổ đều. */
+  .face-top{display:flex;align-items:center;justify-content:space-between;min-height:38px}
+  .face .kicker{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .back{transform:rotateY(180deg)}
+  .face-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0}
+  .icon{font-size:44px;line-height:1;margin-bottom:8px}
+  .icon:empty{display:none;margin:0}
+  .word{font-size:42px;font-weight:800;line-height:1.12;letter-spacing:-.02em;word-break:break-word}
+  .pron{margin-top:6px;color:var(--muted);font-size:14px;font-weight:500}
+  .meaning{font-size:26px;font-weight:700;line-height:1.25;color:var(--ink)}
+  .example{margin-top:14px;font-size:14px;color:var(--muted);font-weight:500;font-style:italic;max-width:90%}
+  .face-bottom{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .hint{font-size:12px;color:var(--muted);font-weight:600}
+  .dots{display:flex;gap:5px}
+  .dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+  .dots i.on{background:var(--green)}
+  .face-tools{display:flex;gap:6px}
+  .tool{border:1px solid var(--line);background:var(--card);border-radius:12px;width:38px;height:38px;font-size:16px;cursor:pointer;display:grid;place-items:center}
+  .tool:active{transform:scale(.9);background:var(--green-l)}
+
+  /* Controls */
+  .controls{display:grid;grid-template-columns:1fr 1.2fr 1.2fr 1fr;gap:8px}
+  .ctl{border:none;font-family:inherit;font-weight:700;font-size:14px;padding:14px 6px;border-radius:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px}
+  .ctl:active{transform:translateY(1px) scale(.98)}
+  .ctl.nav{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+  .ctl.forget{background:var(--red-l);color:var(--red)}
+  .ctl.know{background:var(--grad);color:#fff;box-shadow:0 8px 20px -4px rgba(29,158,117,.5)}
+  .ctl:disabled{opacity:.4;cursor:not-allowed}
+  .swipe-tip{text-align:center;font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+
+  /* Overlays */
+  .overlay{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px 22px;text-align:center}
+  .overlay .emoji{font-size:52px}
+  .overlay h2{margin:10px 0 6px;font-size:22px}
+  .overlay p{margin:0;color:var(--muted);font-weight:500}
+  .review-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0}
+  .chip{background:var(--red-l);color:var(--red);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600}
+  .btn-primary{margin-top:18px;background:var(--grad);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:16px;padding:14px 22px;border-radius:16px;cursor:pointer;width:100%;box-shadow:0 8px 20px -4px rgba(29,158,117,.45)}
+  .btn-primary:active{transform:scale(.98)}
+  .btn-outline{margin-top:10px;background:var(--card);color:var(--green-d);border:1px solid var(--green);font-family:inherit;font-weight:700;font-size:15px;padding:12px 22px;border-radius:16px;cursor:pointer;width:100%}
+  .btn-outline.danger{color:var(--red);border-color:var(--red)}
+  .hidden{display:none !important}
+
+  /* Modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(10,18,16,.55);display:flex;align-items:flex-end;justify-content:center;z-index:50}
+  .modal{background:var(--card);width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:20px;max-height:88dvh;overflow:auto}
+  .modal h3{margin:0 0 4px;font-size:18px}
+  .modal .sub{color:var(--muted);font-size:13px;font-weight:500;margin:0 0 14px}
+  .modal label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
+  .modal input,.modal textarea,.modal select{width:100%;font-family:inherit;font-size:15px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+  .modal textarea{min-height:150px;line-height:1.5}
+  .modal input:focus,.modal textarea:focus,.modal select:focus{outline:none;border-color:var(--green)}
+  .row{display:flex;gap:8px}
+  .count-note{font-size:12px;color:var(--muted);font-weight:600;margin-top:6px}
+  .seg{display:flex;gap:6px}
+  .seg button{flex:1;padding:10px 4px;border:1px solid var(--line);background:var(--card);border-radius:12px;font-family:inherit;font-weight:700;font-size:13px;color:var(--muted);cursor:pointer}
+  .seg button.on{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-weight:600;font-size:14px}
+  .switch{width:48px;height:28px;border-radius:999px;border:none;background:var(--line);position:relative;cursor:pointer;transition:.2s;flex:none}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .switch.on{background:var(--green)} .switch.on::after{left:23px}
+
+  /* Hoạt ảnh thẻ mới xuất hiện + ăn mừng */
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+  .scene.enter .drag{animation:cardIn .32s cubic-bezier(.2,.8,.2,1)}
+  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.05)}100%{transform:scale(1)}}
+  .scene.knowpop{animation:pop .34s ease}
+  .confetti{position:absolute;top:24%;left:50%;z-index:8;pointer-events:none}
+  .confetti i{position:absolute;width:9px;height:9px;border-radius:2px;opacity:0}
+  @keyframes conf{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(var(--cr))}}
+
+  .wm-footer{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);text-align:center;font-size:11px;color:var(--muted);opacity:.7}
+
+  @media (prefers-reduced-motion: reduce){
+    .card,.drag,.prog>i,body,.switch,.switch::after{transition:none !important}
+    .scene.enter .drag,.scene.knowpop,.confetti i{animation:none !important}
+  }
+
+  /* ===== Chuyen che do Flashcard / Kiem tra tu vung ===== */
+  .page-wrap{width:100%;max-width:700px;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .mode-tabs{display:flex;gap:8px;width:100%;max-width:440px}
+  .mode-tab{
+    flex:1;border:1px solid var(--line);background:var(--card);color:var(--muted);
+    font-family:inherit;font-weight:700;font-size:13px;padding:12px 8px;border-radius:14px;cursor:pointer;transition:.15s;
+  }
+  .mode-tab.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 20px -6px rgba(29,158,117,.45)}
+  .mode-tab:active{transform:scale(.98)}
+
+  /* ===== Kiem tra tu vung (trac nghiem 4 dap an) ===== */
+  .quiz-card{
+    position:relative;overflow:hidden;
+    background:var(--card);border:1px solid var(--line);border-radius:26px;
+    box-shadow:var(--glow);padding:24px 22px 20px;text-align:center;
+    display:flex;flex-direction:column;gap:4px;min-height:150px;justify-content:center;
+  }
+  .quiz-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad)}
+  .quiz-kicker{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .quiz-question{font-size:22px;font-weight:800;line-height:1.32;margin:8px 0 2px;word-break:break-word}
+  .quiz-options{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+  .opt-btn{
+    display:flex;align-items:center;gap:10px;text-align:left;
+    border:1.5px solid var(--line);background:var(--card);color:var(--ink);
+    font-family:inherit;font-size:14px;font-weight:600;line-height:1.35;
+    padding:12px 14px;border-radius:14px;cursor:pointer;transition:.12s;
+  }
+  .opt-btn .opt-key{
+    flex:none;width:26px;height:26px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);
+  }
+  .opt-btn:active{transform:scale(.98)}
+  .opt-btn:disabled{cursor:default}
+  .opt-btn.correct{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .opt-btn.correct .opt-key{background:var(--green);border-color:var(--green);color:#fff}
+  .opt-btn.wrong{background:var(--red-l);border-color:var(--red);color:var(--red)}
+  .opt-btn.wrong .opt-key{background:var(--red);border-color:var(--red);color:#fff}
+  .quiz-sub{font-size:12px;color:var(--muted);font-weight:600;text-align:center;margin-top:2px}
+
+  .student-bar{display:flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px}
+  .student-bar input{
+    flex:1;min-width:0;font-family:inherit;font-size:14px;
+    padding:10px 12px;border:1px solid var(--line);border-radius:12px;
+    background:var(--bg);color:var(--ink);
+  }
+  .student-bar input:focus{outline:none;border-color:var(--green)}
+  .student-bar .ctl{flex:none;padding:10px 16px}
+
+  .submit-status{font-weight:700;margin-top:4px}
+  .submit-status.sending{color:var(--muted)}
+  .submit-status.ok{color:var(--green-d)}
+  .submit-status.fail{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="mode-tabs" id="modeTabs">
+    <button type="button" class="mode-tab active" data-mode="flash">🗂️ Flashcard</button>
+    <button type="button" class="mode-tab" data-mode="quiz">📝 Kiểm tra từ vựng</button>
+  </div>
+
+  <div class="layout" id="flashMode">
+  <!-- Sidebar chủ đề (trái, mỗi chủ đề 1 hàng) — chỉ hiện khi thẻ có field 'group' -->
+  <aside class="sidebar hidden" id="groupSidebar"></aside>
+
+  <div class="app">
+  <!-- Header -->
+  <div class="top">
+    <div class="title" id="deckTitle"><span class="title-icon" id="titleIcon">🎯</span><span class="title-text" id="titleText">Flashcard</span><small id="deckSub">Tự soạn từ vựng</small></div>
+    <div class="row">
+      <button class="icon-btn" id="btnSettings" aria-label="Cài đặt">⚙️</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <span class="stat ok">✓ Nhớ: <b id="sKnow">0</b></span><span class="dot"></span>
+    <span class="stat no">✗ Quên: <b id="sForget">0</b></span><span class="dot"></span>
+    <span class="stat left">◎ Còn: <b id="sLeft">0</b></span>
+    <span class="round">Vòng <b id="sRound">1</b></span>
+    <button class="shuffle" id="btnShuffle">🔀 Trộn</button>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+
+  <!-- Study view -->
+  <div id="studyView">
+    <div class="scene" id="scene">
+      <div class="swipe-hint forget" id="hintForget">😕 Quên</div>
+      <div class="swipe-hint know" id="hintKnow">✓ Nhớ</div>
+      <div class="drag" id="drag">
+        <div class="card" id="card">
+          <div class="face front">
+            <div class="face-top">
+              <div class="kicker" id="frontKicker">Từ vựng</div>
+              <div class="face-tools">
+                <button class="tool" id="btnSpeak" aria-label="Nghe phát âm">🔊</button>
+                <button class="tool" id="btnImage" aria-label="Xem hình gợi ý">🖼️</button>
+              </div>
+            </div>
+            <div class="face-body">
+              <div class="icon" id="frontIcon"></div>
+              <div class="word" id="frontWord">—</div>
+              <div class="pron" id="frontPron"></div>
+            </div>
+            <div class="face-bottom">
+              <div class="dots" id="frontDots"></div>
+              <div class="hint">👆 Nhấn để lật · ↔ vuốt để chấm</div>
+            </div>
+          </div>
+          <div class="face back">
+            <div class="face-top">
+              <div class="kicker" id="backKicker">Nghĩa</div>
+            </div>
+            <div class="face-body">
+              <div class="icon" id="backIcon"></div>
+              <div class="meaning" id="backMeaning">—</div>
+              <div class="example" id="backExample"></div>
+            </div>
+            <div class="face-bottom">
+              <div class="hint">👆 Nhấn để lật lại</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls" style="margin-top:14px">
+      <button class="ctl nav" id="btnPrev">← Trước</button>
+      <button class="ctl forget" id="btnForget">😕 Quên</button>
+      <button class="ctl know" id="btnKnow">✓ Nhớ</button>
+      <button class="ctl nav" id="btnNext">Sau →</button>
+    </div>
+    <div class="swipe-tip">Mẹo: vuốt trái = Quên · vuốt phải = Nhớ</div>
+  </div>
+
+  <!-- Review round -->
+  <div id="reviewView" class="overlay hidden">
+    <div class="emoji">😕</div>
+    <h2 id="reviewTitle">Còn 0 từ chưa nhớ</h2>
+    <p>Hãy ôn lại những từ này:</p>
+    <div class="review-list" id="reviewList"></div>
+    <button class="btn-primary" id="btnReviewNow">🔁 Ôn lại ngay</button>
+  </div>
+
+  <!-- Done -->
+  <div id="doneView" class="overlay hidden">
+    <div class="emoji">🏆</div>
+    <h2>Xuất sắc!</h2>
+    <p id="doneSub">Bạn đã nhớ tất cả từ vựng!</p>
+    <button class="btn-primary" id="btnRestart">🔄 Học lại từ đầu</button>
+  </div>
+
+  <!-- Empty -->
+  <div id="emptyView" class="overlay hidden">
+    <div class="emoji">📭</div>
+    <h2>Bộ thẻ trống</h2>
+    <p>Bộ từ vựng chưa có nội dung. Hãy liên hệ giáo viên của bạn.</p>
+  </div>
+  </div><!-- /.app -->
+  </div><!-- /.layout -->
+
+  <div class="app hidden" id="quizMode">
+    <div class="top">
+      <div class="title"><span class="title-icon">📝</span><span class="title-text">Kiểm tra từ vựng</span><small>Anh–Việt &amp; Việt–Anh · trắc nghiệm 4 đáp án</small></div>
+    </div>
+
+    <div class="stats">
+      <span class="stat ok">✓ Đúng: <b id="qKnow">0</b></span><span class="dot"></span>
+      <span class="stat no">✗ Sai: <b id="qWrong">0</b></span><span class="dot"></span>
+      <span class="stat left">◎ Còn: <b id="qLeft">0</b></span>
+      <span class="round">Vòng <b id="qRound">1</b></span>
+    </div>
+    <div class="prog"><i id="qProgBar"></i></div>
+
+    <div class="student-bar" id="quizStudentBar">
+      <input type="text" id="quizStudentName" placeholder="Nhập họ tên học sinh…" autocomplete="name" />
+      <button type="button" class="ctl know" id="btnQuizStart" style="width:auto">Bắt đầu →</button>
+    </div>
+    <div class="quiz-sub" id="quizNameWarn" style="display:none;color:var(--red)">⚠️ Vui lòng nhập họ tên trước khi bắt đầu.</div>
+
+    <div id="quizStudyView" class="hidden">
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-kicker" id="quizKicker">Từ vựng → Nghĩa</div>
+        <div class="quiz-question" id="quizQuestion">—</div>
+      </div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <button type="button" class="ctl know hidden" id="btnQuizNext" style="width:100%;margin-top:10px">Câu tiếp theo →</button>
+      <div class="quiz-sub">Chọn đáp án đúng · bấm "Câu tiếp theo" để qua câu kế · câu sai sẽ quay lại ở vòng học sau</div>
+    </div>
+
+    <div id="quizReviewView" class="overlay hidden">
+      <div class="emoji">😕</div>
+      <h2 id="quizReviewTitle">Còn 0 câu chưa đúng</h2>
+      <p>Hãy làm lại các câu này:</p>
+      <div class="review-list" id="quizReviewList"></div>
+      <button class="btn-primary" id="btnQuizReviewNow">🔁 Làm lại ngay</button>
+    </div>
+
+    <div id="quizDoneView" class="overlay hidden">
+      <div class="emoji">🏆</div>
+      <h2>Hoàn thành!</h2>
+      <p id="quizDoneSub">Bạn đã trả lời đúng tất cả!</p>
+      <button class="btn-primary hidden" id="btnQuizSubmitScore">📤 Chấm điểm &amp; gửi kết quả</button>
+      <div class="quiz-sub submit-status" id="quizSubmitStatus"></div>
+      <button class="btn-primary" id="btnQuizRestart">🔄 Làm lại từ đầu</button>
+    </div>
+  </div><!-- /#quizMode -->
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+</div><!-- /.page-wrap -->
+
+<!-- (Đã gỡ trình soạn thẻ – học sinh không chỉnh sửa nội dung) -->
+
+<!-- Settings modal -->
+<div class="modal-bg hidden" id="setModal">
+  <div class="modal">
+    <h3>⚙️ Cài đặt học</h3>
+    <p class="sub">Điều chỉnh cách ôn cho phù hợp với bạn.</p>
+    <label>Chiều học</label>
+    <div class="seg" id="segDir">
+      <button data-v="fwd">Từ → Nghĩa</button>
+      <button data-v="rev">Nghĩa → Từ</button>
+      <button data-v="mix">Trộn</button>
+    </div>
+    <div class="toggle-row"><span>🔊 Tự phát âm khi hiện thẻ</span><button class="switch" id="tglAudio" aria-label="Tự phát âm"></button></div>
+    <div class="toggle-row"><span>🌙 Giao diện tối</span><button class="switch" id="tglDark" aria-label="Giao diện tối"></button></div>
+    <div class="toggle-row"><span>🎯 Ưu tiên từ chưa thuộc</span><button class="switch" id="tglWeak" aria-label="Ưu tiên từ yếu"></button></div>
+    <button class="btn-outline danger" id="btnResetProg">↺ Đặt lại tiến độ thuộc</button>
+    <button class="btn-primary" id="btnCloseSet">Xong</button>
+  </div>
+</div>
+
+<script>
+/* ---------- Lưu trữ an toàn ---------- */
+const store = {
+  save(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} },
+  load(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+};
+
+/* ---------- Bộ thẻ nhúng sẵn (giáo viên soạn) ---------- */
+const DECK = {"title": "🎯 Tutoring – Tường Vi – Lesson 05/08", "lang": "en-US", "cards": [{"front": "attractive", "back": "hấp dẫn, thu hút (tính từ)", "ex": "an attractive offer", "pron": "/əˈtræktɪv/", "img": "✨", "group": "Từ vựng"}, {"front": "appealing", "back": "hấp dẫn, lôi cuốn (tính từ)", "ex": "a very appealing idea", "pron": "/əˈpiːlɪŋ/", "img": "😍", "group": "Từ vựng"}, {"front": "engaging", "back": "cuốn hút, thu hút sự chú ý (tính từ)", "ex": "an engaging presentation", "pron": "/ɪnˈɡeɪdʒɪŋ/", "img": "🤩", "group": "Từ vựng"}, {"front": "engagement / participation", "back": "sự tham gia (danh từ)", "ex": "employee engagement", "pron": "/ɪnˈɡeɪdʒmənt/", "img": "🙋", "group": "Từ vựng"}, {"front": "remote", "back": "xa xôi; từ xa (tính từ)", "ex": "a remote office", "pron": "/rɪˈmoʊt/", "img": "🏔️", "group": "Từ vựng"}, {"front": "secluded", "back": "hẻo lánh, biệt lập (tính từ)", "ex": "a secluded beach", "pron": "/sɪˈkluːdɪd/", "img": "🏝️", "group": "Từ vựng"}, {"front": "rule", "back": "quy tắc, luật lệ (danh từ); cai trị (động từ)", "ex": "follow the rules", "pron": "/ruːl/", "img": "📏", "group": "Từ vựng"}, {"front": "improve", "back": "cải thiện (động từ)", "ex": "improve customer service", "pron": "/ɪmˈpruːv/", "img": "📈", "group": "Từ vựng"}, {"front": "post", "back": "đăng (bài) (v); vị trí, chức vụ (n); bưu điện (n)", "ex": "post a job opening", "pron": "/poʊst/", "img": "📮", "group": "Từ vựng"}, {"front": "bold / italic", "back": "in đậm / in nghiêng (định dạng văn bản)", "ex": "Make the title bold and italic.", "pron": "", "img": "🔤", "group": "Từ vựng"}, {"front": "process (n/v)", "back": "quy trình (n); xử lý, tiến hành (v)", "ex": "the hiring process", "pron": "/ˈprɑːses/", "img": "⚙️", "group": "Từ vựng"}, {"front": "progress (n/v)", "back": "sự tiến triển (n); tiến triển (v)", "ex": "make progress on the project", "pron": "/ˈprɑːɡres/", "img": "📊", "group": "Từ vựng"}, {"front": "proceed to / go to", "back": "tiến hành đến, đi tới", "ex": "Please proceed to gate 12.", "pron": "/prəˈsiːd/", "img": "➡️", "group": "Từ vựng"}, {"front": "fund", "back": "quỹ, nguồn vốn (n); cấp vốn (v)", "ex": "a scholarship fund", "pron": "/fʌnd/", "img": "💰", "group": "Từ vựng"}, {"front": "insist / persist", "back": "khăng khăng đòi, nhấn mạnh (insist); kiên trì, tiếp tục dù khó khăn (persist) — không hoàn toàn đồng nghĩa", "ex": "She insisted on paying. / He persisted despite setbacks.", "pron": "/ɪnˈsɪst/", "img": "💪", "group": "Từ vựng"}, {"front": "purchase", "back": "mua, sự mua sắm (v/n)", "ex": "purchase new equipment", "pron": "/ˈpɜːrtʃəs/", "img": "🛒", "group": "Từ vựng"}, {"front": "procurement", "back": "việc mua sắm, thu mua (danh từ, thường dùng trong doanh nghiệp)", "ex": "the procurement department", "pron": "/prəˈkjʊrmənt/", "img": "📦", "group": "Từ vựng"}, {"front": "appear", "back": "xuất hiện; có vẻ như (động từ)", "ex": "The results appear promising.", "pron": "/əˈpɪr/", "img": "👀", "group": "Từ vựng"}, {"front": "endorse / validate", "back": "ủng hộ, xác nhận, ký hậu (endorse); xác thực, kiểm chứng (validate)", "ex": "endorse a candidate; validate the data", "pron": "/ɪnˈdɔːrs/", "img": "✅", "group": "Từ vựng"}, {"front": "refuse", "back": "từ chối (động từ)", "ex": "refuse the offer", "pron": "/rɪˈfjuːz/", "img": "🙅", "group": "Từ vựng"}, {"front": "elaborate / meticulous / detailed", "back": "giải thích chi tiết hơn (elaborate, v); tỉ mỉ, cẩn thận (meticulous); chi tiết (detailed)", "ex": "Could you elaborate on that point?", "pron": "/ɪˈlæbərət/", "img": "🔍", "group": "Từ vựng"}, {"front": "remain / retain / keep / maintain", "back": "vẫn, duy trì, giữ nguyên", "ex": "The rules remain unchanged.", "pron": "/rɪˈmeɪn/", "img": "🔄", "group": "Từ vựng"}, {"front": "obtain / gain", "back": "đạt được, giành được", "ex": "obtain a certificate", "pron": "/əbˈteɪn/", "img": "🏆", "group": "Từ vựng"}, {"front": "prohibit / ban / suspend", "back": "cấm (prohibit, ban); tạm ngưng, đình chỉ (suspend — khác sắc thái, không hẳn cấm hoàn toàn)", "ex": "Smoking is prohibited here.", "pron": "/prəˈhɪbɪt/", "img": "🚫", "group": "Từ vựng"}, {"front": "exhibit (n)", "back": "đồ triển lãm (danh từ)", "ex": "a museum exhibit", "pron": "/ɪɡˈzɪbɪt/", "img": "🖼️", "group": "Từ vựng"}, {"front": "exhibition / expo", "back": "triển lãm, hội chợ thương mại", "ex": "a trade exhibition", "pron": "/ˌeksɪˈbɪʃn/", "img": "🎪", "group": "Từ vựng"}, {"front": "gallery", "back": "phòng trưng bày, phòng tranh (danh từ)", "ex": "an art gallery", "pron": "/ˈɡæləri/", "img": "🖼️", "group": "Từ vựng"}, {"front": "library", "back": "thư viện (danh từ)", "ex": "the city library", "pron": "/ˈlaɪbreri/", "img": "📚", "group": "Từ vựng"}, {"front": "bother / annoy / interrupt / disrupt", "back": "làm phiền, quấy rầy (bother, annoy); làm gián đoạn (interrupt, disrupt — sắc thái hơi khác)", "ex": "Sorry to bother you.", "pron": "/ˈbɑːðər/", "img": "😤", "group": "Từ vựng"}, {"front": "border / boundary", "back": "ranh giới (danh từ)", "ex": "cross the border", "pron": "/ˈbɔːrdər/", "img": "🚧", "group": "Từ vựng"}, {"front": "costume / garment / clothes", "back": "trang phục (costume — thường là hóa trang/biểu diễn); quần áo nói chung (garment, clothes)", "ex": "a Halloween costume", "pron": "/ˈkɑːstuːm/", "img": "👗", "group": "Từ vựng"}, {"front": "customize", "back": "tùy chỉnh, cá nhân hóa (động từ)", "ex": "customize the settings", "pron": "/ˈkʌstəmaɪz/", "img": "🛠️", "group": "Từ vựng"}, {"front": "floor", "back": "sàn nhà (danh từ)", "ex": "mop the floor", "pron": "/flɔːr/", "img": "🏠", "group": "Từ vựng"}, {"front": "roof", "back": "mái nhà (danh từ)", "ex": "repair the roof", "pron": "/ruːf/", "img": "🏚️", "group": "Từ vựng"}, {"front": "tile", "back": "gạch lát (sàn) / ngói lợp (mái) (danh từ)", "ex": "ceramic floor tiles", "pron": "/taɪl/", "img": "🧱", "group": "Từ vựng"}, {"front": "assort / sort / categorize", "back": "phân loại (động từ)", "ex": "sort the files by date", "pron": "/əˈsɔːrt/", "img": "🗂️", "group": "Từ vựng"}, {"front": "absorb", "back": "hấp thụ (động từ)", "ex": "absorb the cost", "pron": "/əbˈzɔːrb/", "img": "🌱", "group": "Từ vựng"}, {"front": "recently / ever", "back": "gần đây (recently) / đã từng (ever, thường dùng với thì hoàn thành)", "ex": "Have you ever visited Japan?", "pron": "/ˈriːsntli/", "img": "🕐", "group": "Từ vựng"}, {"front": "closely", "back": "sát sao, kỹ lưỡng (gần nghĩa: carefully); cũng có thể mang nghĩa strictly/cautiously tùy ngữ cảnh", "ex": "review the report closely", "pron": "/ˈkloʊsli/", "img": "🔍", "group": "Từ vựng"}, {"front": "nearly", "back": "gần như, suýt soát (trạng từ)", "ex": "nearly finished", "pron": "/ˈnɪrli/", "img": "⏳", "group": "Từ vựng"}, {"front": "supplemental / additional", "back": "bổ sung, thêm vào (tính từ)", "ex": "supplemental materials", "pron": "/ˌsʌpləˈmentl/", "img": "➕", "group": "Từ vựng"}, {"front": "superfluous", "back": "dư thừa, không cần thiết (tính từ)", "ex": "superfluous details", "pron": "/suːˈpɜːrfluəs/", "img": "🗑️", "group": "Từ vựng"}, {"front": "closure", "back": "sự đóng cửa (danh từ)", "ex": "temporary closure", "pron": "/ˈkloʊʒər/", "img": "🔒", "group": "Từ vựng"}, {"front": "cushion", "back": "gối đệm (danh từ)", "ex": "a soft cushion", "pron": "/ˈkʊʃn/", "img": "🛋️", "group": "Từ vựng"}, {"front": "screw / bolt", "back": "ốc vít (danh từ)", "ex": "tighten the screws", "pron": "/skruː/", "img": "🔩", "group": "Từ vựng"}, {"front": "overtighten", "back": "siết quá chặt (động từ)", "ex": "Don't overtighten the bolt.", "pron": "", "img": "🔧", "group": "Từ vựng"}, {"front": "tight >< loose", "back": "chật, chặt >< lỏng, rộng (tính từ)", "ex": "a tight schedule vs. a loose fit", "pron": "/taɪt/ - /luːs/", "img": "⚖️", "group": "Từ vựng"}, {"front": "bright", "back": "sáng (tính từ)", "ex": "a bright room", "pron": "/braɪt/", "img": "💡", "group": "Từ vựng"}, {"front": "light (a)", "back": "nhẹ (khối lượng); sáng (ánh sáng) — tùy ngữ cảnh", "ex": "a light bag; a light room", "pron": "/laɪt/", "img": "🪶", "group": "Từ vựng"}, {"front": "component / element", "back": "bộ phận, linh kiện, thành phần, yếu tố (của máy móc/hệ thống)", "ex": "a key component of the machine", "pron": "/kəmˈpoʊnənt/", "img": "🔧", "group": "Từ vựng"}, {"front": "dietary needs", "back": "nhu cầu ăn uống, chế độ dinh dưỡng", "ex": "special dietary needs", "pron": "", "img": "🥗", "group": "Từ vựng"}, {"front": "revolution", "back": "cuộc cách mạng, sự thay đổi lớn (danh từ)", "ex": "the industrial revolution", "pron": "/ˌrevəˈluːʃn/", "img": "🔄", "group": "Từ vựng"}, {"front": "revolutionize", "back": "cách mạng hóa, thay đổi triệt để (động từ)", "ex": "This technology revolutionized farming.", "pron": "/ˌrevəˈluːʃənaɪz/", "img": "💥", "group": "Từ vựng"}, {"front": "the site coordinates", "back": "tọa độ của công trường/địa điểm", "ex": "Send me the site coordinates.", "pron": "", "img": "📍", "group": "Từ vựng"}, {"front": "coordinator", "back": "điều phối viên (danh từ)", "ex": "the event coordinator", "pron": "/koʊˈɔːrdɪneɪtər/", "img": "🧑‍💼", "group": "Từ vựng"}, {"front": "associate", "back": "liên kết, liên tưởng (v); đồng nghiệp, cộng sự — CTV (n)", "ex": "sales associate", "pron": "/əˈsoʊʃieɪt/", "img": "🤝", "group": "Từ vựng"}, {"front": "yield / achieve", "back": "mang lại, tạo ra kết quả (yield); đạt được (achieve)", "ex": "The investment yielded good returns.", "pron": "/jiːld/", "img": "📈", "group": "Từ vựng"}, {"front": "substantial / considerable / significant", "back": "đáng kể, quan trọng (tính từ)", "ex": "a substantial increase", "pron": "/səbˈstænʃl/", "img": "📌", "group": "Từ vựng"}, {"front": "surplus", "back": "phần dư, thặng dư (n); dư thừa (a) — nhấn mạnh phần THỪA ra, khác 'dồi dào' (plentiful) mang nghĩa phong phú tích cực", "ex": "a budget surplus", "pron": "/ˈsɜːrplʌs/", "img": "📦", "group": "Từ vựng"}, {"front": "plenty of / a lot of", "back": "nhiều, rất nhiều", "ex": "plenty of time", "pron": "", "img": "🔢", "group": "Từ vựng"}, {"front": "produce (n)", "back": "nông sản (danh từ)", "ex": "fresh produce", "pron": "/ˈprɑːduːs/", "img": "🥕", "group": "Từ vựng"}, {"front": "product", "back": "sản phẩm (danh từ)", "ex": "a new product", "pron": "/ˈprɑːdʌkt/", "img": "📦", "group": "Từ vựng"}, {"front": "harvest", "back": "vụ thu hoạch, mùa thu hoạch (n); thu hoạch (v)", "ex": "harvest the crops", "pron": "/ˈhɑːrvɪst/", "img": "🌾", "group": "Từ vựng"}, {"front": "crops", "back": "mùa màng, cây trồng (danh từ)", "ex": "grow crops", "pron": "/krɑːps/", "img": "🌽", "group": "Từ vựng"}, {"front": "distracting / annoying", "back": "gây xao nhãng / gây khó chịu (tính từ)", "ex": "a distracting noise", "pron": "/dɪˈstræktɪŋ/", "img": "😣", "group": "Từ vựng"}, {"front": "specifications", "back": "thông số, đặc điểm kỹ thuật (danh từ)", "ex": "product specifications", "pron": "/ˌspesɪfɪˈkeɪʃnz/", "img": "📋", "group": "Từ vựng"}, {"front": "Perk / benefit", "back": "phúc lợi (danh từ)", "ex": "employee perks", "pron": "/pɜːrk/", "img": "🎁", "group": "Từ vựng"}, {"front": "generous compensation package", "back": "gói đãi ngộ/lương thưởng hào phóng, hậu hĩnh", "ex": "The company offers a generous compensation package.", "pron": "", "img": "💵", "group": "Từ vựng"}, {"front": "a fraction of / portion / part", "back": "một phần (nhỏ) của — 'fraction' nhấn mạnh phần nhỏ, 'portion/part' không nhất thiết nhỏ", "ex": "only a fraction of the cost", "pron": "", "img": "🍰", "group": "Từ vựng"}, {"front": "expedite / push", "back": "đẩy nhanh, xúc tiến (tiến độ công việc)", "ex": "expedite the delivery", "pron": "/ˈekspədaɪt/", "img": "⚡", "group": "Từ vựng"}, {"front": "a trial", "back": "sự thử nghiệm, dùng thử (danh từ)", "ex": "a free trial", "pron": "/ˈtraɪəl/", "img": "🧪", "group": "Từ vựng"}, {"front": "summarize", "back": "tóm tắt (động từ)", "ex": "summarize the report", "pron": "/ˈsʌməraɪz/", "img": "📝", "group": "Từ vựng"}, {"front": "assume / guess", "back": "giả định, cho rằng (assume — dựa trên suy luận); đoán (guess — ít chắc chắn hơn)", "ex": "I assumed you were coming.", "pron": "/əˈsuːm/", "img": "🤔", "group": "Từ vựng"}, {"front": "incorporate / combine", "back": "kết hợp (động từ)", "ex": "incorporate feedback into the plan", "pron": "/ɪnˈkɔːrpəreɪt/", "img": "🔗", "group": "Từ vựng"}, {"front": "corporate / business", "back": "(thuộc) doanh nghiệp, công ty (tính từ)", "ex": "corporate policy", "pron": "/ˈkɔːrpərət/", "img": "🏢", "group": "Từ vựng"}, {"front": "for those who", "back": "dành cho những ai (mà)", "ex": "For those who are interested, please sign up.", "pron": "", "img": "🙋", "group": "Cụm từ & liên từ"}, {"front": "regardless of", "back": "bất kể", "ex": "Regardless of the weather, the event will go on.", "pron": "", "img": "🌦️", "group": "Cụm từ & liên từ"}, {"front": "Nonetheless", "back": "tuy nhiên", "ex": "It rained. Nonetheless, we went hiking.", "pron": "", "img": "🔁", "group": "Cụm từ & liên từ"}, {"front": "in light of / because of", "back": "xét đến, dựa trên, bởi vì", "ex": "In light of recent events, the policy was changed.", "pron": "", "img": "💡", "group": "Cụm từ & liên từ"}, {"front": "are on track", "back": "đang đi đúng hướng, kịp tiến độ", "ex": "The project is on track for completion.", "pron": "", "img": "🎯", "group": "Cụm từ & liên từ"}, {"front": "remain / retain (vẫn) + adj", "back": "cấu trúc dùng để diễn tả trạng thái không đổi: remain/retain + tính từ", "ex": "The company remained profitable despite the crisis.", "pron": "", "img": "📐", "group": "Ngữ pháp & cấu trúc câu"}]};
+
+/* ---------- Trạng thái ---------- */
+let deck = (DECK && Array.isArray(DECK.cards) && DECK.cards.length) ? DECK
+         : {title:"🎯 Flashcard", lang:"en-US", cards:[]};
+let lang = deck.lang || "en-US";
+let settings = Object.assign({dir:"fwd", autoAudio:false, dark:false, weakFirst:true}, store.load("fc_settings", {}));
+const PKEY = "fc_progress_" + (deck.title||"deck").replace(/\s+/g,"_");
+let progress = store.load(PKEY, {});   // front -> level 0..5
+
+let queue=[], pos=0, roundCards=[], round=1, flipped=false;
+let forgotten=new Set(), cleared=new Set(), scored=new Set(), sideMap={};
+let currentGroupFilter="all";   // "all" hoặc đúng tên group của thẻ
+
+const $ = id => document.getElementById(id);
+
+/* Tách emoji dẫn đầu tiêu đề khỏi phần chữ, để chỉ tô gradient phần chữ —
+   emoji giữ nguyên màu gốc (xem ghi chú tại .title-text trong CSS). */
+function setDeckTitle(){
+  const raw = (deck.title||"🎯 Flashcard").replace(/<.*/,"");
+  const m = raw.match(/^(\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*)\s*/u);
+  $("titleIcon").textContent = m ? m[1] : "";
+  $("titleText").textContent = m ? raw.slice(m[0].length) : raw;
+}
+const shuffleArr = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const getLvl = f => Math.max(0, Math.min(5, progress[f] ?? 0));
+function setLvl(f,v){ progress[f]=Math.max(0,Math.min(5,v)); store.save(PKEY,progress); }
+function saveSettings(){ store.save("fc_settings", settings); }
+
+/* ---------- Lọc theo chủ đề (group) ---------- */
+function uniqueGroups(){
+  const seen=new Set(), list=[];
+  deck.cards.forEach(c=>{ const g=(c.group||"").trim(); if(g && !seen.has(g)){ seen.add(g); list.push(g); } });
+  return list;
+}
+function currentPool(){
+  if(currentGroupFilter==="all") return deck.cards;
+  return deck.cards.filter(c=>c.group===currentGroupFilter);
+}
+function activeIndices(){
+  if(currentGroupFilter==="all") return deck.cards.map((_,i)=>i);
+  const out=[]; deck.cards.forEach((c,i)=>{ if(c.group===currentGroupFilter) out.push(i); }); return out;
+}
+function renderGroupNav(){
+  const nav=$("groupSidebar");
+  const groups=uniqueGroups();
+  nav.innerHTML="";
+  if(!groups.length){ nav.classList.add("hidden"); return; }
+  nav.classList.remove("hidden");
+
+  const label=document.createElement("div");
+  label.className="sidebar-label"; label.textContent="Chủ đề";
+  nav.appendChild(label);
+
+  const counts={};
+  deck.cards.forEach(c=>{ const g=(c.group||"").trim(); if(g) counts[g]=(counts[g]||0)+1; });
+
+  function addChip(label, count, key){
+    const b=document.createElement("button");
+    b.type="button"; b.className="group-chip"+(currentGroupFilter===key?" on":"");
+    b.dataset.g=key;
+    const lab=document.createElement("span"); lab.className="chip-label"; lab.textContent=label;
+    const cnt=document.createElement("span"); cnt.className="cnt"; cnt.textContent=count;
+    b.appendChild(lab); b.appendChild(cnt);
+    b.addEventListener("click", ()=>{
+      if(currentGroupFilter===key) return;
+      currentGroupFilter=key; renderGroupNav(); startSession();
+    });
+    nav.appendChild(b);
+  }
+  addChip("Tất cả", deck.cards.length, "all");
+  groups.forEach(g=> addChip(g, counts[g], g));
+}
+
+/* ---------- Thứ tự học ---------- */
+function orderIndices(){
+  const idxs = activeIndices();
+  const arr = idxs.map(i=>({i, lvl:getLvl(deck.cards[i].front), r:Math.random()}));
+  if(settings.weakFirst) arr.sort((a,b)=> a.lvl-b.lvl || a.r-b.r);
+  else arr.sort((a,b)=> a.r-b.r);
+  return arr.map(o=>o.i);
+}
+function startSession(){
+  round=1; scored=new Set(); sideMap={};
+  if(activeIndices().length===0){ showEmpty(); return; }
+  startRound(orderIndices(), false);
+  showStudy();
+}
+function startRound(indices, doShuffle){
+  roundCards=[...new Set(indices)];
+  queue = doShuffle ? shuffleArr(roundCards.slice()) : roundCards.slice();
+  forgotten=new Set(); cleared=new Set(); pos=0; flipped=false;
+  render();
+}
+
+/* ---------- Hiển thị mặt thẻ ---------- */
+function sideFor(idx){
+  if(settings.dir==="fwd") return "front";
+  if(settings.dir==="rev") return "back";
+  if(!(idx in sideMap)) sideMap[idx] = Math.random()<0.5 ? "front":"back";
+  return sideMap[idx];
+}
+
+function updateStats(){
+  const total = roundCards.length || 1;
+  let nho=0; cleared.forEach(i=>{ if(!forgotten.has(i)) nho++; });
+  $("sKnow").textContent = nho;
+  $("sForget").textContent = forgotten.size;
+  $("sLeft").textContent = Math.max(total - nho - forgotten.size, 0);
+  $("sRound").textContent = round;
+  $("progBar").style.width = Math.min((cleared.size/total)*100,100)+"%";
+  const pool = currentPool();
+  const mastered = pool.filter(c=>getLvl(c.front)>=4).length;
+  $("deckSub").textContent = `Thuộc ${mastered}/${pool.length} từ`;
+}
+
+function render(){
+  setDeckTitle();
+  if(!deck.cards || deck.cards.length===0 || activeIndices().length===0){ showEmpty(); return; }
+  if(pos>=queue.length){ endRound(); return; }
+
+  const idx = queue[pos];
+  const c = deck.cards[idx];
+  const promptWord = sideFor(idx)==="front";   // mặt trước có phải là "từ" không
+
+  flipped=false; $("card").classList.remove("flip");
+  $("frontWord").textContent   = promptWord ? c.front : c.back;
+  $("frontPron").textContent   = promptWord ? (c.pron||"") : "";
+  $("frontKicker").textContent = promptWord ? "Từ vựng" : "Nghĩa";
+  $("backMeaning").textContent = promptWord ? c.back : c.front;
+  $("backKicker").textContent  = promptWord ? "Nghĩa" : "Từ vựng";
+  $("backExample").textContent = c.ex||"";
+  // icon minh họa luôn đi kèm mặt "từ vựng", dù mặt đó là front hay back
+  $("frontIcon").textContent = promptWord ? (c.img||"") : "";
+  $("backIcon").textContent  = promptWord ? "" : (c.img||"");
+  $("btnPrev").disabled = pos===0;
+
+  // độ thuộc (chấm)
+  const lvl=getLvl(c.front), dots=$("frontDots"); dots.innerHTML="";
+  for(let i=0;i<5;i++){ const d=document.createElement("i"); if(i<lvl) d.className="on"; dots.appendChild(d); }
+
+  updateStats();
+  animateEnter();
+  if(settings.autoAudio && promptWord) setTimeout(()=>speakWord(c.front), 260);
+}
+
+function endRound(){
+  if(forgotten.size===0){ showDone(); return; }
+  $("reviewTitle").textContent = `Còn ${forgotten.size} từ chưa nhớ`;
+  const list=$("reviewList"); list.innerHTML="";
+  forgotten.forEach(i=>{ const s=document.createElement("span"); s.className="chip"; s.textContent=deck.cards[i].front; list.appendChild(s); });
+  showReview();
+}
+
+/* ---------- Chuyển màn ---------- */
+function hideAll(){ ["studyView","reviewView","doneView","emptyView"].forEach(v=>$(v).classList.add("hidden")); }
+function showStudy(){ hideAll(); $("studyView").classList.remove("hidden"); render(); }
+function showReview(){ hideAll(); $("reviewView").classList.remove("hidden"); updateStats(); }
+function showDone(){ hideAll(); $("doneView").classList.remove("hidden");
+  const pool=currentPool();
+  const mastered=pool.filter(c=>getLvl(c.front)>=4).length;
+  $("doneSub").textContent=`Bạn đã hoàn thành! Đã thuộc ${mastered}/${pool.length} từ.`;
+  updateStats(); }
+function showEmpty(){ hideAll(); $("emptyView").classList.remove("hidden"); updateStats(); }
+
+/* ---------- Hoạt ảnh ---------- */
+const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function animateEnter(){ if(reduceMotion) return; const s=$("scene"); if(!s) return; s.classList.remove("enter"); void s.offsetWidth; s.classList.add("enter"); }
+function knowFx(){
+  if(reduceMotion) return;
+  const s=$("scene"); if(!s) return;
+  s.classList.remove("knowpop"); void s.offsetWidth; s.classList.add("knowpop");
+  const wrap=document.createElement("div"); wrap.className="confetti";
+  const colors=["#1D9E75","#12B3A0","#F4B740","#F08A5D","#5FD3AE"];
+  for(let i=0;i<14;i++){
+    const p=document.createElement("i"), ang=Math.random()*Math.PI*2, dist=60+Math.random()*70;
+    p.style.background=colors[i%colors.length];
+    p.style.setProperty("--cx", Math.cos(ang)*dist+"px");
+    p.style.setProperty("--cy", (Math.sin(ang)*dist-24)+"px");
+    p.style.setProperty("--cr", (Math.random()*360)+"deg");
+    p.style.animation="conf .7s ease-out forwards";
+    p.style.animationDelay=(Math.random()*.05)+"s";
+    wrap.appendChild(p);
+  }
+  s.appendChild(wrap); setTimeout(()=>wrap.remove(), 820);
+}
+
+/* ---------- Hành động cốt lõi ---------- */
+function toggleFlip(){ flipped=!flipped; $("card").classList.toggle("flip", flipped); }
+function doKnow(){
+  if(pos>=queue.length) return;
+  const idx=queue[pos], f=deck.cards[idx].front;
+  cleared.add(idx); knowFx();
+  if(!scored.has(idx)){ scored.add(idx); setLvl(f, getLvl(f)+1); }
+  for(let i=queue.length-1;i>pos;i--){ if(queue[i]===idx) queue.splice(i,1); }
+  pos++; render();
+}
+function doForget(){
+  if(pos>=queue.length) return;
+  const idx=queue[pos], f=deck.cards[idx].front;
+  forgotten.add(idx); cleared.delete(idx);
+  if(!scored.has(idx)){ scored.add(idx); setLvl(f, getLvl(f)-1); }
+  let ahead=false;
+  for(let i=pos+1;i<queue.length;i++){ if(queue[i]===idx){ ahead=true; break; } }
+  if(!ahead){ const at=pos+1+Math.floor(Math.random()*(queue.length-pos)); queue.splice(at,0,idx); }
+  pos++; render();
+}
+function doNext(){ if(pos<queue.length-1){ pos++; render(); } }
+function doPrev(){ if(pos>0){ pos--; render(); } }
+
+$("btnKnow").addEventListener("click", doKnow);
+$("btnForget").addEventListener("click", doForget);
+$("btnNext").addEventListener("click", doNext);
+$("btnPrev").addEventListener("click", doPrev);
+$("btnReviewNow").addEventListener("click", ()=>{ round++; startRound([...forgotten], true); showStudy(); });
+$("btnRestart").addEventListener("click", startSession);
+$("btnShuffle").addEventListener("click", ()=>{ const h=queue.slice(0,pos), t=shuffleArr(queue.slice(pos)); queue=h.concat(t); render(); });
+
+/* ---------- Vuốt + chạm ---------- */
+const drag=$("drag");
+let sx=0, dx=0, down=false, moved=false;
+drag.addEventListener("pointerdown", e=>{
+  if(e.target.closest(".tool")) return;
+  if(pos>=queue.length) return;
+  down=true; moved=false; sx=e.clientX; dx=0;
+  drag.style.transition="none";
+  try{ drag.setPointerCapture(e.pointerId); }catch(_){}
+});
+drag.addEventListener("pointermove", e=>{
+  if(!down) return;
+  dx=e.clientX-sx; if(Math.abs(dx)>8) moved=true;
+  drag.style.transform=`translateX(${dx}px) rotate(${dx/45}deg)`;
+  $("hintKnow").style.opacity   = dx>0 ? Math.min(dx/90,1) : 0;
+  $("hintForget").style.opacity = dx<0 ? Math.min(-dx/90,1) : 0;
+});
+function resetDrag(){ drag.style.transition="transform .25s ease"; drag.style.transform=""; $("hintKnow").style.opacity=0; $("hintForget").style.opacity=0; }
+drag.addEventListener("pointerup", ()=>{
+  if(!down) return; down=false;
+  const d=dx, T=90; resetDrag();
+  if(d>T) doKnow();
+  else if(d<-T) doForget();
+  else if(!moved) toggleFlip();
+});
+drag.addEventListener("pointercancel", ()=>{ down=false; resetDrag(); });
+
+/* ---------- Phát âm ---------- */
+function speakWord(text){
+  try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang=lang; u.rate=.9; speechSynthesis.speak(u); }catch(e){}
+}
+$("btnSpeak").addEventListener("click", e=>{ e.stopPropagation(); const c=deck.cards[queue[pos]]; if(c) speakWord(c.front); });
+$("btnImage").addEventListener("click", e=>{ e.stopPropagation(); const c=deck.cards[queue[pos]]; if(c) window.open("https://www.google.com/search?tbm=isch&q="+encodeURIComponent(c.front),"_blank"); });
+
+/* ---------- Cài đặt ---------- */
+function applySettings(){
+  document.documentElement.setAttribute("data-theme", settings.dark?"dark":"light");
+  [...$("segDir").children].forEach(b=> b.classList.toggle("on", b.dataset.v===settings.dir));
+  $("tglAudio").classList.toggle("on", settings.autoAudio);
+  $("tglDark").classList.toggle("on", settings.dark);
+  $("tglWeak").classList.toggle("on", settings.weakFirst);
+}
+$("btnSettings").addEventListener("click", ()=> $("setModal").classList.remove("hidden"));
+$("btnCloseSet").addEventListener("click", ()=> $("setModal").classList.add("hidden"));
+$("segDir").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; settings.dir=b.dataset.v; saveSettings(); applySettings(); render(); });
+$("tglAudio").addEventListener("click", ()=>{ settings.autoAudio=!settings.autoAudio; saveSettings(); applySettings(); });
+$("tglDark").addEventListener("click", ()=>{ settings.dark=!settings.dark; saveSettings(); applySettings(); });
+$("tglWeak").addEventListener("click", ()=>{ settings.weakFirst=!settings.weakFirst; saveSettings(); applySettings(); });
+$("btnResetProg").addEventListener("click", ()=>{
+  if(confirm("Đặt lại toàn bộ độ thuộc của các từ về 0?")){
+    progress={}; store.save(PKEY,progress);
+    $("setModal").classList.add("hidden"); startSession();
+  }
+});
+
+/* ---------- Đóng modal khi chạm nền ---------- */
+document.querySelectorAll(".modal-bg").forEach(bg=> bg.addEventListener("click", e=>{ if(e.target===bg) bg.classList.add("hidden"); }));
+
+/* ---------- Bàn phím ---------- */
+let activeMode = "flash";   // "flash" | "quiz"
+
+document.addEventListener("keydown", e=>{
+  if(activeMode!=="flash") return;
+  if($("studyView").classList.contains("hidden")) return;
+  if(e.key===" "){ e.preventDefault(); toggleFlip(); }
+  else if(e.key==="ArrowRight") doNext();
+  else if(e.key==="ArrowLeft") doPrev();
+  else if(e.key==="Enter") doKnow();
+  else if(e.key==="Backspace"){ e.preventDefault(); doForget(); }
+});
+
+/* =====================================================================
+   KIEM TRA TU VUNG - trac nghiem 4 dap an (a/b/c/d), tron 2 chieu
+   Anh->Viet / Viet->Anh. Bo cau hoi + thu tu + dap an nhieu duoc soan
+   SAN luc build (xem mang QUIZ) nen moi lan mo lai file, de bai giu
+   nguyen thu tu - KHONG xao tron lai. Cau tra loi sai se quay lai lam
+   o vong hoc ke tiep, lap lai cho den khi dung het.
+   ===================================================================== */
+const QUIZ = [{"front": "elaborate / meticulous / detailed", "direction": "vi2en", "prompt": "giải thích chi tiết hơn (elaborate, v); tỉ mỉ, cẩn thận (meticulous); chi tiết (detailed)", "options": ["closely", "rule", "in light of / because of", "elaborate / meticulous / detailed"], "correctIndex": 3}, {"front": "crops", "direction": "en2vi", "prompt": "crops", "options": ["nông sản (danh từ)", "mùa màng, cây trồng (danh từ)", "gần đây (recently) / đã từng (ever, thường dùng với thì hoàn thành)", "thư viện (danh từ)"], "correctIndex": 1}, {"front": "recently / ever", "direction": "vi2en", "prompt": "gần đây (recently) / đã từng (ever, thường dùng với thì hoàn thành)", "options": ["closure", "supplemental / additional", "purchase", "recently / ever"], "correctIndex": 3}, {"front": "incorporate / combine", "direction": "en2vi", "prompt": "incorporate / combine", "options": ["xa xôi; từ xa (tính từ)", "đăng (bài) (v); vị trí, chức vụ (n); bưu điện (n)", "kết hợp (động từ)", "sự tham gia (danh từ)"], "correctIndex": 2}, {"front": "library", "direction": "vi2en", "prompt": "thư viện (danh từ)", "options": ["library", "for those who", "improve", "the site coordinates"], "correctIndex": 0}, {"front": "generous compensation package", "direction": "en2vi", "prompt": "generous compensation package", "options": ["gói đãi ngộ/lương thưởng hào phóng, hậu hĩnh", "bổ sung, thêm vào (tính từ)", "phần dư, thặng dư (n); dư thừa (a) — nhấn mạnh phần THỪA ra, khác 'dồi dào' (plentiful) mang nghĩa phong phú tích cực", "gần đây (recently) / đã từng (ever, thường dùng với thì hoàn thành)"], "correctIndex": 0}, {"front": "appealing", "direction": "en2vi", "prompt": "appealing", "options": ["hấp dẫn, lôi cuốn (tính từ)", "nhiều, rất nhiều", "đạt được, giành được", "đáng kể, quan trọng (tính từ)"], "correctIndex": 0}, {"front": "component / element", "direction": "vi2en", "prompt": "bộ phận, linh kiện, thành phần, yếu tố (của máy móc/hệ thống)", "options": ["process (n/v)", "light (a)", "component / element", "associate"], "correctIndex": 2}, {"front": "cushion", "direction": "en2vi", "prompt": "cushion", "options": ["sàn nhà (danh từ)", "ủng hộ, xác nhận, ký hậu (endorse); xác thực, kiểm chứng (validate)", "gối đệm (danh từ)", "dành cho những ai (mà)"], "correctIndex": 2}, {"front": "purchase", "direction": "en2vi", "prompt": "purchase", "options": ["sát sao, kỹ lưỡng (gần nghĩa: carefully); cũng có thể mang nghĩa strictly/cautiously tùy ngữ cảnh", "một phần (nhỏ) của — 'fraction' nhấn mạnh phần nhỏ, 'portion/part' không nhất thiết nhỏ", "đồ triển lãm (danh từ)", "mua, sự mua sắm (v/n)"], "correctIndex": 3}, {"front": "the site coordinates", "direction": "vi2en", "prompt": "tọa độ của công trường/địa điểm", "options": ["the site coordinates", "assume / guess", "progress (n/v)", "component / element"], "correctIndex": 0}, {"front": "gallery", "direction": "en2vi", "prompt": "gallery", "options": ["cấm (prohibit, ban); tạm ngưng, đình chỉ (suspend — khác sắc thái, không hẳn cấm hoàn toàn)", "làm phiền, quấy rầy (bother, annoy); làm gián đoạn (interrupt, disrupt — sắc thái hơi khác)", "ốc vít (danh từ)", "phòng trưng bày, phòng tranh (danh từ)"], "correctIndex": 3}, {"front": "engagement / participation", "direction": "vi2en", "prompt": "sự tham gia (danh từ)", "options": ["bother / annoy / interrupt / disrupt", "bright", "attractive", "engagement / participation"], "correctIndex": 3}, {"front": "costume / garment / clothes", "direction": "en2vi", "prompt": "costume / garment / clothes", "options": ["nhu cầu ăn uống, chế độ dinh dưỡng", "trang phục (costume — thường là hóa trang/biểu diễn); quần áo nói chung (garment, clothes)", "vẫn, duy trì, giữ nguyên", "gạch lát (sàn) / ngói lợp (mái) (danh từ)"], "correctIndex": 1}, {"front": "border / boundary", "direction": "en2vi", "prompt": "border / boundary", "options": ["tóm tắt (động từ)", "ranh giới (danh từ)", "gần như, suýt soát (trạng từ)", "sàn nhà (danh từ)"], "correctIndex": 1}, {"front": "surplus", "direction": "vi2en", "prompt": "phần dư, thặng dư (n); dư thừa (a) — nhấn mạnh phần THỪA ra, khác 'dồi dào' (plentiful) mang nghĩa phong phú tích cực", "options": ["surplus", "produce (n)", "costume / garment / clothes", "for those who"], "correctIndex": 0}, {"front": "attractive", "direction": "en2vi", "prompt": "attractive", "options": ["hấp dẫn, thu hút (tính từ)", "vụ thu hoạch, mùa thu hoạch (n); thu hoạch (v)", "phúc lợi (danh từ)", "sáng (tính từ)"], "correctIndex": 0}, {"front": "remain / retain / keep / maintain", "direction": "vi2en", "prompt": "vẫn, duy trì, giữ nguyên", "options": ["assort / sort / categorize", "remain / retain / keep / maintain", "expedite / push", "supplemental / additional"], "correctIndex": 1}, {"front": "secluded", "direction": "vi2en", "prompt": "hẻo lánh, biệt lập (tính từ)", "options": ["secluded", "associate", "specifications", "summarize"], "correctIndex": 0}, {"front": "tile", "direction": "en2vi", "prompt": "tile", "options": ["sự tiến triển (n); tiến triển (v)", "gối đệm (danh từ)", "mái nhà (danh từ)", "gạch lát (sàn) / ngói lợp (mái) (danh từ)"], "correctIndex": 3}, {"front": "roof", "direction": "en2vi", "prompt": "roof", "options": ["vẫn, duy trì, giữ nguyên", "mùa màng, cây trồng (danh từ)", "tiến hành đến, đi tới", "mái nhà (danh từ)"], "correctIndex": 3}, {"front": "endorse / validate", "direction": "vi2en", "prompt": "ủng hộ, xác nhận, ký hậu (endorse); xác thực, kiểm chứng (validate)", "options": ["the site coordinates", "assort / sort / categorize", "closely", "endorse / validate"], "correctIndex": 3}, {"front": "coordinator", "direction": "en2vi", "prompt": "coordinator", "options": ["vụ thu hoạch, mùa thu hoạch (n); thu hoạch (v)", "cấm (prohibit, ban); tạm ngưng, đình chỉ (suspend — khác sắc thái, không hẳn cấm hoàn toàn)", "điều phối viên (danh từ)", "đang đi đúng hướng, kịp tiến độ"], "correctIndex": 2}, {"front": "Perk / benefit", "direction": "vi2en", "prompt": "phúc lợi (danh từ)", "options": ["corporate / business", "attractive", "Perk / benefit", "closely"], "correctIndex": 2}, {"front": "regardless of", "direction": "en2vi", "prompt": "regardless of", "options": ["bất kể", "giải thích chi tiết hơn (elaborate, v); tỉ mỉ, cẩn thận (meticulous); chi tiết (detailed)", "trang phục (costume — thường là hóa trang/biểu diễn); quần áo nói chung (garment, clothes)", "cấu trúc dùng để diễn tả trạng thái không đổi: remain/retain + tính từ"], "correctIndex": 0}, {"front": "prohibit / ban / suspend", "direction": "vi2en", "prompt": "cấm (prohibit, ban); tạm ngưng, đình chỉ (suspend — khác sắc thái, không hẳn cấm hoàn toàn)", "options": ["refuse", "remote", "generous compensation package", "prohibit / ban / suspend"], "correctIndex": 3}, {"front": "closely", "direction": "en2vi", "prompt": "closely", "options": ["cuộc cách mạng, sự thay đổi lớn (danh từ)", "tọa độ của công trường/địa điểm", "sát sao, kỹ lưỡng (gần nghĩa: carefully); cũng có thể mang nghĩa strictly/cautiously tùy ngữ cảnh", "từ chối (động từ)"], "correctIndex": 2}, {"front": "procurement", "direction": "vi2en", "prompt": "việc mua sắm, thu mua (danh từ, thường dùng trong doanh nghiệp)", "options": ["supplemental / additional", "procurement", "obtain / gain", "product"], "correctIndex": 1}, {"front": "plenty of / a lot of", "direction": "en2vi", "prompt": "plenty of / a lot of", "options": ["phần dư, thặng dư (n); dư thừa (a) — nhấn mạnh phần THỪA ra, khác 'dồi dào' (plentiful) mang nghĩa phong phú tích cực", "nhiều, rất nhiều", "xa xôi; từ xa (tính từ)", "sự tham gia (danh từ)"], "correctIndex": 1}, {"front": "customize", "direction": "vi2en", "prompt": "tùy chỉnh, cá nhân hóa (động từ)", "options": ["tight >< loose", "secluded", "yield / achieve", "customize"], "correctIndex": 3}, {"front": "progress (n/v)", "direction": "en2vi", "prompt": "progress (n/v)", "options": ["gần như, suýt soát (trạng từ)", "sự tiến triển (n); tiến triển (v)", "tuy nhiên", "phòng trưng bày, phòng tranh (danh từ)"], "correctIndex": 1}, {"front": "engaging", "direction": "vi2en", "prompt": "cuốn hút, thu hút sự chú ý (tính từ)", "options": ["obtain / gain", "engaging", "superfluous", "library"], "correctIndex": 1}, {"front": "yield / achieve", "direction": "en2vi", "prompt": "yield / achieve", "options": ["cấu trúc dùng để diễn tả trạng thái không đổi: remain/retain + tính từ", "sáng (tính từ)", "siết quá chặt (động từ)", "mang lại, tạo ra kết quả (yield); đạt được (achieve)"], "correctIndex": 3}, {"front": "distracting / annoying", "direction": "en2vi", "prompt": "distracting / annoying", "options": ["gây xao nhãng / gây khó chịu (tính từ)", "sự đóng cửa (danh từ)", "nông sản (danh từ)", "ủng hộ, xác nhận, ký hậu (endorse); xác thực, kiểm chứng (validate)"], "correctIndex": 0}, {"front": "specifications", "direction": "vi2en", "prompt": "thông số, đặc điểm kỹ thuật (danh từ)", "options": ["specifications", "harvest", "light (a)", "appealing"], "correctIndex": 0}, {"front": "absorb", "direction": "vi2en", "prompt": "hấp thụ (động từ)", "options": ["Perk / benefit", "rule", "corporate / business", "absorb"], "correctIndex": 3}, {"front": "fund", "direction": "vi2en", "prompt": "quỹ, nguồn vốn (n); cấp vốn (v)", "options": ["rule", "coordinator", "fund", "remote"], "correctIndex": 2}, {"front": "produce (n)", "direction": "vi2en", "prompt": "nông sản (danh từ)", "options": ["produce (n)", "closure", "cushion", "procurement"], "correctIndex": 0}, {"front": "closure", "direction": "en2vi", "prompt": "closure", "options": ["siết quá chặt (động từ)", "gói đãi ngộ/lương thưởng hào phóng, hậu hĩnh", "ốc vít (danh từ)", "sự đóng cửa (danh từ)"], "correctIndex": 3}, {"front": "light (a)", "direction": "vi2en", "prompt": "nhẹ (khối lượng); sáng (ánh sáng) — tùy ngữ cảnh", "options": ["tile", "gallery", "absorb", "light (a)"], "correctIndex": 3}, {"front": "bother / annoy / interrupt / disrupt", "direction": "en2vi", "prompt": "bother / annoy / interrupt / disrupt", "options": ["nông sản (danh từ)", "gói đãi ngộ/lương thưởng hào phóng, hậu hĩnh", "làm phiền, quấy rầy (bother, annoy); làm gián đoạn (interrupt, disrupt — sắc thái hơi khác)", "ranh giới (danh từ)"], "correctIndex": 2}, {"front": "are on track", "direction": "en2vi", "prompt": "are on track", "options": ["phúc lợi (danh từ)", "đang đi đúng hướng, kịp tiến độ", "sát sao, kỹ lưỡng (gần nghĩa: carefully); cũng có thể mang nghĩa strictly/cautiously tùy ngữ cảnh", "hẻo lánh, biệt lập (tính từ)"], "correctIndex": 1}, {"front": "bold / italic", "direction": "vi2en", "prompt": "in đậm / in nghiêng (định dạng văn bản)", "options": ["appealing", "obtain / gain", "bold / italic", "yield / achieve"], "correctIndex": 2}, {"front": "screw / bolt", "direction": "en2vi", "prompt": "screw / bolt", "options": ["gần đây (recently) / đã từng (ever, thường dùng với thì hoàn thành)", "nhiều, rất nhiều", "hấp dẫn, thu hút (tính từ)", "ốc vít (danh từ)"], "correctIndex": 3}, {"front": "nearly", "direction": "en2vi", "prompt": "nearly", "options": ["đáng kể, quan trọng (tính từ)", "ranh giới (danh từ)", "dư thừa, không cần thiết (tính từ)", "gần như, suýt soát (trạng từ)"], "correctIndex": 3}, {"front": "Nonetheless", "direction": "vi2en", "prompt": "tuy nhiên", "options": ["Nonetheless", "overtighten", "refuse", "assort / sort / categorize"], "correctIndex": 0}, {"front": "exhibit (n)", "direction": "en2vi", "prompt": "exhibit (n)", "options": ["đồ triển lãm (danh từ)", "gần đây (recently) / đã từng (ever, thường dùng với thì hoàn thành)", "nhu cầu ăn uống, chế độ dinh dưỡng", "siết quá chặt (động từ)"], "correctIndex": 0}, {"front": "summarize", "direction": "en2vi", "prompt": "summarize", "options": ["cấm (prohibit, ban); tạm ngưng, đình chỉ (suspend — khác sắc thái, không hẳn cấm hoàn toàn)", "hấp thụ (động từ)", "cách mạng hóa, thay đổi triệt để (động từ)", "tóm tắt (động từ)"], "correctIndex": 3}, {"front": "superfluous", "direction": "vi2en", "prompt": "dư thừa, không cần thiết (tính từ)", "options": ["superfluous", "for those who", "coordinator", "product"], "correctIndex": 0}, {"front": "associate", "direction": "vi2en", "prompt": "liên kết, liên tưởng (v); đồng nghiệp, cộng sự — CTV (n)", "options": ["light (a)", "associate", "incorporate / combine", "product"], "correctIndex": 1}, {"front": "expedite / push", "direction": "vi2en", "prompt": "đẩy nhanh, xúc tiến (tiến độ công việc)", "options": ["light (a)", "expedite / push", "revolution", "surplus"], "correctIndex": 1}, {"front": "a fraction of / portion / part", "direction": "en2vi", "prompt": "a fraction of / portion / part", "options": ["một phần (nhỏ) của — 'fraction' nhấn mạnh phần nhỏ, 'portion/part' không nhất thiết nhỏ", "đăng (bài) (v); vị trí, chức vụ (n); bưu điện (n)", "vụ thu hoạch, mùa thu hoạch (n); thu hoạch (v)", "bất kể"], "correctIndex": 0}, {"front": "refuse", "direction": "en2vi", "prompt": "refuse", "options": ["một phần (nhỏ) của — 'fraction' nhấn mạnh phần nhỏ, 'portion/part' không nhất thiết nhỏ", "sát sao, kỹ lưỡng (gần nghĩa: carefully); cũng có thể mang nghĩa strictly/cautiously tùy ngữ cảnh", "từ chối (động từ)", "nông sản (danh từ)"], "correctIndex": 2}, {"front": "bright", "direction": "vi2en", "prompt": "sáng (tính từ)", "options": ["product", "assume / guess", "border / boundary", "bright"], "correctIndex": 3}, {"front": "exhibition / expo", "direction": "vi2en", "prompt": "triển lãm, hội chợ thương mại", "options": ["engaging", "generous compensation package", "exhibition / expo", "harvest"], "correctIndex": 2}, {"front": "process (n/v)", "direction": "vi2en", "prompt": "quy trình (n); xử lý, tiến hành (v)", "options": ["endorse / validate", "nearly", "expedite / push", "process (n/v)"], "correctIndex": 3}, {"front": "floor", "direction": "en2vi", "prompt": "floor", "options": ["quy tắc, luật lệ (danh từ); cai trị (động từ)", "cuốn hút, thu hút sự chú ý (tính từ)", "sàn nhà (danh từ)", "dư thừa, không cần thiết (tính từ)"], "correctIndex": 2}, {"front": "overtighten", "direction": "en2vi", "prompt": "overtighten", "options": ["làm phiền, quấy rầy (bother, annoy); làm gián đoạn (interrupt, disrupt — sắc thái hơi khác)", "siết quá chặt (động từ)", "sát sao, kỹ lưỡng (gần nghĩa: carefully); cũng có thể mang nghĩa strictly/cautiously tùy ngữ cảnh", "sản phẩm (danh từ)"], "correctIndex": 1}, {"front": "revolution", "direction": "en2vi", "prompt": "revolution", "options": ["một phần (nhỏ) của — 'fraction' nhấn mạnh phần nhỏ, 'portion/part' không nhất thiết nhỏ", "cuộc cách mạng, sự thay đổi lớn (danh từ)", "gần như, suýt soát (trạng từ)", "nông sản (danh từ)"], "correctIndex": 1}, {"front": "appear", "direction": "vi2en", "prompt": "xuất hiện; có vẻ như (động từ)", "options": ["appear", "incorporate / combine", "prohibit / ban / suspend", "regardless of"], "correctIndex": 0}, {"front": "a trial", "direction": "vi2en", "prompt": "sự thử nghiệm, dùng thử (danh từ)", "options": ["remain / retain / keep / maintain", "revolution", "appealing", "a trial"], "correctIndex": 3}, {"front": "supplemental / additional", "direction": "vi2en", "prompt": "bổ sung, thêm vào (tính từ)", "options": ["for those who", "secluded", "cushion", "supplemental / additional"], "correctIndex": 3}, {"front": "remote", "direction": "en2vi", "prompt": "remote", "options": ["sự tiến triển (n); tiến triển (v)", "xa xôi; từ xa (tính từ)", "vụ thu hoạch, mùa thu hoạch (n); thu hoạch (v)", "cấu trúc dùng để diễn tả trạng thái không đổi: remain/retain + tính từ"], "correctIndex": 1}, {"front": "proceed to / go to", "direction": "vi2en", "prompt": "tiến hành đến, đi tới", "options": ["generous compensation package", "are on track", "proceed to / go to", "progress (n/v)"], "correctIndex": 2}, {"front": "in light of / because of", "direction": "vi2en", "prompt": "xét đến, dựa trên, bởi vì", "options": ["in light of / because of", "Nonetheless", "obtain / gain", "associate"], "correctIndex": 0}, {"front": "assort / sort / categorize", "direction": "en2vi", "prompt": "assort / sort / categorize", "options": ["sự đóng cửa (danh từ)", "sự thử nghiệm, dùng thử (danh từ)", "cách mạng hóa, thay đổi triệt để (động từ)", "phân loại (động từ)"], "correctIndex": 3}, {"front": "product", "direction": "vi2en", "prompt": "sản phẩm (danh từ)", "options": ["costume / garment / clothes", "specifications", "product", "superfluous"], "correctIndex": 2}, {"front": "tight >< loose", "direction": "vi2en", "prompt": "chật, chặt >< lỏng, rộng (tính từ)", "options": ["expedite / push", "a fraction of / portion / part", "tight >< loose", "specifications"], "correctIndex": 2}, {"front": "assume / guess", "direction": "vi2en", "prompt": "giả định, cho rằng (assume — dựa trên suy luận); đoán (guess — ít chắc chắn hơn)", "options": ["assume / guess", "Perk / benefit", "tile", "customize"], "correctIndex": 0}, {"front": "revolutionize", "direction": "vi2en", "prompt": "cách mạng hóa, thay đổi triệt để (động từ)", "options": ["dietary needs", "bright", "revolutionize", "remote"], "correctIndex": 2}, {"front": "substantial / considerable / significant", "direction": "en2vi", "prompt": "substantial / considerable / significant", "options": ["đáng kể, quan trọng (tính từ)", "phân loại (động từ)", "việc mua sắm, thu mua (danh từ, thường dùng trong doanh nghiệp)", "triển lãm, hội chợ thương mại"], "correctIndex": 0}, {"front": "for those who", "direction": "vi2en", "prompt": "dành cho những ai (mà)", "options": ["bold / italic", "prohibit / ban / suspend", "for those who", "elaborate / meticulous / detailed"], "correctIndex": 2}, {"front": "dietary needs", "direction": "en2vi", "prompt": "dietary needs", "options": ["tùy chỉnh, cá nhân hóa (động từ)", "hẻo lánh, biệt lập (tính từ)", "nhu cầu ăn uống, chế độ dinh dưỡng", "sản phẩm (danh từ)"], "correctIndex": 2}, {"front": "insist / persist", "direction": "vi2en", "prompt": "khăng khăng đòi, nhấn mạnh (insist); kiên trì, tiếp tục dù khó khăn (persist) — không hoàn toàn đồng nghĩa", "options": ["insist / persist", "fund", "procurement", "floor"], "correctIndex": 0}, {"front": "improve", "direction": "vi2en", "prompt": "cải thiện (động từ)", "options": ["assume / guess", "regardless of", "improve", "engaging"], "correctIndex": 2}, {"front": "corporate / business", "direction": "vi2en", "prompt": "(thuộc) doanh nghiệp, công ty (tính từ)", "options": ["corporate / business", "closely", "remain / retain / keep / maintain", "surplus"], "correctIndex": 0}, {"front": "obtain / gain", "direction": "vi2en", "prompt": "đạt được, giành được", "options": ["superfluous", "obtain / gain", "closely", "incorporate / combine"], "correctIndex": 1}, {"front": "post", "direction": "vi2en", "prompt": "đăng (bài) (v); vị trí, chức vụ (n); bưu điện (n)", "options": ["floor", "post", "engaging", "produce (n)"], "correctIndex": 1}, {"front": "rule", "direction": "vi2en", "prompt": "quy tắc, luật lệ (danh từ); cai trị (động từ)", "options": ["tile", "rule", "supplemental / additional", "overtighten"], "correctIndex": 1}, {"front": "harvest", "direction": "en2vi", "prompt": "harvest", "options": ["phần dư, thặng dư (n); dư thừa (a) — nhấn mạnh phần THỪA ra, khác 'dồi dào' (plentiful) mang nghĩa phong phú tích cực", "hẻo lánh, biệt lập (tính từ)", "vụ thu hoạch, mùa thu hoạch (n); thu hoạch (v)", "quy trình (n); xử lý, tiến hành (v)"], "correctIndex": 2}, {"front": "remain / retain (vẫn) + adj", "direction": "en2vi", "prompt": "remain / retain (vẫn) + adj", "options": ["cấu trúc dùng để diễn tả trạng thái không đổi: remain/retain + tính từ", "quy tắc, luật lệ (danh từ); cai trị (động từ)", "đáng kể, quan trọng (tính từ)", "phòng trưng bày, phòng tranh (danh từ)"], "correctIndex": 0}];
+const QUIZ_CLASS = "";
+const QUIZ_LEVEL = "TOEIC";
+const QUIZ_SCORE_ENDPOINT = "https://script.google.com/macros/s/AKfycby0w_vfBov8y_ITsBf26aY5IOaHub-hmxzV41kwEfca43hwPYEnvAmwpViX8883vMcIJA/exec";
+
+let qRoundQueue = [], qPos = 0, qRound = 1;
+let qKnowCount = 0, qWrongCount = 0;
+let qWrongThisRound = new Set();
+let qAnswered = false;
+
+let qFirstTryCorrect = 0;
+let qFirstTryDetails = [];
+let quizStudentName = "";
+let quizStartTime = 0;
+let qSubmitted = false;
+
+function qFmtTime(sec){
+  const m = Math.floor(sec/60), s = sec%60;
+  return `${m}:${String(s).padStart(2,"0")}`;
+}
+
+function qSendResultToServer(){
+  const statusEl = $("quizSubmitStatus");
+  const btn = $("btnQuizSubmitScore");
+  if(!QUIZ_SCORE_ENDPOINT){
+    if(statusEl){ statusEl.textContent = "✅ Đã hoàn thành bài kiểm tra."; statusEl.className = "quiz-sub submit-status ok"; }
+    return;
+  }
+  const elapsed = Math.max(0, Math.round((Date.now() - quizStartTime)/1000));
+  if(btn){ btn.disabled = true; btn.textContent = "📤 Đang gửi..."; }
+  if(statusEl){ statusEl.textContent = "📤 Đang gửi kết quả..."; statusEl.className = "quiz-sub submit-status sending"; }
+
+  const payload = new URLSearchParams({
+    name: quizStudentName,
+    class: QUIZ_CLASS,
+    unit: (deck.title || "Flashcard") + " — Kiểm tra từ vựng",
+    level: QUIZ_LEVEL,
+    score: String(qFirstTryCorrect),
+    total: String(QUIZ.length),
+    timeSeconds: String(elapsed),
+    timeFormatted: qFmtTime(elapsed),
+    timestamp: new Date().toISOString(),
+    detailsJson: JSON.stringify(qFirstTryDetails)
+  });
+
+  fetch(QUIZ_SCORE_ENDPOINT, { method: "POST", mode: "no-cors", body: payload })
+    .then(() => {
+      if(statusEl){ statusEl.textContent = "✅ Đã gửi kết quả về giáo viên."; statusEl.className = "quiz-sub submit-status ok"; }
+      if(btn){ btn.classList.add("hidden"); }
+    })
+    .catch(() => {
+      if(statusEl){ statusEl.textContent = "⚠️ Gửi kết quả thất bại (kiểm tra mạng). Bấm nút để thử gửi lại."; statusEl.className = "quiz-sub submit-status fail"; }
+      if(btn){ btn.disabled = false; btn.textContent = "🔁 Thử gửi lại"; btn.classList.remove("hidden"); }
+      qSubmitted = false;
+    });
+}
+
+function qHideAll(){ ["quizStudyView","quizReviewView","quizDoneView"].forEach(id=>$(id)?.classList.add("hidden")); }
+function qShowStudy(){ qHideAll(); $("quizStudyView").classList.remove("hidden"); qRender(); }
+function qShowReview(){ qHideAll(); $("quizReviewView").classList.remove("hidden"); qUpdateStats(); }
+function qShowDone(){
+  qHideAll(); $("quizDoneView").classList.remove("hidden");
+  $("quizDoneSub").textContent = `Bạn đã trả lời đúng tất cả ${QUIZ.length} câu! Điểm lần đầu: ${qFirstTryCorrect}/${QUIZ.length} (tổng số lượt sai khi làm lại: ${qWrongCount - (QUIZ.length - qFirstTryCorrect)})`;
+  qUpdateStats();
+  const btn = $("btnQuizSubmitScore");
+  const statusEl = $("quizSubmitStatus");
+  if(statusEl){ statusEl.textContent = ""; statusEl.className = "quiz-sub submit-status"; }
+  if(QUIZ_SCORE_ENDPOINT){
+    qSubmitted = false;
+    if(btn){ btn.classList.remove("hidden"); btn.disabled = false; btn.textContent = "📤 Chấm điểm & gửi kết quả"; }
+  } else {
+    if(btn){ btn.classList.add("hidden"); }
+    if(!qSubmitted){
+      qSubmitted = true;
+      qSendResultToServer();
+    }
+  }
+}
+
+function qUpdateStats(){
+  const total = qRoundQueue.length || 1;
+  $("qKnow").textContent = qKnowCount;
+  $("qWrong").textContent = qWrongCount;
+  $("qLeft").textContent = Math.max(qRoundQueue.length - qPos, 0);
+  $("qRound").textContent = qRound;
+  $("qProgBar").style.width = Math.min((qPos/total)*100,100)+"%";
+}
+
+function qRender(){
+  if(!QUIZ.length){ return; }
+  if(qPos >= qRoundQueue.length){ qEndRound(); return; }
+  const qi = qRoundQueue[qPos];
+  const item = QUIZ[qi];
+  $("quizKicker").textContent = item.direction === "en2vi" ? "Từ vựng → Nghĩa (Anh → Việt)" : "Nghĩa → Từ vựng (Việt → Anh)";
+  $("quizQuestion").textContent = item.prompt;
+  qAnswered = false;
+  $("btnQuizNext").classList.add("hidden");
+
+  const wrap = $("quizOptions");
+  wrap.innerHTML = "";
+  item.options.forEach((optText, oi) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "opt-btn";
+    const key = document.createElement("span");
+    key.className = "opt-key"; key.textContent = String.fromCharCode(65 + oi);
+    const label = document.createElement("span");
+    label.textContent = optText;
+    b.appendChild(key); b.appendChild(label);
+    b.addEventListener("click", () => qAnswer(qi, oi, b));
+    wrap.appendChild(b);
+  });
+
+  qUpdateStats();
+}
+
+function qAnswer(qi, chosenIdx, btn){
+  if(qAnswered) return;
+  qAnswered = true;
+  const item = QUIZ[qi];
+  const opts = [...document.querySelectorAll("#quizOptions .opt-btn")];
+  opts.forEach(b => b.disabled = true);
+  opts[item.correctIndex].classList.add("correct");
+
+  const isCorrect = chosenIdx === item.correctIndex;
+  if(isCorrect){
+    qKnowCount++;
+  } else {
+    btn.classList.add("wrong");
+    qWrongCount++;
+    qWrongThisRound.add(qi);
+  }
+  if(qRound === 1){
+    if(isCorrect) qFirstTryCorrect++;
+    qFirstTryDetails.push({ front: item.front, direction: item.direction, correct: isCorrect });
+  }
+  qUpdateStats();
+
+  const nextBtn = $("btnQuizNext");
+  nextBtn.textContent = (qPos === qRoundQueue.length - 1) ? "Xem kết quả →" : "Câu tiếp theo →";
+  nextBtn.classList.remove("hidden");
+}
+
+function qGoNext(){
+  $("btnQuizNext").classList.add("hidden");
+  qPos++;
+  qRender();
+}
+
+function qEndRound(){
+  if(qWrongThisRound.size === 0){ qShowDone(); return; }
+  $("quizReviewTitle").textContent = `Còn ${qWrongThisRound.size} câu chưa đúng`;
+  const list = $("quizReviewList"); list.innerHTML = "";
+  qWrongThisRound.forEach(qi => {
+    const s = document.createElement("span");
+    s.className = "chip"; s.textContent = QUIZ[qi].front;
+    list.appendChild(s);
+  });
+  qShowReview();
+}
+
+function qBeginSession(){
+  qRoundQueue = QUIZ.map((_, i) => i);
+  qRound = 1; qPos = 0; qKnowCount = 0; qWrongCount = 0; qWrongThisRound = new Set();
+  qFirstTryCorrect = 0; qFirstTryDetails = [];
+  qSubmitted = false;
+  quizStartTime = Date.now();
+  if($("quizSubmitStatus")){ $("quizSubmitStatus").textContent = ""; $("quizSubmitStatus").className = "quiz-sub submit-status"; }
+  qShowStudy();
+}
+
+$("btnQuizStart")?.addEventListener("click", () => {
+  const input = $("quizStudentName");
+  const name = (input.value || "").trim();
+  if(!name){
+    $("quizNameWarn").style.display = "block";
+    input.focus();
+    return;
+  }
+  quizStudentName = name;
+  $("quizNameWarn").style.display = "none";
+  $("quizStudentBar").classList.add("hidden");
+  qBeginSession();
+});
+$("quizStudentName")?.addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); $("btnQuizStart").click(); } });
+
+$("btnQuizReviewNow")?.addEventListener("click", () => {
+  qRound++;
+  qRoundQueue = [...qWrongThisRound];
+  qWrongThisRound = new Set();
+  qPos = 0;
+  qShowStudy();
+});
+$("btnQuizRestart")?.addEventListener("click", () => {
+  $("quizStudentBar").classList.add("hidden");
+  qBeginSession();
+});
+$("btnQuizSubmitScore")?.addEventListener("click", () => {
+  qSubmitted = true;
+  qSendResultToServer();
+});
+$("btnQuizNext")?.addEventListener("click", qGoNext);
+
+document.addEventListener("keydown", e => {
+  if(activeMode !== "quiz") return;
+  if($("quizStudyView").classList.contains("hidden")) return;
+  if(!qAnswered){
+    const k = e.key.toLowerCase();
+    const map = {"1":0,"2":1,"3":2,"4":3,"a":0,"b":1,"c":2,"d":3};
+    if(k in map){
+      const btn = document.querySelectorAll("#quizOptions .opt-btn")[map[k]];
+      if(btn) btn.click();
+    }
+  } else if(e.key === "Enter" || e.key === " "){
+    e.preventDefault();
+    if(!$("btnQuizNext").classList.contains("hidden")) qGoNext();
+  }
+});
+
+/* ---------- Chuyen tab Flashcard <-> Kiem tra ---------- */
+document.querySelectorAll(".mode-tab").forEach(b => {
+  b.addEventListener("click", () => {
+    const mode = b.dataset.mode;
+    if(mode === activeMode) return;
+    activeMode = mode;
+    document.querySelectorAll(".mode-tab").forEach(x => x.classList.toggle("active", x === b));
+    $("flashMode").classList.toggle("hidden", mode !== "flash");
+    $("quizMode").classList.toggle("hidden", mode !== "quiz");
+    if(mode === "quiz" && !quizStudentName) $("quizStudentName")?.focus();
+  });
+});
+
+/* ---------- Chạy ---------- */
+applySettings();
+renderGroupNav();
+startSession();
+</script>
+</body>
+</html>

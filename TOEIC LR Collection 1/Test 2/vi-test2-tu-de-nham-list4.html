@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 4/5 (Vi, C1 Test 2)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 4/5</h1>
+    <p>Part 6–7 · câu 165–167 · Câu 69–90/112. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • TOEIC LR Collection 1 – Test 2</div>
+  </div>
+
+  <div class="nav">
+    <a class="" href="vi-test2-tu-de-nham-list1.html">List 1 · P5</a>
+    <a class="" href="vi-test2-tu-de-nham-list2.html">List 2 · 131–134</a>
+    <a class="" href="vi-test2-tu-de-nham-list3.html">List 3 · 139–142</a>
+    <a class="active" href="vi-test2-tu-de-nham-list4.html">List 4 · 165–167</a>
+    <a class="" href="vi-test2-tu-de-nham-list5.html">List 5 · 168–170</a>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/22 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "These leather boots are made to ______.", "options": ["last", "least", "lastly", "lost"], "answer": 0, "explain": "made to last = làm ra để dùng lâu bền (last (v) = kéo dài, bền).", "translation": "Đôi bốt da này được làm ra để dùng lâu bền.", "meanings": ["kéo dài, bền — đúng", "ít nhất (sai nghĩa)", "cuối cùng (trạng từ)", "bị mất (quá khứ của lose)"]}, {"q": "Pottery is a traditional ______ in this village.", "options": ["craft", "aircraft", "draft", "crafty"], "answer": 0, "explain": "craft = nghề thủ công.", "translation": "Làm gốm là nghề thủ công truyền thống ở làng này.", "meanings": ["nghề thủ công — đúng", "máy bay (sai nghĩa)", "bản nháp (sai nghĩa)", "xảo quyệt (tính từ)"]}, {"q": "The hotel has an excellent ______ for customer service.", "options": ["reputable", "repetition", "reputation", "representation"], "answer": 2, "explain": "an excellent + N → reputation (danh tiếng).", "translation": "Khách sạn có danh tiếng tuyệt vời về dịch vụ khách hàng.", "meanings": ["có uy tín (tính từ)", "sự lặp lại (sai nghĩa)", "danh tiếng — đúng", "sự đại diện (sai nghĩa)"]}, {"q": "The carpenter builds furniture in his ______ behind the house.", "options": ["workforce", "workshop", "worship", "workbook"], "answer": 1, "explain": "workshop = xưởng (cũng có nghĩa 'hội thảo').", "translation": "Người thợ mộc đóng đồ gỗ trong xưởng phía sau nhà.", "meanings": ["lực lượng lao động (sai nghĩa)", "xưởng — đúng", "sự thờ cúng (sai nghĩa)", "sách bài tập (sai nghĩa)"]}, {"q": "The bicycle has a light aluminum ______.", "options": ["flame", "framework", "frame", "fame"], "answer": 2, "explain": "frame = khung (xe đạp, kính, ảnh).", "translation": "Chiếc xe đạp có khung nhôm nhẹ.", "meanings": ["ngọn lửa (sai nghĩa)", "khuôn khổ (lý thuyết) (sai nghĩa)", "khung — đúng", "danh tiếng (sai nghĩa)"]}, {"q": "Shift to a lower ______ when you ride uphill.", "options": ["grip", "grade", "gear", "gaze"], "answer": 2, "explain": "shift gear = chuyển líp / số.", "translation": "Hãy chuyển sang líp nhẹ hơn khi đạp lên dốc.", "meanings": ["sự nắm chặt (sai nghĩa)", "điểm số; cấp độ (sai nghĩa)", "líp, bánh răng, số — đúng", "cái nhìn chằm chằm (sai nghĩa)"]}, {"q": "The company's ______ started the business in a small garage.", "options": ["founders", "funders", "finders", "foundations"], "answer": 0, "explain": "Người sáng lập công ty = founders. funders = nhà tài trợ vốn.", "translation": "Những người sáng lập công ty khởi nghiệp trong một gara nhỏ.", "meanings": ["người sáng lập — đúng", "nhà tài trợ vốn (sai nghĩa)", "người tìm thấy (sai nghĩa)", "nền móng; quỹ (sai nghĩa)"]}, {"q": "One good pair of shoes will ______ several cheap ones.", "options": ["outline", "outlast", "outlet", "outgrow"], "answer": 1, "explain": "outlast = bền hơn, dùng lâu hơn. Đừng nhầm outline (trình bày khái quát — từ P5).", "translation": "Một đôi giày tốt sẽ bền hơn vài đôi rẻ tiền.", "meanings": ["trình bày khái quát (sai nghĩa)", "bền hơn — đúng", "cửa hàng; ổ cắm (danh từ)", "lớn vượt khỏi (sai nghĩa)"]}, {"q": "Water leaked through a ______ in the pipe.", "options": ["jointly", "joining", "point", "joint"], "answer": 3, "explain": "a + N → joint (mối nối).", "translation": "Nước rò rỉ qua một mối nối trên đường ống.", "meanings": ["cùng nhau (trạng từ)", "V-ing", "điểm (sai nghĩa)", "mối nối — đúng"]}, {"q": "The metal was filed and ______ until it shone.", "options": ["published", "polished", "polishing", "punished"], "answer": 1, "explain": "filed and polished = được giũa và đánh bóng (bị động, V3).", "translation": "Kim loại được giũa và đánh bóng cho đến khi sáng bóng.", "meanings": ["được xuất bản (sai nghĩa)", "được đánh bóng — đúng", "V-ing (sai, cần V3 song song với filed)", "bị phạt (sai nghĩa)"]}, {"q": "This phone case can ______ a fall from two meters.", "options": ["stand for", "understand", "withdraw", "withstand"], "answer": 3, "explain": "withstand = chịu được, chống chịu (= handle, endure).", "translation": "Ốp điện thoại này chịu được cú rơi từ độ cao hai mét.", "meanings": ["viết tắt cho; ủng hộ (sai nghĩa)", "hiểu (sai nghĩa)", "rút (tiền), rút lui (sai nghĩa)", "chịu được — đúng"]}, {"q": "The new bridge is designed to ______ heavy traffic every day.", "options": ["handle", "handy", "handout", "handful"], "answer": 0, "explain": "handle = chịu được, xử lý được (câu 167: handle = withstand).", "translation": "Cây cầu mới được thiết kế để chịu được lưu lượng xe lớn mỗi ngày.", "meanings": ["chịu được, xử lý — đúng", "tiện dụng (tính từ)", "tài liệu phát tay (danh từ)", "một nắm (danh từ)"]}, {"q": "These tires are designed for ______ ground.", "options": ["roughly", "rough", "rug", "rouge"], "answer": 1, "explain": "ADJ + N → rough ground (đường gồ ghề).", "translation": "Những chiếc lốp này được thiết kế cho đường gồ ghề.", "meanings": ["khoảng chừng (trạng từ)", "gồ ghề — đúng", "tấm thảm nhỏ (sai nghĩa)", "phấn má hồng (sai nghĩa)"]}, {"q": "The new shop offers discounts to ______ young customers.", "options": ["coat", "caught", "count", "court"], "answer": 3, "explain": "court (v) = lôi kéo, chiều chuộng (khách). Nghĩa quen thuộc là 'tòa án / sân' nhưng ở đây là động từ.", "translation": "Cửa hàng mới giảm giá để lôi kéo khách hàng trẻ.", "meanings": ["áo khoác; phủ (sai nghĩa)", "bắt được (quá khứ của catch)", "đếm (sai nghĩa)", "lôi kéo, chiều chuộng — đúng"]}, {"q": "Over 200 ______ took part in the city marathon.", "options": ["competitions", "competitive", "competitors", "competence"], "answer": 2, "explain": "Số lượng + N chỉ NGƯỜI tham gia → competitors.", "translation": "Hơn 200 vận động viên đã tham gia cuộc thi marathon thành phố.", "meanings": ["các cuộc thi (vật, không 'tham gia')", "cạnh tranh (tính từ)", "người thi đấu — đúng", "năng lực (danh từ)"]}, {"q": "The fully ______ chain cover keeps your trousers clean.", "options": ["enclosure", "included", "enclosing", "enclosed"], "answer": 3, "explain": "Ốp xích ĐƯỢC bao kín → V3 làm tính từ: enclosed.", "translation": "Ốp xích kín hoàn toàn giữ quần bạn sạch sẽ.", "meanings": ["hàng rào, khu vực rào (danh từ)", "được bao gồm (sai nghĩa)", "đang bao quanh (chủ động, sai)", "được bao kín — đúng"]}, {"q": "Clean the machine regularly to remove dust and ______.", "options": ["great", "grid", "greet", "grit"], "answer": 3, "explain": "dust and grit = bụi và cát sạn.", "translation": "Hãy vệ sinh máy thường xuyên để loại bỏ bụi và cát sạn.", "meanings": ["tuyệt vời (tính từ)", "lưới, mạng (sai nghĩa)", "chào hỏi (động từ)", "cát sạn — đúng"]}, {"q": "The hikers ______ early in the morning to avoid the heat.", "options": ["set up", "set out", "set back", "set aside"], "answer": 1, "explain": "set out = khởi hành, lên đường.", "translation": "Những người leo núi khởi hành từ sáng sớm để tránh nóng.", "meanings": ["thiết lập, dựng lên (cần tân ngữ)", "khởi hành — đúng", "làm chậm lại (sai nghĩa)", "để dành (cần tân ngữ)"]}, {"q": "You don't need special clothing; you can ride in ______ dress.", "options": ["ordinarily", "ordinary", "orderly", "ordinal"], "answer": 1, "explain": "ADJ + N → ordinary dress (quần áo thường ngày).", "translation": "Bạn không cần đồ chuyên dụng; có thể đạp xe với quần áo thường ngày.", "meanings": ["thông thường (trạng từ)", "thông thường — đúng", "ngăn nắp (sai nghĩa)", "số thứ tự (sai nghĩa)"]}, {"q": "The lamp is powered by a ______ dynamo, so no batteries are needed.", "options": ["build-on", "built-in", "built-up", "building"], "answer": 1, "explain": "built-in = gắn sẵn, tích hợp. built-up area = khu đông nhà cửa.", "translation": "Đèn chạy bằng đinamô gắn sẵn nên không cần pin.", "meanings": ["không tồn tại", "gắn sẵn — đúng", "đông đúc nhà cửa (sai nghĩa)", "tòa nhà (danh từ)"]}, {"q": "Online check-in ______ travelers the worry of long lines.", "options": ["spreads", "sparks", "spends", "spares"], "answer": 3, "explain": "spare sb the worry (of sth) = giúp ai khỏi phải lo.", "translation": "Làm thủ tục trực tuyến giúp hành khách khỏi lo phải xếp hàng dài.", "meanings": ["lan rộng (sai nghĩa)", "tạo tia lửa; khơi dậy (sai nghĩa)", "tiêu (tiền, thời gian) (sai nghĩa)", "giúp khỏi — đúng"]}, {"q": "My car wouldn't start because of a ______ battery.", "options": ["plain", "level", "flat", "smooth"], "answer": 2, "explain": "flat battery = pin / ắc quy hết điện. Các từ còn lại đều có nghĩa 'phẳng' nhưng không đi với battery.", "translation": "Xe tôi không nổ máy vì ắc quy hết điện.", "meanings": ["trơn, giản dị (sai collocation)", "ngang bằng (sai collocation)", "hết điện (flat battery) — đúng", "mịn (sai collocation)"]}];
+const QSTART = 69;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

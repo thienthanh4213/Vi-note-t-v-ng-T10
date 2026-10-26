@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 2/6 (Vi, C1 Test 3)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 2/6</h1>
+    <p>Part 7 · câu 153–155 · Câu 31–54/152. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • TOEIC LR Collection 1 – Test 3</div>
+  </div>
+
+  <div class="nav">
+    <a class="" href="vi-test3-tu-de-nham-list1.html">List 1 · P5</a>
+    <a class="active" href="vi-test3-tu-de-nham-list2.html">List 2 · 153–155</a>
+    <a class="" href="vi-test3-tu-de-nham-list3.html">List 3 · 159–161</a>
+    <a class="" href="vi-test3-tu-de-nham-list4.html">List 4 · 176–178</a>
+    <a class="" href="vi-test3-tu-de-nham-list5.html">List 5 · 191–195</a>
+    <a class="" href="vi-test3-tu-de-nham-list6.html">List 6 · 198–200</a>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/24 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "I need to take my suit to the dry ______ before the wedding.", "options": ["cleaner's", "cleaning", "cleanser", "clearance"], "answer": 0, "explain": "the dry cleaner's = tiệm giặt khô (sở hữu cách chỉ cửa tiệm).", "translation": "Tôi cần mang bộ vest ra tiệm giặt khô trước đám cưới.", "meanings": ["tiệm giặt khô — đúng", "việc giặt (không phải nơi chốn)", "sữa rửa mặt (sai nghĩa)", "sự xả hàng (sai nghĩa)"]}, {"q": "All ______ must be picked up within 30 days.", "options": ["arguments", "guarantees", "garments", "gardens"], "answer": 2, "explain": "Đồ ở tiệm giặt → quần áo = garments.", "translation": "Mọi quần áo phải được nhận lại trong vòng 30 ngày.", "meanings": ["cuộc tranh cãi (sai nghĩa)", "bảo hành (sai nghĩa)", "quần áo — đúng", "khu vườn (sai nghĩa)"]}, {"q": "Orders placed after 5 p.m. will be ______ the next morning.", "options": ["produced", "progressed", "processed", "proceeded"], "answer": 2, "explain": "process an order = XỬ LÝ đơn. proceed là nội động từ (tiến hành), không dùng bị động.", "translation": "Đơn đặt sau 5 giờ chiều sẽ được xử lý vào sáng hôm sau.", "meanings": ["được sản xuất (sai nghĩa)", "tiến triển (sai nghĩa)", "được xử lý — đúng", "tiến hành (nội động từ, không bị động)"]}, {"q": "Items will not be ______ to customers without a ticket.", "options": ["released", "replaced", "relieved", "relaxed"], "answer": 0, "explain": "release sth to sb = GIAO TRẢ cho ai.", "translation": "Đồ sẽ không được giao trả cho khách nếu không có phiếu.", "meanings": ["giao trả — đúng", "được thay thế (sai nghĩa)", "được giải tỏa (sai nghĩa)", "được thư giãn (sai nghĩa)"]}, {"q": "Customers have one week to collect any ______ orders.", "options": ["outstanding", "outdoor", "outspoken", "outgoing"], "answer": 0, "explain": "outstanding order = đơn CÒN TỒN, chưa nhận (outstanding còn nghĩa 'xuất sắc', 'chưa thanh toán').", "translation": "Khách có một tuần để nhận các đơn còn tồn.", "meanings": ["còn tồn, chưa xử lý — đúng", "ngoài trời (sai nghĩa)", "thẳng thắn (sai nghĩa)", "đi ra; hướng ngoại (sai nghĩa)"]}, {"q": "______ of your items is free of charge.", "options": ["Correction", "Collection", "Connection", "Selection"], "answer": 1, "explain": "collection = việc đến NHẬN đồ.", "translation": "Việc nhận lại đồ của bạn là miễn phí.", "meanings": ["sự sửa lỗi (sai nghĩa)", "việc đến nhận — đúng", "sự kết nối (sai nghĩa)", "sự lựa chọn (sai nghĩa)"]}, {"q": "There may be a delay before ______ of stored files is possible.", "options": ["retrieval", "retirement", "reversal", "removal"], "answer": 0, "explain": "retrieval = việc LẤY LẠI.", "translation": "Có thể phải chờ một lúc mới lấy lại được các tệp đã lưu.", "meanings": ["việc lấy lại — đúng", "sự nghỉ hưu (sai nghĩa)", "sự đảo ngược (sai nghĩa)", "sự dọn bỏ (sai nghĩa)"]}, {"q": "Smoking is not allowed anywhere on the ______.", "options": ["previews", "premises", "promises", "premiums"], "answer": 1, "explain": "on the premises = trong khuôn viên / cơ sở (luôn số nhiều).", "translation": "Không được hút thuốc ở bất cứ đâu trong khuôn viên.", "meanings": ["bản xem trước (sai nghĩa)", "khuôn viên, cơ sở — đúng", "lời hứa (sai nghĩa, dễ nhầm chính tả)", "phí bảo hiểm (sai nghĩa)"]}, {"q": "The ______ has decided to raise the rent next year.", "options": ["landmark", "landlord", "landscape", "tenant"], "answer": 1, "explain": "Người tăng tiền thuê = CHỦ NHÀ = landlord. tenant = người thuê.", "translation": "Chủ nhà đã quyết định tăng tiền thuê vào năm sau.", "meanings": ["địa danh (sai nghĩa)", "chủ nhà cho thuê — đúng", "phong cảnh (sai nghĩa)", "người thuê (ngược vai)"]}, {"q": "We decided not to ______ our lease when it ends in March.", "options": ["resume", "renew", "retrieve", "renovate"], "answer": 1, "explain": "renew a lease = GIA HẠN hợp đồng thuê.", "translation": "Chúng tôi quyết định không gia hạn hợp đồng thuê khi hết hạn vào tháng 3.", "meanings": ["tiếp tục lại (sai collocation)", "gia hạn — đúng", "lấy lại (sai nghĩa)", "cải tạo (đi với tòa nhà)"]}, {"q": "The company will pay a ______ fee to employees who move to the new branch.", "options": ["renovation", "relation", "relocation", "reservation"], "answer": 2, "explain": "relocation fee = phí DI DỜI / chuyển nơi làm việc.", "translation": "Công ty sẽ trả phí di dời cho nhân viên chuyển sang chi nhánh mới.", "meanings": ["sự cải tạo (sai nghĩa)", "mối quan hệ (sai nghĩa)", "sự di dời — đúng", "sự đặt chỗ (sai nghĩa)"]}, {"q": "The store will ______ to its new location on Main Street next month.", "options": ["transfer", "transform", "transmit", "translate"], "answer": 0, "explain": "transfer to + nơi = CHUYỂN SANG.", "translation": "Cửa hàng sẽ chuyển sang địa điểm mới trên phố Main vào tháng tới.", "meanings": ["chuyển sang — đúng", "biến đổi (sai nghĩa)", "truyền tải (tín hiệu) (sai nghĩa)", "dịch (sai nghĩa)"]}, {"q": "The museum will reopen once ______ are complete.", "options": ["renovations", "relocations", "reservations", "renewals"], "answer": 0, "explain": "Bảo tàng mở lại khi việc CẢI TẠO xong = renovations.", "translation": "Bảo tàng sẽ mở cửa lại khi việc cải tạo hoàn tất.", "meanings": ["sự cải tạo — đúng", "sự di dời (sai ngữ cảnh 'mở lại')", "sự đặt chỗ (sai nghĩa)", "sự gia hạn (sai nghĩa)"]}, {"q": "Preparations for the move are already ______.", "options": ["underway", "underpaid", "underneath", "underground"], "answer": 0, "explain": "be underway = ĐANG DIỄN RA.", "translation": "Việc chuẩn bị chuyển địa điểm đang được tiến hành.", "meanings": ["đang diễn ra — đúng", "bị trả lương thấp (sai nghĩa)", "bên dưới (giới từ/trạng từ, sai nghĩa)", "dưới lòng đất (sai nghĩa)"]}, {"q": "Your package is currently in ______ and should arrive tomorrow.", "options": ["transit", "transition", "traffic", "transaction"], "answer": 0, "explain": "in transit = ĐANG TRÊN ĐƯỜNG vận chuyển.", "translation": "Kiện hàng của bạn đang trên đường vận chuyển và sẽ đến vào ngày mai.", "meanings": ["đang vận chuyển — đúng", "sự chuyển tiếp (in transition = đang chuyển đổi, sai nghĩa)", "giao thông (sai nghĩa)", "giao dịch (sai nghĩa)"]}, {"q": "The new owners replaced all the light ______ in the shop.", "options": ["features", "fixings", "fixtures", "futures"], "answer": 2, "explain": "light fixtures = đèn lắp cố định (đồ đạc cố định).", "translation": "Chủ mới đã thay toàn bộ đèn lắp cố định trong tiệm.", "meanings": ["đặc điểm (sai nghĩa)", "đồ đi kèm món ăn (sai nghĩa)", "đồ đạc cố định — đúng", "tương lai (sai nghĩa)"]}, {"q": "Normal service will ______ on Monday after the holiday.", "options": ["consume", "assume", "résumé", "resume"], "answer": 3, "explain": "resume = TIẾP TỤC LẠI sau gián đoạn. Khác résumé (sơ yếu lý lịch).", "translation": "Dịch vụ sẽ hoạt động bình thường trở lại vào thứ Hai sau kỳ nghỉ.", "meanings": ["tiêu thụ (sai nghĩa)", "cho rằng (sai nghĩa)", "sơ yếu lý lịch (danh từ)", "tiếp tục lại — đúng"]}, {"q": "After 40 years in business, the bookshop will ______ trading at the end of May.", "options": ["seize", "resume", "cease", "renew"], "answer": 2, "explain": "cease trading = NGỪNG kinh doanh (= close down). seize = chiếm lấy.", "translation": "Sau 40 năm kinh doanh, hiệu sách sẽ ngừng hoạt động vào cuối tháng 5.", "meanings": ["chiếm lấy (đồng âm, sai nghĩa)", "tiếp tục lại (trái nghĩa)", "ngừng — đúng", "gia hạn (sai nghĩa)"]}, {"q": "Library ______ may borrow up to five books at a time.", "options": ["patterns", "partners", "patrons", "patients"], "answer": 2, "explain": "patron = khách hàng (quen) / người sử dụng dịch vụ.", "translation": "Bạn đọc của thư viện có thể mượn tối đa năm cuốn mỗi lần.", "meanings": ["hoa văn (sai nghĩa)", "đối tác (sai nghĩa)", "khách, người sử dụng — đúng", "bệnh nhân (sai nghĩa)"]}, {"q": "A ______ about the new opening hours was posted on the door.", "options": ["novice", "notation", "notion", "notice"], "answer": 3, "explain": "post a notice = dán THÔNG BÁO.", "translation": "Thông báo về giờ mở cửa mới được dán trên cửa.", "meanings": ["người mới (sai nghĩa)", "ký hiệu (sai nghĩa)", "khái niệm (sai nghĩa)", "thông báo — đúng"]}, {"q": "Our ______ hours are 8 a.m. to 6 p.m., Monday to Saturday.", "options": ["trading", "trade-in", "tracing", "traded"], "answer": 0, "explain": "trading hours = giờ mở cửa kinh doanh.", "translation": "Giờ mở cửa của chúng tôi là 8 giờ sáng đến 6 giờ chiều, thứ Hai đến thứ Bảy.", "meanings": ["kinh doanh (trading hours) — đúng", "đổi cũ lấy mới (sai nghĩa)", "việc dò tìm (sai nghĩa)", "đã được giao dịch (V3, sai)"]}, {"q": "______ about refunds should be sent to our customer service team.", "options": ["Injuries", "Industries", "Inquiries", "Inquire"], "answer": 2, "explain": "Chủ ngữ là danh từ: inquiries = các thắc mắc. Đừng nhầm injuries (chấn thương).", "translation": "Các thắc mắc về hoàn tiền vui lòng gửi đến đội chăm sóc khách hàng.", "meanings": ["chấn thương (sai nghĩa)", "các ngành (sai nghĩa)", "các thắc mắc — đúng", "hỏi (động từ, sai từ loại)"]}, {"q": "Questions about your bill may be ______ to the accounts office.", "options": ["direction", "directed", "directly", "director"], "answer": 1, "explain": "direct sth to sb = GỬI / CHUYỂN (câu hỏi) tới. Bị động: may be directed to.", "translation": "Các câu hỏi về hóa đơn có thể gửi tới phòng kế toán.", "meanings": ["phương hướng (danh từ)", "được gửi tới — đúng", "trực tiếp (trạng từ)", "giám đốc (danh từ người)"]}, {"q": "Delivery within the city is free of ______.", "options": ["charge", "charm", "chance", "change"], "answer": 0, "explain": "free of charge = miễn phí.", "translation": "Giao hàng trong thành phố được miễn phí.", "meanings": ["phí (free of charge) — đúng", "sức quyến rũ (sai nghĩa)", "cơ hội (sai nghĩa)", "tiền thối; sự thay đổi (sai cụm)"]}];
+const QSTART = 31;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

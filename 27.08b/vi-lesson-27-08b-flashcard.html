@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#1D9E75" />
+<title>🎯 Tutoring – Vi – TOEIC Vocab (27/08b)</title>
+<style>
+  :root{
+    --green:#1D9E75; --green-d:#127c5b; --green-l:#e8f7f2;
+    --teal:#127c5b;
+    --red:#E4574C; --red-l:#FCEBEA;
+    --ink:#1F2A28; --muted:#6B7A76; --bg:#F1F5F3;
+    --card:#FFFFFF; --line:#E3EAE7; --gold:#F4B740;
+    --grad:linear-gradient(135deg,#1D9E75,#127c5b);
+    --grad-warm:linear-gradient(135deg,#F4B740,#F08A5D);
+    --glow:0 22px 45px -14px rgba(29,158,117,.32),0 4px 12px rgba(18,124,91,.08);
+    --page:radial-gradient(1100px 560px at 50% -12%,#e8f7f2 0%,#F1F5F3 55%);
+  }
+  [data-theme="dark"]{
+    --green:#6CC0A5; --green-d:#94C4B5; --green-l:#051C15;
+    --teal:#94C4B5;
+    --red:#F0736A; --red-l:#3A201E;
+    --ink:#EAF2EF; --muted:#9DB0AA; --bg:#0E1413;
+    --card:#18211F; --line:#28352F; --gold:#F4B740;
+    --grad:linear-gradient(135deg,#6CC0A5,#94C4B5);
+    --grad-warm:linear-gradient(135deg,#F4B740,#F0736A);
+    --glow:0 22px 48px -14px rgba(0,0,0,.55),0 4px 14px rgba(0,0,0,.35);
+    --page:radial-gradient(1100px 560px at 50% -12%,#14201C 0%,#0E1413 55%);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+    background:var(--page);background-attachment:fixed;color:var(--ink);
+    min-height:100dvh;display:flex;justify-content:center;padding:14px;
+    transition:background .25s,color .25s;
+  }
+  .layout{width:100%;max-width:700px;display:flex;align-items:flex-start;justify-content:center;gap:16px}
+  .app{width:100%;max-width:440px;flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
+  :focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:8px}
+
+  /* Sidebar chủ đề — mỗi chủ đề 1 hàng, nằm bên trái */
+  .sidebar{
+    flex:none;width:220px;
+    display:flex;flex-direction:column;gap:6px;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:12px;position:sticky;top:14px;
+  }
+  .sidebar-label{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:2px 6px 6px}
+  .group-chip{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    border:1px solid var(--line);background:var(--bg);color:var(--muted);
+    font-family:inherit;font-weight:700;font-size:13px;text-align:left;
+    padding:10px 12px;border-radius:12px;cursor:pointer;
+  }
+  .group-chip .chip-label{overflow-wrap:anywhere}
+  .group-chip .cnt{flex:none;font-size:11px;font-weight:700;color:var(--muted);background:var(--card);padding:2px 8px;border-radius:999px}
+  .group-chip:active{transform:scale(.98)}
+  .group-chip.on{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .group-chip.on .cnt{background:#fff;color:var(--green-d)}
+
+  @media (max-width: 760px){
+    /* Không đủ chỗ cho cột trái + thẻ cạnh nhau: sidebar chủ đề xếp lên trên,
+       nhưng vẫn giữ mỗi chủ đề một hàng riêng (không gộp thành lưới ngang). */
+    .layout{flex-direction:column}
+    .sidebar{width:100%;position:static}
+  }
+
+  /* Header */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .title{font-size:20px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+  /* Icon (emoji) hiển thị nguyên màu — KHÔNG áp gradient-clip lên emoji, vì trình
+     duyệt sẽ tô phẳng glyph màu thành một khối đơn sắc trông giống lỗi. Gradient
+     chỉ áp cho phần chữ. */
+  .title-icon{margin-right:2px}
+  .title-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .title small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+  .btn-ghost{
+    border:1px solid var(--line);background:var(--card);color:var(--green-d);
+    font-family:inherit;font-weight:700;font-size:12px;
+    padding:8px 12px;border-radius:12px;cursor:pointer;white-space:nowrap;
+  }
+  .btn-ghost:active{transform:scale(.96)}
+  .icon-btn{
+    border:1px solid var(--line);background:var(--card);
+    width:38px;height:36px;border-radius:12px;cursor:pointer;font-size:16px;display:grid;place-items:center;
+  }
+  .icon-btn:active{transform:scale(.94)}
+
+  /* Stats */
+  .stats{
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:8px 10px;font-size:13px;font-weight:600;
+  }
+  .stat{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px}
+  .stat.ok{color:var(--green-d);background:var(--green-l)}
+  .stat.no{color:var(--red);background:var(--red-l)}
+  .stat.left{color:var(--muted);background:var(--bg)}
+  .dot{display:none}
+  .round{margin-left:auto;background:var(--green-l);color:var(--green-d);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .shuffle{background:none;border:none;font-family:inherit;font-weight:700;color:var(--green-d);cursor:pointer;font-size:13px;padding:4px}
+  .shuffle:active{transform:scale(.94)}
+
+  /* Progress */
+  .prog{height:6px;background:var(--line);border-radius:999px;overflow:hidden}
+  .prog > i{display:block;height:100%;background:var(--grad);width:0%;transition:width .35s ease}
+
+  /* Card scene */
+  .scene{position:relative;perspective:1400px;height:340px}
+  .swipe-hint{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    font-size:20px;font-weight:800;color:#fff;padding:8px 16px;border-radius:14px;
+    opacity:0;pointer-events:none;transition:opacity .08s;
+  }
+  .swipe-hint.know{right:16px;background:var(--green)}
+  .swipe-hint.forget{left:16px;background:var(--red)}
+  .drag{position:absolute;inset:0;transition:transform .25s ease;will-change:transform;touch-action:pan-y}
+  .card{
+    position:relative;width:100%;height:100%;cursor:pointer;
+    transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.flip{transform:rotateY(180deg)}
+  .face{
+    position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;
+    box-shadow:var(--glow);
+    display:flex;flex-direction:column;
+    padding:18px 24px 16px;text-align:center;
+  }
+  .face::before{content:"";position:absolute;top:0;left:0;right:0;height:6px}
+  .front::before{background:var(--grad)}
+  .back::before{background:var(--grad-warm)}
+  /* 3 vùng theo chiều dọc: kicker/tools ở trên, nội dung chính giữa (chiếm hết
+     khoảng trống còn lại để không để trống một mảng lớn giữa thẻ), chấm+gợi ý
+     ở dưới — không còn absolute nên chiều cao thẻ tự phân bổ đều. */
+  .face-top{display:flex;align-items:center;justify-content:space-between;min-height:38px}
+  .face .kicker{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .back{transform:rotateY(180deg)}
+  .face-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0}
+  .icon{font-size:44px;line-height:1;margin-bottom:8px}
+  .icon:empty{display:none;margin:0}
+  .word{font-size:42px;font-weight:800;line-height:1.12;letter-spacing:-.02em;word-break:break-word}
+  .pron{margin-top:6px;color:var(--muted);font-size:14px;font-weight:500}
+  .meaning{font-size:26px;font-weight:700;line-height:1.25;color:var(--ink)}
+  .example{margin-top:14px;font-size:14px;color:var(--muted);font-weight:500;font-style:italic;max-width:90%}
+  .example-vi{margin-top:4px;font-size:12px;color:var(--muted);font-weight:500;opacity:.8;max-width:90%}
+  .example-vi:empty{display:none;margin:0}
+  .face-bottom{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .hint{font-size:12px;color:var(--muted);font-weight:600}
+  .dots{display:flex;gap:5px}
+  .dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+  .dots i.on{background:var(--green)}
+  .face-tools{display:flex;gap:6px}
+  .tool{border:1px solid var(--line);background:var(--card);border-radius:12px;width:38px;height:38px;font-size:16px;cursor:pointer;display:grid;place-items:center}
+  .tool:active{transform:scale(.9);background:var(--green-l)}
+
+  /* Controls */
+  .controls{display:grid;grid-template-columns:1fr 1.2fr 1.2fr 1fr;gap:8px}
+  .ctl{border:none;font-family:inherit;font-weight:700;font-size:14px;padding:14px 6px;border-radius:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px}
+  .ctl:active{transform:translateY(1px) scale(.98)}
+  .ctl.nav{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+  .ctl.forget{background:var(--red-l);color:var(--red)}
+  .ctl.know{background:var(--grad);color:#fff;box-shadow:0 8px 20px -4px rgba(29,158,117,.5)}
+  .ctl:disabled{opacity:.4;cursor:not-allowed}
+  .swipe-tip{text-align:center;font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+
+  /* Overlays */
+  .overlay{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px 22px;text-align:center}
+  .overlay .emoji{font-size:52px}
+  .overlay h2{margin:10px 0 6px;font-size:22px}
+  .overlay p{margin:0;color:var(--muted);font-weight:500}
+  .review-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0}
+  .chip{background:var(--red-l);color:var(--red);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600}
+  .btn-primary{margin-top:18px;background:var(--grad);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:16px;padding:14px 22px;border-radius:16px;cursor:pointer;width:100%;box-shadow:0 8px 20px -4px rgba(29,158,117,.45)}
+  .btn-primary:active{transform:scale(.98)}
+  .btn-outline{margin-top:10px;background:var(--card);color:var(--green-d);border:1px solid var(--green);font-family:inherit;font-weight:700;font-size:15px;padding:12px 22px;border-radius:16px;cursor:pointer;width:100%}
+  .btn-outline.danger{color:var(--red);border-color:var(--red)}
+  .hidden{display:none !important}
+
+  /* Modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(10,18,16,.55);display:flex;align-items:flex-end;justify-content:center;z-index:50}
+  .modal{background:var(--card);width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:20px;max-height:88dvh;overflow:auto}
+  .modal h3{margin:0 0 4px;font-size:18px}
+  .modal .sub{color:var(--muted);font-size:13px;font-weight:500;margin:0 0 14px}
+  .modal label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
+  .modal input,.modal textarea,.modal select{width:100%;font-family:inherit;font-size:15px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+  .modal textarea{min-height:150px;line-height:1.5}
+  .modal input:focus,.modal textarea:focus,.modal select:focus{outline:none;border-color:var(--green)}
+  .row{display:flex;gap:8px}
+  .count-note{font-size:12px;color:var(--muted);font-weight:600;margin-top:6px}
+  .seg{display:flex;gap:6px}
+  .seg button{flex:1;padding:10px 4px;border:1px solid var(--line);background:var(--card);border-radius:12px;font-family:inherit;font-weight:700;font-size:13px;color:var(--muted);cursor:pointer}
+  .seg button.on{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-weight:600;font-size:14px}
+  .switch{width:48px;height:28px;border-radius:999px;border:none;background:var(--line);position:relative;cursor:pointer;transition:.2s;flex:none}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .switch.on{background:var(--green)} .switch.on::after{left:23px}
+
+  /* Hoạt ảnh thẻ mới xuất hiện + ăn mừng */
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+  .scene.enter .drag{animation:cardIn .32s cubic-bezier(.2,.8,.2,1)}
+  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.05)}100%{transform:scale(1)}}
+  .scene.knowpop{animation:pop .34s ease}
+  .confetti{position:absolute;top:24%;left:50%;z-index:8;pointer-events:none}
+  .confetti i{position:absolute;width:9px;height:9px;border-radius:2px;opacity:0}
+  @keyframes conf{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(var(--cr))}}
+
+  @media (prefers-reduced-motion: reduce){
+    .card,.drag,.prog>i,body,.switch,.switch::after{transition:none !important}
+    .scene.enter .drag,.scene.knowpop,.confetti i{animation:none !important}
+  }
+
+  /* ---------- Kiểm tra từ vựng (quiz trắc nghiệm, dùng chung DECK) ---------- */
+  .mode-toggle{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px}
+  .mode-btn{flex:1;border:none;background:none;font-family:inherit;font-weight:700;font-size:13px;color:var(--muted);padding:10px 6px;border-radius:12px;cursor:pointer}
+  .mode-btn.on{background:var(--grad);color:#fff}
+  .mode-btn:active{transform:scale(.97)}
+
+  .quiz-progress{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--muted)}
+  .quiz-progress .prog{flex:1;margin:0}
+  .quiz-score-live{color:var(--green-d);flex:none}
+  .quiz-submit-btn{
+    flex:none;border:1px solid var(--green);background:var(--green-l);color:var(--green-d);
+    font-family:inherit;font-weight:700;font-size:12px;padding:6px 10px;border-radius:10px;cursor:pointer;
+    white-space:nowrap;
+  }
+  .quiz-submit-btn:active{transform:scale(.95)}
+  .quiz-submit-btn:disabled{opacity:.4;cursor:not-allowed}
+  .quiz-partial-note{font-size:12px;color:var(--muted);font-weight:600;margin-top:-4px}
+
+  .quiz-card{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--glow);padding:26px 22px;text-align:center;margin-top:14px}
+  .quiz-icon{font-size:40px;line-height:1;margin-bottom:6px}
+  .quiz-icon:empty{display:none;margin:0}
+  .quiz-word{font-size:28px;font-weight:800;line-height:1.2;letter-spacing:-.01em;word-break:break-word}
+  .quiz-pron{margin-top:4px;color:var(--muted);font-size:14px;font-weight:500;margin-bottom:8px}
+  .quiz-hint{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:14px}
+  .quiz-options{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .quiz-opt{display:flex;align-items:center;gap:10px;text-align:left;border:1.5px solid var(--line);background:var(--bg);border-radius:14px;padding:12px 14px;font-family:inherit;font-weight:600;font-size:14px;color:var(--ink);cursor:pointer}
+  .quiz-opt:active{transform:scale(.98)}
+  .quiz-opt-label{flex:none;width:24px;height:24px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--muted)}
+  .quiz-opt.correct{background:var(--green-l);border-color:var(--green);color:var(--green-d)}
+  .quiz-opt.correct .quiz-opt-label{background:var(--green);color:#fff;border-color:var(--green)}
+  .quiz-opt.wrong{background:var(--red-l);border-color:var(--red);color:var(--red)}
+  .quiz-opt.wrong .quiz-opt-label{background:var(--red);color:#fff;border-color:var(--red)}
+  .quiz-opt:disabled{cursor:default}
+  .quiz-feedback{margin-top:14px;font-weight:700;font-size:14px;min-height:20px}
+  .quiz-feedback.correct{color:var(--green-d)}
+  .quiz-feedback.wrong{color:var(--red)}
+  .quiz-footer{display:flex;justify-content:flex-end;margin-top:12px}
+  .quiz-next-btn{background:var(--grad);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:14px;padding:11px 20px;border-radius:14px;cursor:pointer}
+  .quiz-next-btn:active{transform:scale(.97)}
+  .quiz-result-score{font-size:2.2rem;font-weight:800;color:var(--green-d);margin:8px 0 2px}
+  .wm-footer{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);text-align:center;font-size:11px;color:var(--muted);opacity:.7}
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar chủ đề (trái, mỗi chủ đề 1 hàng) — chỉ hiện khi thẻ có field 'group' -->
+  <aside class="sidebar hidden" id="groupSidebar"></aside>
+
+  <div class="app">
+  <!-- Header -->
+  <div class="top">
+    <div class="title" id="deckTitle"><span class="title-icon" id="titleIcon">🎯</span><span class="title-text" id="titleText">Flashcard</span><small id="deckSub">Tự soạn từ vựng</small></div>
+    <div class="row">
+      <button class="icon-btn" id="btnSettings" aria-label="Cài đặt">⚙️</button>
+    </div>
+  </div>
+
+  <!-- Chuyển chế độ: Ôn thẻ / Kiểm tra -->
+  <div class="mode-toggle" id="modeToggle">
+    <button type="button" class="mode-btn on" data-mode="study">🎴 Ôn thẻ</button>
+    <button type="button" class="mode-btn" data-mode="quiz">📝 Kiểm tra</button>
+  </div>
+
+  <!-- Stats (chỉ hiện ở chế độ Ôn thẻ) -->
+  <div id="statsBarWrap">
+  <div class="stats">
+    <span class="stat ok">✓ Nhớ: <b id="sKnow">0</b></span><span class="dot"></span>
+    <span class="stat no">✗ Quên: <b id="sForget">0</b></span><span class="dot"></span>
+    <span class="stat left">◎ Còn: <b id="sLeft">0</b></span>
+    <span class="round">Vòng <b id="sRound">1</b></span>
+    <button class="shuffle" id="btnShuffle">🔀 Trộn</button>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+  </div>
+
+  <!-- Study view -->
+  <div id="studyView">
+    <div class="scene" id="scene">
+      <div class="swipe-hint forget" id="hintForget">😕 Quên</div>
+      <div class="swipe-hint know" id="hintKnow">✓ Nhớ</div>
+      <div class="drag" id="drag">
+        <div class="card" id="card">
+          <div class="face front">
+            <div class="face-top">
+              <div class="kicker" id="frontKicker">Từ vựng</div>
+              <div class="face-tools">
+                <button class="tool" id="btnSpeak" aria-label="Nghe phát âm">🔊</button>
+                <button class="tool" id="btnImage" aria-label="Xem hình gợi ý">🖼️</button>
+              </div>
+            </div>
+            <div class="face-body">
+              <div class="icon" id="frontIcon"></div>
+              <div class="word" id="frontWord">—</div>
+              <div class="pron" id="frontPron"></div>
+            </div>
+            <div class="face-bottom">
+              <div class="dots" id="frontDots"></div>
+              <div class="hint">👆 Nhấn để lật · ↔ vuốt để chấm</div>
+            </div>
+          </div>
+          <div class="face back">
+            <div class="face-top">
+              <div class="kicker" id="backKicker">Nghĩa</div>
+            </div>
+            <div class="face-body">
+              <div class="icon" id="backIcon"></div>
+              <div class="meaning" id="backMeaning">—</div>
+              <div class="example" id="backExample"></div>
+              <div class="example-vi" id="backExampleVi"></div>
+            </div>
+            <div class="face-bottom">
+              <div class="hint">👆 Nhấn để lật lại</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls" style="margin-top:14px">
+      <button class="ctl nav" id="btnPrev">← Trước</button>
+      <button class="ctl forget" id="btnForget">😕 Quên</button>
+      <button class="ctl know" id="btnKnow">✓ Nhớ</button>
+      <button class="ctl nav" id="btnNext">Sau →</button>
+    </div>
+    <div class="swipe-tip">Mẹo: vuốt trái = Quên · vuốt phải = Nhớ</div>
+  </div>
+
+  <!-- Review round -->
+  <div id="reviewView" class="overlay hidden">
+    <div class="emoji">😕</div>
+    <h2 id="reviewTitle">Còn 0 từ chưa nhớ</h2>
+    <p>Hãy ôn lại những từ này:</p>
+    <div class="review-list" id="reviewList"></div>
+    <button class="btn-primary" id="btnReviewNow">🔁 Ôn lại ngay</button>
+  </div>
+
+  <!-- Done -->
+  <div id="doneView" class="overlay hidden">
+    <div class="emoji">🏆</div>
+    <h2>Xuất sắc!</h2>
+    <p id="doneSub">Bạn đã nhớ tất cả từ vựng!</p>
+    <button class="btn-primary" id="btnRestart">🔄 Học lại từ đầu</button>
+  </div>
+
+  <!-- Empty -->
+  <div id="emptyView" class="overlay hidden">
+    <div class="emoji">📭</div>
+    <h2>Bộ thẻ trống</h2>
+    <p>Bộ từ vựng chưa có nội dung. Hãy liên hệ giáo viên của bạn.</p>
+  </div>
+
+  <!-- Kiểm tra từ vựng — trắc nghiệm, dùng chung DECK + bộ lọc chủ đề -->
+  <div id="quizView" class="hidden">
+    <div class="quiz-progress">
+      <span id="quizCounter">Câu 1/1</span>
+      <div class="prog"><i id="quizProgFill"></i></div>
+      <span class="quiz-score-live">✓ <b id="quizScoreLive">0</b></span>
+      <button type="button" class="quiz-submit-btn" id="quizSubmitBtn" disabled>📤 Nộp bài</button>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-icon" id="quizIcon"></div>
+      <div class="quiz-word" id="quizWord">—</div>
+      <div class="quiz-pron" id="quizPron"></div>
+      <div class="quiz-hint">Chọn nghĩa đúng của từ trên</div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+    <div class="quiz-footer">
+      <button type="button" class="quiz-next-btn hidden" id="quizNext">Câu tiếp →</button>
+    </div>
+  </div>
+
+  <!-- Kết quả kiểm tra -->
+  <div id="quizResultView" class="overlay hidden">
+    <div class="emoji">📝</div>
+    <h2>Kết quả kiểm tra</h2>
+    <p id="quizScoreLabel">0/0 câu đúng</p>
+    <div class="quiz-result-score" id="quizScorePct">0%</div>
+    <button class="btn-primary" id="btnQuizRetry">🔁 Làm lại</button>
+    <button class="btn-outline" id="btnQuizToStudy">🎴 Quay lại ôn thẻ</button>
+  </div>
+  <div class="wm-footer" id="wmFooter">© Ms. Thủy Tiên · 0388929741</div>
+  </div><!-- /.app -->
+</div><!-- /.layout -->
+
+<!-- (Đã gỡ trình soạn thẻ – học sinh không chỉnh sửa nội dung) -->
+
+<!-- Settings modal -->
+<div class="modal-bg hidden" id="setModal">
+  <div class="modal">
+    <h3>⚙️ Cài đặt học</h3>
+    <p class="sub">Điều chỉnh cách ôn cho phù hợp với bạn.</p>
+    <label>Chiều học</label>
+    <div class="seg" id="segDir">
+      <button data-v="fwd">Từ → Nghĩa</button>
+      <button data-v="rev">Nghĩa → Từ</button>
+      <button data-v="mix">Trộn</button>
+    </div>
+    <div class="toggle-row"><span>🔊 Tự phát âm khi hiện thẻ</span><button class="switch" id="tglAudio" aria-label="Tự phát âm"></button></div>
+    <div class="toggle-row"><span>🌙 Giao diện tối</span><button class="switch" id="tglDark" aria-label="Giao diện tối"></button></div>
+    <div class="toggle-row"><span>🎯 Ưu tiên từ chưa thuộc</span><button class="switch" id="tglWeak" aria-label="Ưu tiên từ yếu"></button></div>
+    <button class="btn-outline danger" id="btnResetProg">↺ Đặt lại tiến độ thuộc</button>
+    <button class="btn-primary" id="btnCloseSet">Xong</button>
+  </div>
+</div>
+
+<!-- Tên học sinh — chỉ hỏi 1 lần trên máy này, dùng để ghi điểm Kiểm tra về Sheet -->
+<div class="modal-bg hidden" id="nameModal">
+  <div class="modal">
+    <h3>🏷️ Tên của bạn</h3>
+    <p class="sub">Nhập tên để giáo viên biết ai vừa làm bài kiểm tra này. Máy này sẽ nhớ tên, chỉ cần nhập 1 lần.</p>
+    <label>Tên học sinh</label>
+    <input type="text" id="nameInput" placeholder="VD: Nguyễn Văn A" autocomplete="name">
+    <button class="btn-primary" id="btnSaveName">Lưu &amp; xem kết quả</button>
+  </div>
+</div>
+
+<!-- Xác nhận nộp bài giữa chừng — cho phép nộp điểm bất cứ lúc nào, không cần làm hết thẻ -->
+<div class="modal-bg hidden" id="submitConfirmModal">
+  <div class="modal">
+    <h3>📤 Nộp bài ngay?</h3>
+    <p class="sub" id="submitConfirmSub">Bạn đã làm 0/0 câu, đúng 0 câu.</p>
+    <button class="btn-primary" id="btnSubmitConfirmYes">✅ Nộp bài</button>
+    <button class="btn-outline" id="btnSubmitConfirmNo">Làm tiếp</button>
+  </div>
+</div>
+
+<script>
+/* ---------- Lưu trữ an toàn ---------- */
+const store = {
+  save(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} },
+  load(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+};
+
+/* ---------- Bộ thẻ nhúng sẵn (giáo viên soạn) ---------- */
+const DECK = {"title": "🎯 Tutoring – Vi – TOEIC Vocab (27/08b)", "lang": "en-US", "scoreSheetUrl": "", "classLabel": "", "unitLabel": "1-1 Vi TOEIC – 27/08 (buổi 2)", "levelLabel": "TOEIC", "cards": [{"front": "in light of", "back": "xét đến, vì (đồng nghĩa: because of, owing to, due to)", "ex": "In light of the results, we changed our plan.", "ex_vi": "Xét đến kết quả, chúng tôi đã thay đổi kế hoạch.", "pron": "", "img": "💡", "group": "Ngữ pháp — Giới từ chỉ nguyên nhân & trích dẫn nguồn"}, {"front": "according to + nguồn tin", "back": "theo (báo cáo, lời cô Anna...)", "ex": "According to the report, sales rose 10%.", "ex_vi": "Theo báo cáo, doanh số tăng 10%.", "pron": "", "img": "📰", "group": "Ngữ pháp — Giới từ chỉ nguyên nhân & trích dẫn nguồn"}, {"front": "now that", "back": "bởi vì, vì rằng (đồng nghĩa: because)", "ex": "Now that you're here, let's start.", "ex_vi": "Vì bạn đã ở đây rồi, hãy bắt đầu thôi.", "pron": "", "img": "✅", "group": "Ngữ pháp — Giới từ chỉ nguyên nhân & trích dẫn nguồn"}, {"front": "owing to", "back": "bởi vì, do (đồng nghĩa: because of, due to)", "ex": "Owing to bad weather, the flight was delayed.", "ex_vi": "Do thời tiết xấu, chuyến bay bị hoãn.", "pron": "", "img": "🌧️", "group": "Ngữ pháp — Giới từ chỉ nguyên nhân & trích dẫn nguồn"}, {"front": "closure (n)", "back": "sự đóng cửa, sự kết thúc", "ex": "the closure of the factory", "ex_vi": "sự đóng cửa của nhà máy", "pron": "/ˈkloʊʒər/", "img": "🚪", "group": "Từ vựng — Xung đột & tranh luận"}, {"front": "conflict (n)", "back": "xung đột", "ex": "resolve a conflict", "ex_vi": "giải quyết một xung đột", "pron": "/ˈkɑːnflɪkt/", "img": "⚔️", "group": "Từ vựng — Xung đột & tranh luận"}, {"front": "argument (n)", "back": "cuộc tranh cãi, lập luận", "ex": "have an argument", "ex_vi": "có một cuộc tranh cãi", "pron": "/ˈɑːrɡjumənt/", "img": "💬", "group": "Từ vựng — Xung đột & tranh luận"}, {"front": "debate (n/v)", "back": "cuộc tranh luận / tranh luận", "ex": "a heated debate", "ex_vi": "một cuộc tranh luận gay gắt", "pron": "/dɪˈbeɪt/", "img": "🗣️", "group": "Từ vựng — Xung đột & tranh luận"}, {"front": "dispute (n)", "back": "tranh chấp (đồng nghĩa: argument, conflict)", "ex": "a legal dispute", "ex_vi": "một tranh chấp pháp lý", "pron": "/dɪˈspjuːt/", "img": "⚖️", "group": "Từ vựng — Xung đột & tranh luận"}, {"front": "negotiate (v)", "back": "đàm phán, thương lượng", "ex": "negotiate a deal", "ex_vi": "đàm phán một thỏa thuận", "pron": "/nɪˈɡoʊʃieɪt/", "img": "🤝", "group": "Từ vựng — Xung đột & tranh luận"}, {"front": "superfluous (a)", "back": "dư thừa, không cần thiết", "ex": "superfluous details", "ex_vi": "những chi tiết thừa thãi", "pron": "/suːˈpɜːrfluəs/", "img": "➕", "group": "Từ vựng — Thừa thãi, tùy tiện & điều kiện (dễ nhầm)"}, {"front": "abundant (a)", "back": "dồi dào, phong phú", "ex": "abundant resources", "ex_vi": "nguồn tài nguyên dồi dào", "pron": "/əˈbʌndənt/", "img": "🌾", "group": "Từ vựng — Thừa thãi, tùy tiện & điều kiện (dễ nhầm)"}, {"front": "arbitrary (a)", "back": "tùy tiện, ngẫu nhiên (đồng nghĩa: random)", "ex": "an arbitrary decision", "ex_vi": "một quyết định tùy tiện", "pron": "/ˈɑːrbətreri/", "img": "🎲", "group": "Từ vựng — Thừa thãi, tùy tiện & điều kiện (dễ nhầm)"}, {"front": "supplemental (a)", "back": "bổ sung", "ex": "supplemental income", "ex_vi": "thu nhập bổ sung", "pron": "/ˌsʌpləˈmentl/", "img": "➕", "group": "Từ vựng — Thừa thãi, tùy tiện & điều kiện (dễ nhầm)"}, {"front": "condition (n)", "back": "điều kiện", "ex": "under this condition", "ex_vi": "trong điều kiện này", "pron": "/kənˈdɪʃn/", "img": "📋", "group": "Từ vựng — Thừa thãi, tùy tiện & điều kiện (dễ nhầm)"}, {"front": "outline (n)", "back": "dàn bài, đề cương", "ex": "write an outline", "ex_vi": "viết một dàn bài", "pron": "/ˈaʊtlaɪn/", "img": "📝", "group": "Từ vựng — Dàn bài & đáp ứng yêu cầu"}, {"front": "meet (v)", "back": "đáp ứng (đồng nghĩa: satisfy)", "ex": "meet the requirements", "ex_vi": "đáp ứng các yêu cầu", "pron": "/miːt/", "img": "✅", "group": "Từ vựng — Dàn bài & đáp ứng yêu cầu"}, {"front": "satisfy (v)", "back": "đáp ứng, làm hài lòng (đồng nghĩa: meet)", "ex": "satisfy the demand", "ex_vi": "đáp ứng nhu cầu", "pron": "/ˈsætɪsfaɪ/", "img": "✅", "group": "Từ vựng — Dàn bài & đáp ứng yêu cầu"}, {"front": "need (n)", "back": "nhu cầu (đồng nghĩa: demand)", "ex": "meet the needs of customers", "ex_vi": "đáp ứng nhu cầu của khách hàng", "pron": "/niːd/", "img": "📋", "group": "Từ vựng — Dàn bài & đáp ứng yêu cầu"}, {"front": "demand (n)", "back": "nhu cầu (đồng nghĩa: need)", "ex": "high demand", "ex_vi": "nhu cầu cao", "pron": "/dɪˈmænd/", "img": "📋", "group": "Từ vựng — Dàn bài & đáp ứng yêu cầu"}, {"front": "standard (n/a)", "back": "tiêu chuẩn", "ex": "meet the standard", "ex_vi": "đáp ứng tiêu chuẩn", "pron": "/ˈstændərd/", "img": "📏", "group": "Từ vựng — Dàn bài & đáp ứng yêu cầu"}, {"front": "requirement (n)", "back": "yêu cầu", "ex": "job requirements", "ex_vi": "yêu cầu công việc", "pron": "/rɪˈkwaɪərmənt/", "img": "📋", "group": "Từ vựng — Dàn bài & đáp ứng yêu cầu"}, {"front": "prohibit + V-ing", "back": "cấm làm gì (đồng nghĩa: ban)", "ex": "Prohibit smoking indoors.", "ex_vi": "Cấm hút thuốc trong nhà.", "pron": "", "img": "🚫", "group": "Ngữ pháp — Cấm, tránh, ngăn chặn, dừng + V-ing"}, {"front": "avoid + V-ing", "back": "tránh làm gì", "ex": "Avoid eating late at night.", "ex_vi": "Tránh ăn khuya.", "pron": "", "img": "🚫", "group": "Ngữ pháp — Cấm, tránh, ngăn chặn, dừng + V-ing"}, {"front": "prevent + V-ing", "back": "ngăn chặn việc gì", "ex": "Prevent accidents from happening.", "ex_vi": "Ngăn chặn tai nạn xảy ra.", "pron": "", "img": "🛑", "group": "Ngữ pháp — Cấm, tránh, ngăn chặn, dừng + V-ing"}, {"front": "stop + V-ing", "back": "dừng việc ĐANG làm", "ex": "Stop talking, please.", "ex_vi": "Làm ơn dừng nói chuyện.", "pron": "", "img": "🛑", "group": "Ngữ pháp — Cấm, tránh, ngăn chặn, dừng + V-ing"}, {"front": "stop + to V", "back": "dừng việc A để làm việc B", "ex": "Stop to buy some milk.", "ex_vi": "Dừng lại để mua sữa.", "pron": "", "img": "🛑", "group": "Ngữ pháp — Cấm, tránh, ngăn chặn, dừng + V-ing"}, {"front": "whether (conj)", "back": "liệu có... hay không", "ex": "I don't know whether he will come.", "ex_vi": "Tôi không biết liệu anh ấy có đến hay không.", "pron": "/ˈweðər/", "img": "❓", "group": "Ngữ pháp — Cấm, tránh, ngăn chặn, dừng + V-ing"}, {"front": "theory (n)", "back": "lý thuyết", "ex": "in theory", "ex_vi": "về mặt lý thuyết", "pron": "/ˈθɪəri/", "img": "📚", "group": "Từ vựng — Lý thuyết & rõ ràng (dễ nhầm)"}, {"front": "theoretical (a)", "back": "thuộc về lý thuyết", "ex": "theoretical knowledge", "ex_vi": "kiến thức lý thuyết", "pron": "/ˌθiːəˈretɪkl/", "img": "📚", "group": "Từ vựng — Lý thuyết & rõ ràng (dễ nhầm)"}, {"front": "practical (a)", "back": "thực tế, thực hành", "ex": "practical skills", "ex_vi": "kỹ năng thực hành", "pron": "/ˈpræktɪkl/", "img": "🛠️", "group": "Từ vựng — Lý thuyết & rõ ràng (dễ nhầm)"}, {"front": "obviously (adv)", "back": "rõ ràng là", "ex": "Obviously, this needs fixing.", "ex_vi": "Rõ ràng là việc này cần sửa.", "pron": "/ˈɑːbviəsli/", "img": "✅", "group": "Từ vựng — Lý thuyết & rõ ràng (dễ nhầm)"}, {"front": "transparently (adv)", "back": "một cách minh bạch, rõ ràng (đồng nghĩa: obviously)", "ex": "act transparently", "ex_vi": "hành động một cách minh bạch", "pron": "/trænsˈpærəntli/", "img": "🔍", "group": "Từ vựng — Lý thuyết & rõ ràng (dễ nhầm)"}, {"front": "straightforward (a)", "back": "đơn giản, dễ hiểu / thẳng thắn", "ex": "a straightforward process", "ex_vi": "một quy trình đơn giản", "pron": "/ˌstreɪtˈfɔːrwərd/", "img": "➡️", "group": "Từ vựng — Lý thuyết & rõ ràng (dễ nhầm)"}, {"front": "rich (a)", "back": "giàu có", "ex": "a rich country", "ex_vi": "một quốc gia giàu có", "pron": "/rɪtʃ/", "img": "💰", "group": "Từ vựng — Giàu có, nặng & đồng âm dễ nhầm"}, {"front": "heavy (a)", "back": "nặng", "ex": "heavy traffic", "ex_vi": "giao thông đông đúc/nặng nề", "pron": "/ˈhevi/", "img": "🏋️", "group": "Từ vựng — Giàu có, nặng & đồng âm dễ nhầm"}, {"front": "folk (n/a)", "back": "dân gian, dân tộc", "ex": "folk music", "ex_vi": "âm nhạc dân gian", "pron": "/foʊk/", "img": "🎻", "group": "Từ vựng — Giàu có, nặng & đồng âm dễ nhầm"}, {"front": "fork (n)", "back": "cái nĩa", "ex": "a knife and fork", "ex_vi": "một con dao và cái nĩa", "pron": "/fɔːrk/", "img": "🍴", "group": "Từ vựng — Giàu có, nặng & đồng âm dễ nhầm"}, {"front": "forklift (n)", "back": "xe nâng hàng", "ex": "operate a forklift", "ex_vi": "vận hành xe nâng hàng", "pron": "/ˈfɔːrklɪft/", "img": "🚜", "group": "Từ vựng — Giàu có, nặng & đồng âm dễ nhầm"}, {"front": "collective (a)", "back": "tập thể", "ex": "a collective decision", "ex_vi": "một quyết định tập thể", "pron": "/kəˈlektɪv/", "img": "👥", "group": "Từ vựng — Giàu có, nặng & đồng âm dễ nhầm"}, {"front": "distance (n)", "back": "khoảng cách", "ex": "travel a long distance", "ex_vi": "di chuyển một quãng đường dài", "pron": "/ˈdɪstəns/", "img": "📏", "group": "Từ vựng — Khoảng cách & thực tế (dễ nhầm)"}, {"front": "distant (a)", "back": "xa xôi", "ex": "a distant place", "ex_vi": "một nơi xa xôi", "pron": "/ˈdɪstənt/", "img": "📍", "group": "Từ vựng — Khoảng cách & thực tế (dễ nhầm)"}, {"front": "factual (a)", "back": "dựa trên sự thật, xác thực", "ex": "a factual error", "ex_vi": "một lỗi sai sự thật", "pron": "/ˈfæktʃuəl/", "img": "✅", "group": "Từ vựng — Khoảng cách & thực tế (dễ nhầm)"}, {"front": "seamlessly (adv)", "back": "liền mạch, trơn tru", "ex": "work seamlessly together", "ex_vi": "phối hợp với nhau một cách liền mạch", "pron": "/ˈsiːmləsli/", "img": "🔗", "group": "Từ vựng — Liền mạch & chỉ trích"}, {"front": "critical (a)", "back": "chỉ trích, phê phán / quan trọng, thiết yếu", "ex": "a critical review", "ex_vi": "một bài phê bình", "pron": "/ˈkrɪtɪkl/", "img": "⚠️", "group": "Từ vựng — Liền mạch & chỉ trích"}, {"front": "critic (n)", "back": "nhà phê bình", "ex": "a film critic", "ex_vi": "một nhà phê bình phim", "pron": "/ˈkrɪtɪk/", "img": "🎬", "group": "Từ vựng — Liền mạch & chỉ trích"}, {"front": "on + ngày cụ thể", "back": "dùng \"on\" trước thứ/ngày cụ thể trong tháng", "ex": "on Monday / on May 8th", "ex_vi": "vào thứ Hai / vào ngày 8 tháng 5", "pron": "", "img": "📅", "group": "Ngữ pháp — On + ngày cụ thể"}, {"front": "was planned on/for 8th May", "back": "được lên kế hoạch vào ngày 8/5", "ex": "The event was planned for 8th May.", "ex_vi": "Sự kiện được dự kiến vào ngày 8 tháng 5.", "pron": "", "img": "📅", "group": "Ngữ pháp — On + ngày cụ thể"}, {"front": "associate (n)", "back": "cộng sự, đồng nghiệp", "ex": "a business associate", "ex_vi": "một đối tác kinh doanh", "pron": "/əˈsoʊʃiət/", "img": "🤝", "group": "Từ vựng — Liên kết & hiệp hội (dễ nhầm)"}, {"front": "associate (v)", "back": "liên kết, gắn liền với", "ex": "associate success with hard work", "ex_vi": "liên kết thành công với sự chăm chỉ", "pron": "/əˈsoʊʃieɪt/", "img": "🔗", "group": "Từ vựng — Liên kết & hiệp hội (dễ nhầm)"}, {"front": "be associated with", "back": "liên quan đến, gắn liền với (đồng nghĩa: be related to)", "ex": "associated with high costs", "ex_vi": "liên quan đến chi phí cao", "pron": "", "img": "🔗", "group": "Từ vựng — Liên kết & hiệp hội (dễ nhầm)"}, {"front": "association (n)", "back": "hiệp hội, tổ chức", "ex": "a trade association", "ex_vi": "một hiệp hội thương mại", "pron": "/əˌsoʊsiˈeɪʃn/", "img": "🏛️", "group": "Từ vựng — Liên kết & hiệp hội (dễ nhầm)"}, {"front": "hậu tố -ic", "back": "hậu tố tạo tính từ", "ex": "a strategic plan", "ex_vi": "một kế hoạch chiến lược", "pron": "", "img": "🔤", "group": "Từ vựng — Hậu tố -ic & chiến lược"}, {"front": "strategic (a)", "back": "mang tính chiến lược", "ex": "a strategic location", "ex_vi": "một vị trí chiến lược", "pron": "/strəˈtiːdʒɪk/", "img": "♟️", "group": "Từ vựng — Hậu tố -ic & chiến lược"}, {"front": "strategize (v)", "back": "lập chiến lược, hoạch định chiến lược", "ex": "strategize for next quarter", "ex_vi": "hoạch định chiến lược cho quý tới", "pron": "/ˈstrætədʒaɪz/", "img": "♟️", "group": "Từ vựng — Hậu tố -ic & chiến lược"}, {"front": "distinguish (v)", "back": "phân biệt", "ex": "distinguish right from wrong", "ex_vi": "phân biệt đúng sai", "pron": "/dɪˈstɪŋɡwɪʃ/", "img": "🔍", "group": "Từ vựng — Phân biệt & đủ điều kiện"}, {"front": "distinct (a)", "back": "khác biệt, riêng biệt (đồng nghĩa: different)", "ex": "two distinct ideas", "ex_vi": "hai ý tưởng khác biệt", "pron": "/dɪˈstɪŋkt/", "img": "🔀", "group": "Từ vựng — Phân biệt & đủ điều kiện"}, {"front": "be eligible for", "back": "đủ điều kiện cho (đồng nghĩa: be qualified for)", "ex": "eligible for a discount", "ex_vi": "đủ điều kiện được giảm giá", "pron": "/ˈelɪdʒəbl/", "img": "✅", "group": "Từ vựng — Phân biệt & đủ điều kiện"}, {"front": "be qualified for", "back": "đủ điều kiện cho (đồng nghĩa: be eligible for)", "ex": "qualified for the position", "ex_vi": "đủ điều kiện cho vị trí này", "pron": "", "img": "✅", "group": "Từ vựng — Phân biệt & đủ điều kiện"}, {"front": "qualify (v)", "back": "đủ điều kiện, đạt tiêu chuẩn", "ex": "qualify for the finals", "ex_vi": "đủ điều kiện vào vòng chung kết", "pron": "/ˈkwɑːlɪfaɪ/", "img": "✅", "group": "Từ vựng — Phân biệt & đủ điều kiện"}, {"front": "qualification (n)", "back": "bằng cấp, tiêu chuẩn đủ điều kiện", "ex": "professional qualifications", "ex_vi": "bằng cấp chuyên môn", "pron": "/ˌkwɑːlɪfɪˈkeɪʃn/", "img": "🎓", "group": "Từ vựng — Phân biệt & đủ điều kiện"}, {"front": "degree (n)", "back": "bằng đại học", "ex": "a bachelor's degree", "ex_vi": "bằng cử nhân", "pron": "/dɪˈɡriː/", "img": "🎓", "group": "Từ vựng — Phân biệt & đủ điều kiện"}, {"front": "divide into", "back": "chia, phân thành", "ex": "divide into teams", "ex_vi": "chia thành các đội", "pron": "", "img": "➗", "group": "Từ vựng — Chia nhóm, thiết bị & lắp ráp"}, {"front": "division (n)", "back": "sự phân chia", "ex": "the sales division", "ex_vi": "bộ phận kinh doanh", "pron": "/dɪˈvɪʒn/", "img": "🏢", "group": "Từ vựng — Chia nhóm, thiết bị & lắp ráp"}, {"front": "device (n)", "back": "thiết bị", "ex": "an electronic device", "ex_vi": "một thiết bị điện tử", "pron": "/dɪˈvaɪs/", "img": "📱", "group": "Từ vựng — Chia nhóm, thiết bị & lắp ráp"}, {"front": "assemble (v)", "back": "lắp ráp; tập hợp lại", "ex": "assemble the furniture", "ex_vi": "lắp ráp đồ nội thất", "pron": "/əˈsembl/", "img": "🔧", "group": "Từ vựng — Chia nhóm, thiết bị & lắp ráp"}, {"front": "assembly (n)", "back": "sự lắp ráp; hội đồng, cuộc họp toàn thể", "ex": "an assembly line", "ex_vi": "dây chuyền lắp ráp", "pron": "/əˈsembli/", "img": "🏭", "group": "Từ vựng — Chia nhóm, thiết bị & lắp ráp"}, {"front": "resemble (v)", "back": "giống, tương tự", "ex": "She resembles her mother.", "ex_vi": "Cô ấy giống mẹ mình.", "pron": "/rɪˈzembl/", "img": "👥", "group": "Từ vựng — Chia nhóm, thiết bị & lắp ráp"}, {"front": "revolutionize (v)", "back": "cách mạng hóa, cải cách hóa", "ex": "revolutionize the industry", "ex_vi": "cách mạng hóa ngành công nghiệp", "pron": "/ˌrevəˈluːʃənaɪz/", "img": "🚀", "group": "Từ vựng — Cách mạng hóa (dễ nhầm) & lĩnh vực"}, {"front": "revolution (n)", "back": "cuộc cách mạng", "ex": "the industrial revolution", "ex_vi": "cuộc cách mạng công nghiệp", "pron": "/ˌrevəˈluːʃn/", "img": "✊", "group": "Từ vựng — Cách mạng hóa (dễ nhầm) & lĩnh vực"}, {"front": "sector (n)", "back": "khu vực, lĩnh vực (đồng nghĩa: area, industry)", "ex": "the public sector", "ex_vi": "khu vực công", "pron": "/ˈsektər/", "img": "🏢", "group": "Từ vựng — Cách mạng hóa (dễ nhầm) & lĩnh vực"}, {"front": "industry (n)", "back": "ngành công nghiệp (đồng nghĩa: sector)", "ex": "the tourism industry", "ex_vi": "ngành du lịch", "pron": "/ˈɪndəstri/", "img": "🏭", "group": "Từ vựng — Cách mạng hóa (dễ nhầm) & lĩnh vực"}, {"front": "impress (v)", "back": "gây ấn tượng", "ex": "impress the judges", "ex_vi": "gây ấn tượng với ban giám khảo", "pron": "/ɪmˈpres/", "img": "🌟", "group": "Từ vựng — Ấn tượng & trách nhiệm giải trình (dễ nhầm)"}, {"front": "express stop (n)", "back": "trạm dừng", "ex": "This is an express stop.", "ex_vi": "Đây là một trạm dừng tốc hành.", "pron": "/ɪkˈspres stɑːp/", "img": "🚉", "group": "Từ vựng — Ấn tượng & trách nhiệm giải trình (dễ nhầm)"}, {"front": "accountable (a)", "back": "có trách nhiệm giải trình, chịu trách nhiệm", "ex": "accountable for the results", "ex_vi": "chịu trách nhiệm về kết quả", "pron": "/əˈkaʊntəbl/", "img": "📋", "group": "Từ vựng — Ấn tượng & trách nhiệm giải trình (dễ nhầm)"}, {"front": "be accountable for", "back": "chịu trách nhiệm về (đồng nghĩa: be responsible for)", "ex": "accountable for the budget", "ex_vi": "chịu trách nhiệm về ngân sách", "pron": "", "img": "📋", "group": "Từ vựng — Ấn tượng & trách nhiệm giải trình (dễ nhầm)"}, {"front": "flexible (a)", "back": "linh hoạt", "ex": "flexible working hours", "ex_vi": "giờ làm việc linh hoạt", "pron": "/ˈfleksəbl/", "img": "🤸", "group": "Từ vựng — Ấn tượng & trách nhiệm giải trình (dễ nhầm)"}, {"front": "flexibility (n)", "back": "sự linh hoạt", "ex": "offer flexibility", "ex_vi": "mang lại sự linh hoạt", "pron": "/ˌfleksəˈbɪləti/", "img": "🤸", "group": "Từ vựng — Ấn tượng & trách nhiệm giải trình (dễ nhầm)"}, {"front": "state (v)", "back": "phát biểu, tuyên bố (đồng nghĩa: say, claim)", "ex": "state your name", "ex_vi": "nêu tên của bạn", "pron": "/steɪt/", "img": "💬", "group": "Ngữ pháp & từ vựng — Say/state/claim & resulting"}, {"front": "resulting from", "back": "là kết quả từ", "ex": "problems resulting from the delay", "ex_vi": "các vấn đề phát sinh từ sự chậm trễ", "pron": "", "img": "➡️", "group": "Ngữ pháp & từ vựng — Say/state/claim & resulting"}, {"front": "resulting in", "back": "dẫn đến kết quả là", "ex": "changes resulting in higher costs", "ex_vi": "những thay đổi dẫn đến chi phí cao hơn", "pron": "", "img": "➡️", "group": "Ngữ pháp & từ vựng — Say/state/claim & resulting"}, {"front": "effective on + ngày", "back": "có hiệu lực vào ngày", "ex": "Effective on May 8th, prices will rise.", "ex_vi": "Có hiệu lực từ ngày 8 tháng 5, giá sẽ tăng.", "pron": "", "img": "📆", "group": "Ngữ pháp & từ vựng — Say/state/claim & resulting"}, {"front": "isolate (v)", "back": "tách biệt", "ex": "isolate the patient", "ex_vi": "cách ly bệnh nhân", "pron": "/ˈaɪsəleɪt/", "img": "🏝️", "group": "Từ vựng — Tách biệt, khu vực hẻo lánh & đam mê"}, {"front": "isolated (a)", "back": "cô lập, biệt lập", "ex": "an isolated village", "ex_vi": "một ngôi làng biệt lập", "pron": "/ˈaɪsəleɪtɪd/", "img": "🏝️", "group": "Từ vựng — Tách biệt, khu vực hẻo lánh & đam mê"}, {"front": "remote area", "back": "khu vực hẻo lánh", "ex": "live in a remote area", "ex_vi": "sống ở khu vực hẻo lánh", "pron": "", "img": "🏔️", "group": "Từ vựng — Tách biệt, khu vực hẻo lánh & đam mê"}, {"front": "flock to (v)", "back": "đổ xô đến", "ex": "tourists flock to the beach", "ex_vi": "khách du lịch đổ xô đến bãi biển", "pron": "/flɑːk tuː/", "img": "🏖️", "group": "Từ vựng — Tách biệt, khu vực hẻo lánh & đam mê"}, {"front": "enthusiast (n)", "back": "người đam mê, người nhiệt huyết (đồng nghĩa: lover)", "ex": "a history enthusiast", "ex_vi": "một người đam mê lịch sử", "pron": "/ɪnˈθuːziæst/", "img": "❤️", "group": "Từ vựng — Tách biệt, khu vực hẻo lánh & đam mê"}, {"front": "enthusiastic (a)", "back": "hăng hái, nhiệt tình", "ex": "an enthusiastic team", "ex_vi": "một đội ngũ nhiệt tình", "pron": "/ɪnˌθuːziˈæstɪk/", "img": "🙌", "group": "Từ vựng — Tách biệt, khu vực hẻo lánh & đam mê"}, {"front": "enthusiasm (n)", "back": "sự nhiệt tình, lòng hăng hái", "ex": "show enthusiasm", "ex_vi": "thể hiện sự nhiệt tình", "pron": "/ɪnˈθuːziæzəm/", "img": "🙌", "group": "Từ vựng — Tách biệt, khu vực hẻo lánh & đam mê"}, {"front": "raise + O", "back": "ngoại động từ, LUÔN cần tân ngữ theo sau", "ex": "raise your hand", "ex_vi": "giơ tay lên", "pron": "/reɪz/", "img": "🙋", "group": "Ngữ pháp & từ vựng — Raise/rise & khen (dễ nhầm)"}, {"front": "rise (v)", "back": "nội động từ, KHÔNG cần tân ngữ", "ex": "Prices rise every year.", "ex_vi": "Giá cả tăng mỗi năm.", "pron": "/raɪz/", "img": "📈", "group": "Ngữ pháp & từ vựng — Raise/rise & khen (dễ nhầm)"}, {"front": "praise (v)", "back": "khen (đồng nghĩa: compliment)", "ex": "praise the team", "ex_vi": "khen ngợi đội nhóm", "pron": "/preɪz/", "img": "👏", "group": "Ngữ pháp & từ vựng — Raise/rise & khen (dễ nhầm)"}, {"front": "compliment (v)", "back": "khen (đồng nghĩa: praise)", "ex": "compliment her cooking", "ex_vi": "khen tài nấu ăn của cô ấy", "pron": "/ˈkɑːmplɪment/", "img": "👏", "group": "Ngữ pháp & từ vựng — Raise/rise & khen (dễ nhầm)"}, {"front": "complimentary (a)", "back": "miễn phí", "ex": "a complimentary breakfast", "ex_vi": "bữa sáng miễn phí", "pron": "/ˌkɑːmplɪˈmentri/", "img": "🎁", "group": "Ngữ pháp & từ vựng — Raise/rise & khen (dễ nhầm)"}, {"front": "complementary (a)", "back": "bổ sung cho nhau, tương hỗ", "ex": "complementary skills", "ex_vi": "kỹ năng bổ sung cho nhau", "pron": "/ˌkɑːmplɪˈmentri/", "img": "🧩", "group": "Ngữ pháp & từ vựng — Raise/rise & khen (dễ nhầm)"}, {"front": "pro'duce (v)", "back": "sản xuất", "ex": "produce goods", "ex_vi": "sản xuất hàng hóa", "pron": "/prəˈduːs/", "img": "🏭", "group": "Từ vựng — Sản xuất & sản phẩm (phân biệt trọng âm)"}, {"front": "'produce (n)", "back": "nông sản", "ex": "fresh produce", "ex_vi": "nông sản tươi", "pron": "/ˈprɑːduːs/", "img": "🥬", "group": "Từ vựng — Sản xuất & sản phẩm (phân biệt trọng âm)"}, {"front": "product (n)", "back": "sản phẩm", "ex": "a new product", "ex_vi": "một sản phẩm mới", "pron": "/ˈprɑːdʌkt/", "img": "📦", "group": "Từ vựng — Sản xuất & sản phẩm (phân biệt trọng âm)"}, {"front": "play (n)", "back": "vở kịch", "ex": "watch a play", "ex_vi": "xem một vở kịch", "pron": "/pleɪ/", "img": "🎭", "group": "Từ vựng — Sản xuất & sản phẩm (phân biệt trọng âm)"}, {"front": "musical (n)", "back": "vở nhạc kịch", "ex": "watch a musical on Broadway", "ex_vi": "xem một vở nhạc kịch ở Broadway", "pron": "/ˈmjuːzɪkl/", "img": "🎶", "group": "Từ vựng — Sản xuất & sản phẩm (phân biệt trọng âm)"}, {"front": "V-ing làm chủ ngữ câu", "back": "danh động từ (V-ing) có thể đứng đầu câu làm chủ ngữ", "ex": "Swimming in the pool is not dependent on the weather.", "ex_vi": "Bơi trong hồ bơi không phụ thuộc vào thời tiết.", "pron": "", "img": "🏊", "group": "Ngữ pháp — V-ing làm chủ ngữ & câu mệnh lệnh"}, {"front": "V nguyên mẫu — câu mệnh lệnh", "back": "dùng V nguyên mẫu để ra lệnh, yêu cầu", "ex": "Swim fast!", "ex_vi": "Bơi nhanh lên!", "pron": "", "img": "❗", "group": "Ngữ pháp — V-ing làm chủ ngữ & câu mệnh lệnh"}, {"front": "impose (v)", "back": "áp đặt", "ex": "impose a rule", "ex_vi": "áp đặt một quy định", "pron": "/ɪmˈpoʊz/", "img": "⚖️", "group": "Từ vựng — Áp đặt & hậu tố -en (làm cho... hơn)"}, {"front": "application (n)", "back": "đơn xin, đơn ứng tuyển; ứng dụng", "ex": "submit an application", "ex_vi": "nộp đơn ứng tuyển", "pron": "/ˌæplɪˈkeɪʃn/", "img": "📝", "group": "Từ vựng — Áp đặt & hậu tố -en (làm cho... hơn)"}, {"front": "shorten (v)", "back": "rút ngắn", "ex": "shorten the deadline", "ex_vi": "rút ngắn thời hạn", "pron": "/ˈʃɔːrtn/", "img": "✂️", "group": "Từ vựng — Áp đặt & hậu tố -en (làm cho... hơn)"}, {"front": "brighten (v)", "back": "làm sáng lên", "ex": "brighten the room", "ex_vi": "làm căn phòng sáng lên", "pron": "/ˈbraɪtn/", "img": "☀️", "group": "Từ vựng — Áp đặt & hậu tố -en (làm cho... hơn)"}, {"front": "soften (v)", "back": "làm mềm", "ex": "soften the butter", "ex_vi": "làm mềm bơ", "pron": "/ˈsɔːfn/", "img": "🧈", "group": "Từ vựng — Áp đặt & hậu tố -en (làm cho... hơn)"}, {"front": "enlighten (v)", "back": "khai sáng", "ex": "enlighten the public", "ex_vi": "khai sáng cho công chúng", "pron": "/ɪnˈlaɪtn/", "img": "💡", "group": "Từ vựng — Áp đặt & hậu tố -en (làm cho... hơn)"}, {"front": "software (n)", "back": "phần mềm", "ex": "install new software", "ex_vi": "cài đặt phần mềm mới", "pron": "/ˈsɔːftwer/", "img": "💻", "group": "Từ vựng — Áp đặt & hậu tố -en (làm cho... hơn)"}, {"front": "intersection (n)", "back": "giao lộ", "ex": "at the intersection", "ex_vi": "ở giao lộ", "pron": "/ˌɪntərˈsekʃn/", "img": "🚦", "group": "Từ vựng — Giao lộ & sẵn lòng"}, {"front": "be willing to + V", "back": "sẵn lòng làm gì", "ex": "willing to help", "ex_vi": "sẵn lòng giúp đỡ", "pron": "", "img": "🙋", "group": "Từ vựng — Giao lộ & sẵn lòng"}, {"front": "a will (n)", "back": "ý chí", "ex": "the will to succeed", "ex_vi": "ý chí thành công", "pron": "/wɪl/", "img": "💪", "group": "Từ vựng — Giao lộ & sẵn lòng"}, {"front": "tight (a)", "back": "chật, chặt", "ex": "tight clothes", "ex_vi": "quần áo chật", "pron": "/taɪt/", "img": "👖", "group": "Từ vựng — Chặt, vừa vặn, lỏng"}, {"front": "fit (a)", "back": "vừa vặn", "ex": "This shirt fits well.", "ex_vi": "Cái áo này vừa vặn.", "pron": "/fɪt/", "img": "👕", "group": "Từ vựng — Chặt, vừa vặn, lỏng"}, {"front": "loose (a)", "back": "rộng, lỏng lẻo", "ex": "loose clothes", "ex_vi": "quần áo rộng", "pron": "/luːs/", "img": "👖", "group": "Từ vựng — Chặt, vừa vặn, lỏng"}, {"front": "tightly (adv)", "back": "một cách chặt chẽ, chắc chắn", "ex": "Fasten the seatbelt tightly.", "ex_vi": "Thắt chặt dây an toàn.", "pron": "/ˈtaɪtli/", "img": "🔒", "group": "Từ vựng — Chặt, vừa vặn, lỏng"}, {"front": "aside from", "back": "ngoài ra, bên cạnh việc (đồng nghĩa: apart from, besides, in addition to)", "ex": "Aside from cost, quality matters too.", "ex_vi": "Ngoài chi phí, chất lượng cũng quan trọng.", "pron": "", "img": "➕", "group": "Từ vựng — Ngoài ra & sáng kiến"}, {"front": "apart from", "back": "ngoài ra (đồng nghĩa: aside from, besides, in addition to)", "ex": "Apart from Tom, everyone came.", "ex_vi": "Ngoài Tom ra, mọi người đều đến.", "pron": "", "img": "➕", "group": "Từ vựng — Ngoài ra & sáng kiến"}, {"front": "besides", "back": "bên cạnh đó, ngoài ra (đồng nghĩa: aside from, apart from, in addition to)", "ex": "Besides English, she speaks French.", "ex_vi": "Ngoài tiếng Anh, cô ấy còn nói tiếng Pháp.", "pron": "", "img": "➕", "group": "Từ vựng — Ngoài ra & sáng kiến"}, {"front": "in addition to", "back": "ngoài ra, thêm vào đó (đồng nghĩa: aside from, apart from, besides)", "ex": "In addition to salary, there are bonuses.", "ex_vi": "Ngoài lương, còn có tiền thưởng.", "pron": "", "img": "➕", "group": "Từ vựng — Ngoài ra & sáng kiến"}, {"front": "initiative (n)", "back": "sáng kiến, kế hoạch hành động", "ex": "take the initiative", "ex_vi": "chủ động đưa ra sáng kiến", "pron": "/ɪˈnɪʃətɪv/", "img": "💡", "group": "Từ vựng — Ngoài ra & sáng kiến"}, {"front": "initiator (n)", "back": "người khởi xướng", "ex": "the initiator of the project", "ex_vi": "người khởi xướng dự án", "pron": "/ɪˈnɪʃieɪtər/", "img": "🚀", "group": "Từ vựng — Ngoài ra & sáng kiến"}, {"front": "wellness (n)", "back": "sức khỏe, sự khỏe mạnh (đồng nghĩa: health)", "ex": "a wellness program", "ex_vi": "một chương trình chăm sóc sức khỏe", "pron": "/ˈwelnəs/", "img": "💪", "group": "Từ vựng — Ngoài ra & sáng kiến"}, {"front": "S (người) + lead + O", "back": "chủ ngữ là NGƯỜI: lead + tân ngữ trực tiếp", "ex": "She leads the team.", "ex_vi": "Cô ấy dẫn dắt đội nhóm.", "pron": "", "img": "👤", "group": "Ngữ pháp — Lead (người) & lead to (vật)"}, {"front": "S (vật) + lead to + N", "back": "chủ ngữ là VẬT/việc: LUÔN cần giới từ \"to\" trước danh từ", "ex": "This decision led to success.", "ex_vi": "Quyết định này đã dẫn đến thành công.", "pron": "", "img": "➡️", "group": "Ngữ pháp — Lead (người) & lead to (vật)"}, {"front": "anticipate (v)", "back": "dự đoán (đồng nghĩa: predict, forecast)", "ex": "anticipate a delay", "ex_vi": "dự đoán sự chậm trễ", "pron": "/ænˈtɪsɪpeɪt/", "img": "🔮", "group": "Từ vựng — Dự đoán & mức độ tăng mạnh"}, {"front": "predict (v)", "back": "dự đoán (đồng nghĩa: anticipate, forecast)", "ex": "predict the outcome", "ex_vi": "dự đoán kết quả", "pron": "/prɪˈdɪkt/", "img": "🔮", "group": "Từ vựng — Dự đoán & mức độ tăng mạnh"}, {"front": "forecast (v)", "back": "dự báo (đồng nghĩa: anticipate, predict)", "ex": "forecast the weather", "ex_vi": "dự báo thời tiết", "pron": "/ˈfɔːrkæst/", "img": "🔮", "group": "Từ vựng — Dự đoán & mức độ tăng mạnh"}, {"front": "sharp (a)", "back": "sắc bén", "ex": "a sharp increase", "ex_vi": "một sự tăng đột ngột", "pron": "/ʃɑːrp/", "img": "📈", "group": "Từ vựng — Dự đoán & mức độ tăng mạnh"}, {"front": "sharply / substantially / noticeably", "back": "một cách rõ rệt, đáng kể", "ex": "Sales increased sharply.", "ex_vi": "Doanh số tăng mạnh.", "pron": "", "img": "📈", "group": "Từ vựng — Dự đoán & mức độ tăng mạnh"}, {"front": "considerably / dramatically", "back": "một cách đáng kể / một cách mạnh mẽ (đồng nghĩa: sharply, substantially, noticeably)", "ex": "Costs rose dramatically.", "ex_vi": "Chi phí tăng mạnh.", "pron": "", "img": "📈", "group": "Từ vựng — Dự đoán & mức độ tăng mạnh"}, {"front": "significant (a)", "back": "đáng kể", "ex": "a significant change", "ex_vi": "một sự thay đổi đáng kể", "pron": "/sɪɡˈnɪfɪkənt/", "img": "📊", "group": "Từ vựng — Dự đoán & mức độ tăng mạnh"}, {"front": "sustainable (a)", "back": "bền vững", "ex": "sustainable development", "ex_vi": "phát triển bền vững", "pron": "/səˈsteɪnəbl/", "img": "♻️", "group": "Từ vựng — Bền vững, kịch tính & độc quyền"}, {"front": "dramatic (a)", "back": "kịch tính, đáng kể, rõ rệt", "ex": "a dramatic change", "ex_vi": "một sự thay đổi kịch tính", "pron": "/drəˈmætɪk/", "img": "🎭", "group": "Từ vựng — Bền vững, kịch tính & độc quyền"}, {"front": "exclusive (a)", "back": "độc quyền (đồng nghĩa: proprietary)", "ex": "exclusive rights", "ex_vi": "quyền độc quyền", "pron": "/ɪkˈskluːsɪv/", "img": "🔒", "group": "Từ vựng — Bền vững, kịch tính & độc quyền"}, {"front": "proprietary (a)", "back": "độc quyền, sở hữu riêng (đồng nghĩa: exclusive)", "ex": "proprietary technology", "ex_vi": "công nghệ độc quyền", "pron": "/prəˈpraɪəteri/", "img": "🔒", "group": "Từ vựng — Bền vững, kịch tính & độc quyền"}, {"front": "exceptional (a)", "back": "xuất sắc (đồng nghĩa: excellent)", "ex": "exceptional service", "ex_vi": "dịch vụ xuất sắc", "pron": "/ɪkˈsepʃənl/", "img": "🌟", "group": "Từ vựng — Bền vững, kịch tính & độc quyền"}, {"front": "exterior (n)", "back": "bên ngoài, ngoại thất", "ex": "the exterior of the building", "ex_vi": "mặt ngoài của tòa nhà", "pron": "/ɪkˈstɪriər/", "img": "🏢", "group": "Từ vựng — Bên ngoài & nội bộ"}, {"front": "external (a)", "back": "bên ngoài", "ex": "external factors", "ex_vi": "yếu tố bên ngoài", "pron": "/ɪkˈstɜːrnl/", "img": "🌐", "group": "Từ vựng — Bên ngoài & nội bộ"}, {"front": "internal (a)", "back": "nội bộ, bên trong", "ex": "an internal problem", "ex_vi": "một vấn đề nội bộ", "pron": "/ɪnˈtɜːrnl/", "img": "🏠", "group": "Từ vựng — Bên ngoài & nội bộ"}, {"front": "repeat (v)", "back": "lặp lại", "ex": "repeat the instructions", "ex_vi": "lặp lại hướng dẫn", "pron": "/rɪˈpiːt/", "img": "🔁", "group": "Từ vựng — Lặp lại & bỏ sót"}, {"front": "repetition (n)", "back": "sự lặp lại", "ex": "avoid repetition", "ex_vi": "tránh sự lặp lại", "pron": "/ˌrepəˈtɪʃn/", "img": "🔁", "group": "Từ vựng — Lặp lại & bỏ sót"}, {"front": "repetitive (a)", "back": "lặp đi lặp lại", "ex": "a repetitive task", "ex_vi": "một công việc lặp đi lặp lại", "pron": "/rɪˈpetətɪv/", "img": "🔁", "group": "Từ vựng — Lặp lại & bỏ sót"}, {"front": "omit (v)", "back": "bỏ sót, không đề cập đến", "ex": "omit a detail", "ex_vi": "bỏ sót một chi tiết", "pron": "/oʊˈmɪt/", "img": "➖", "group": "Từ vựng — Lặp lại & bỏ sót"}, {"front": "delete (v)", "back": "xóa", "ex": "delete the file", "ex_vi": "xóa tệp tin", "pron": "/dɪˈliːt/", "img": "🗑️", "group": "Từ vựng — Lặp lại & bỏ sót"}, {"front": "provided that / providing that", "back": "với điều kiện là (đồng nghĩa: if)", "ex": "You may leave, provided that you finish first.", "ex_vi": "Bạn có thể về, miễn là hoàn thành trước đã.", "pron": "", "img": "✅", "group": "Ngữ pháp — Provided/providing that"}, {"front": "physician (n)", "back": "bác sĩ (đồng nghĩa: doctor)", "ex": "see a physician", "ex_vi": "đi khám bác sĩ", "pron": "/fɪˈzɪʃn/", "img": "👨‍⚕️", "group": "Từ vựng — Bác sĩ, vật lý & hội đồng (dễ nhầm)"}, {"front": "physics (n)", "back": "vật lý học", "ex": "study physics", "ex_vi": "học vật lý", "pron": "/ˈfɪzɪks/", "img": "⚛️", "group": "Từ vựng — Bác sĩ, vật lý & hội đồng (dễ nhầm)"}, {"front": "a panel of (experts)", "back": "một hội đồng/ban", "ex": "a panel of judges", "ex_vi": "một ban giám khảo", "pron": "", "img": "👥", "group": "Từ vựng — Bác sĩ, vật lý & hội đồng (dễ nhầm)"}, {"front": "crew (n)", "back": "đội ngũ, phi hành đoàn", "ex": "the flight crew", "ex_vi": "phi hành đoàn", "pron": "/kruː/", "img": "👥", "group": "Từ vựng — Bác sĩ, vật lý & hội đồng (dễ nhầm)"}, {"front": "fleet (n)", "back": "đội xe/đội tàu", "ex": "a fleet of trucks", "ex_vi": "một đội xe tải", "pron": "/fliːt/", "img": "🚚", "group": "Từ vựng — Bác sĩ, vật lý & hội đồng (dễ nhầm)"}, {"front": "broaden (v)", "back": "mở rộng (đồng nghĩa: widen, expand, enlarge)", "ex": "broaden your horizons", "ex_vi": "mở rộng tầm nhìn", "pron": "/ˈbrɔːdn/", "img": "↔️", "group": "Từ vựng — Mở rộng & sâu rộng/chuyên sâu (dễ nhầm)"}, {"front": "widen (v)", "back": "mở rộng (đồng nghĩa: broaden, expand, enlarge)", "ex": "widen the road", "ex_vi": "mở rộng con đường", "pron": "/ˈwaɪdn/", "img": "↔️", "group": "Từ vựng — Mở rộng & sâu rộng/chuyên sâu (dễ nhầm)"}, {"front": "expand (v)", "back": "mở rộng (đồng nghĩa: broaden, widen, enlarge)", "ex": "expand the business", "ex_vi": "mở rộng kinh doanh", "pron": "/ɪkˈspænd/", "img": "↔️", "group": "Từ vựng — Mở rộng & sâu rộng/chuyên sâu (dễ nhầm)"}, {"front": "enlarge (v)", "back": "mở rộng, phóng to (đồng nghĩa: broaden, widen, expand)", "ex": "enlarge the photo", "ex_vi": "phóng to bức ảnh", "pron": "/ɪnˈlɑːrdʒ/", "img": "🔍", "group": "Từ vựng — Mở rộng & sâu rộng/chuyên sâu (dễ nhầm)"}, {"front": "extensive (a)", "back": "sâu rộng, rộng lớn", "ex": "extensive research", "ex_vi": "nghiên cứu sâu rộng", "pron": "/ɪkˈstensɪv/", "img": "📚", "group": "Từ vựng — Mở rộng & sâu rộng/chuyên sâu (dễ nhầm)"}, {"front": "intensive (a)", "back": "chuyên sâu, tập trung cao độ", "ex": "an intensive course", "ex_vi": "một khóa học chuyên sâu", "pron": "/ɪnˈtensɪv/", "img": "🎯", "group": "Từ vựng — Mở rộng & sâu rộng/chuyên sâu (dễ nhầm)"}, {"front": "on a … basis", "back": "theo (định kỳ nào đó, vd: hàng tháng, hàng tuần...)", "ex": "on a monthly basis", "ex_vi": "theo hàng tháng", "pron": "", "img": "📆", "group": "Từ vựng — Định kỳ, chính xác & quý giá"}, {"front": "precise (a)", "back": "chính xác", "ex": "precise measurements", "ex_vi": "số đo chính xác", "pron": "/prɪˈsaɪs/", "img": "🎯", "group": "Từ vựng — Định kỳ, chính xác & quý giá"}, {"front": "precious (a)", "back": "quý giá (đồng nghĩa: valuable)", "ex": "precious time", "ex_vi": "thời gian quý báu", "pron": "/ˈpreʃəs/", "img": "💎", "group": "Từ vựng — Định kỳ, chính xác & quý giá"}, {"front": "evaluate (v)", "back": "đánh giá", "ex": "evaluate performance", "ex_vi": "đánh giá hiệu suất", "pron": "/ɪˈvæljueɪt/", "img": "📊", "group": "Từ vựng — Định kỳ, chính xác & quý giá"}, {"front": "evaluation (n)", "back": "sự đánh giá", "ex": "a performance evaluation", "ex_vi": "một đánh giá hiệu suất", "pron": "/ɪˌvæljuˈeɪʃn/", "img": "📊", "group": "Từ vựng — Định kỳ, chính xác & quý giá"}, {"front": "S + find + O + adj", "back": "thấy điều gì đó như thế nào", "ex": "I find this book interesting.", "ex_vi": "Tôi thấy cuốn sách này thú vị.", "pron": "", "img": "💭", "group": "Ngữ pháp — S + find/make/keep/consider + O + adj"}, {"front": "make/keep/find/consider + O + adj", "back": "nhóm động từ nhận thức: V + tân ngữ + tính từ", "ex": "Keep the room clean.", "ex_vi": "Giữ căn phòng sạch sẽ.", "pron": "", "img": "💭", "group": "Ngữ pháp — S + find/make/keep/consider + O + adj"}, {"front": "especially / particularly", "back": "đặc biệt là", "ex": "I like fruit, especially mangoes.", "ex_vi": "Tôi thích trái cây, đặc biệt là xoài.", "pron": "", "img": "🎯", "group": "Từ vựng — Đặc biệt là & mức độ (2 nhóm khác nhau)"}, {"front": "very / extremely", "back": "rất / cực kỳ", "ex": "This is extremely important.", "ex_vi": "Điều này cực kỳ quan trọng.", "pron": "", "img": "❗", "group": "Từ vựng — Đặc biệt là & mức độ (2 nhóm khác nhau)"}, {"front": "counsel (v)", "back": "tư vấn (đồng nghĩa: consult)", "ex": "counsel students", "ex_vi": "tư vấn cho học sinh", "pron": "/ˈkaʊnsl/", "img": "💬", "group": "Từ vựng & ngữ pháp — Tư vấn & cân nhắc"}, {"front": "consult (v)", "back": "tư vấn, tham khảo ý kiến (đồng nghĩa: counsel)", "ex": "consult a doctor", "ex_vi": "tham khảo ý kiến bác sĩ", "pron": "/kənˈsʌlt/", "img": "💬", "group": "Từ vựng & ngữ pháp — Tư vấn & cân nhắc"}, {"front": "consultant (n)", "back": "nhà tư vấn (đồng nghĩa: counselor)", "ex": "hire a consultant", "ex_vi": "thuê một nhà tư vấn", "pron": "/kənˈsʌltənt/", "img": "👔", "group": "Từ vựng & ngữ pháp — Tư vấn & cân nhắc"}, {"front": "counselor (n)", "back": "cố vấn, người tư vấn (đồng nghĩa: consultant)", "ex": "a school counselor", "ex_vi": "một cố vấn học đường", "pron": "/ˈkaʊnsələr/", "img": "👔", "group": "Từ vựng & ngữ pháp — Tư vấn & cân nhắc"}, {"front": "consider + V-ing", "back": "cân nhắc làm gì", "ex": "Consider applying early.", "ex_vi": "Cân nhắc nộp đơn sớm.", "pron": "", "img": "🤔", "group": "Từ vựng & ngữ pháp — Tư vấn & cân nhắc"}, {"front": "accomplishment (n)", "back": "thành tựu", "ex": "a great accomplishment", "ex_vi": "một thành tựu lớn", "pron": "/əˈkɑːmplɪʃmənt/", "img": "🏆", "group": "Từ vựng — Thành tựu & thành lập"}, {"front": "accomplish (v)", "back": "hoàn thành, đạt được (đồng nghĩa: complete)", "ex": "accomplish a goal", "ex_vi": "đạt được một mục tiêu", "pron": "/əˈkɑːmplɪʃ/", "img": "🏆", "group": "Từ vựng — Thành tựu & thành lập"}, {"front": "establishment (n)", "back": "cơ sở, tổ chức được thành lập", "ex": "a business establishment", "ex_vi": "một cơ sở kinh doanh", "pron": "/ɪˈstæblɪʃmənt/", "img": "🏢", "group": "Từ vựng — Thành tựu & thành lập"}, {"front": "foundation (n)", "back": "nền tảng; quỹ", "ex": "lay the foundation", "ex_vi": "đặt nền móng", "pron": "/faʊnˈdeɪʃn/", "img": "🏗️", "group": "Từ vựng — Thành tựu & thành lập"}, {"front": "uncertainty (n)", "back": "sự không chắc chắn", "ex": "economic uncertainty", "ex_vi": "sự bất ổn kinh tế", "pron": "/ʌnˈsɜːrtnti/", "img": "❓", "group": "Từ vựng — Không chắc chắn, tham khảo & cân nặng"}, {"front": "reference (n)", "back": "sự tham khảo; thư giới thiệu", "ex": "a letter of reference", "ex_vi": "một thư giới thiệu", "pron": "/ˈrefrəns/", "img": "📄", "group": "Từ vựng — Không chắc chắn, tham khảo & cân nặng"}, {"front": "weight (n)", "back": "trọng lượng, cân nặng", "ex": "gain weight", "ex_vi": "tăng cân", "pron": "/weɪt/", "img": "⚖️", "group": "Từ vựng — Không chắc chắn, tham khảo & cân nặng"}, {"front": "weights (n, số nhiều)", "back": "quả tạ", "ex": "lift weights", "ex_vi": "tập tạ", "pron": "/weɪts/", "img": "🏋️", "group": "Từ vựng — Không chắc chắn, tham khảo & cân nặng"}, {"front": "weighty (a)", "back": "nặng nề (đồng nghĩa: heavy)", "ex": "a weighty issue", "ex_vi": "một vấn đề nặng nề", "pron": "/ˈweɪti/", "img": "⚖️", "group": "Từ vựng — Không chắc chắn, tham khảo & cân nặng"}, {"front": "on the contrary", "back": "trái lại, ngược lại", "ex": "On the contrary, sales improved.", "ex_vi": "Trái lại, doanh số đã cải thiện.", "pron": "", "img": "🔄", "group": "Từ vựng — Không chắc chắn, tham khảo & cân nặng"}, {"front": "in contrast to", "back": "tương phản với", "ex": "In contrast to last year, profits rose.", "ex_vi": "Tương phản với năm ngoái, lợi nhuận đã tăng.", "pron": "", "img": "🔄", "group": "Từ vựng — Không chắc chắn, tham khảo & cân nặng"}, {"front": "approach (n)", "back": "cách tiếp cận", "ex": "a new approach", "ex_vi": "một cách tiếp cận mới", "pron": "/əˈproʊtʃ/", "img": "🚶", "group": "Từ vựng — Tiếp cận, rút lui & làm mờ"}, {"front": "approach (v)", "back": "tiếp cận, đến gần", "ex": "approach the deadline", "ex_vi": "gần đến hạn chót", "pron": "/əˈproʊtʃ/", "img": "🚶", "group": "Từ vựng — Tiếp cận, rút lui & làm mờ"}, {"front": "withdraw (v)", "back": "rút lui, rút", "ex": "withdraw cash", "ex_vi": "rút tiền mặt", "pron": "/wɪðˈdrɔː/", "img": "🏧", "group": "Từ vựng — Tiếp cận, rút lui & làm mờ"}, {"front": "obscure (v)", "back": "làm mờ, che khuất (đồng nghĩa: dim)", "ex": "clouds obscure the sun", "ex_vi": "mây che khuất mặt trời", "pron": "/əbˈskjʊr/", "img": "🌫️", "group": "Từ vựng — Tiếp cận, rút lui & làm mờ"}, {"front": "fade (v)", "back": "phai mờ dần (đồng nghĩa: obscure)", "ex": "colors fade in sunlight", "ex_vi": "màu sắc phai dần dưới ánh nắng", "pron": "/feɪd/", "img": "🌅", "group": "Từ vựng — Tiếp cận, rút lui & làm mờ"}, {"front": "be + V-ing", "back": "công thức thì tiếp diễn", "ex": "is working", "ex_vi": "đang làm việc", "pron": "", "img": "🔄", "group": "Ngữ pháp — Tổng hợp công thức thì"}, {"front": "be + V3/Ved", "back": "công thức bị động", "ex": "is finished", "ex_vi": "đã được hoàn thành", "pron": "", "img": "✅", "group": "Ngữ pháp — Tổng hợp công thức thì"}, {"front": "will + V (nguyên mẫu)", "back": "công thức thì tương lai đơn", "ex": "will arrive", "ex_vi": "sẽ đến", "pron": "", "img": "⏭️", "group": "Ngữ pháp — Tổng hợp công thức thì"}, {"front": "have + V3/Ved", "back": "công thức thì hoàn thành", "ex": "has arrived", "ex_vi": "đã đến", "pron": "", "img": "✅", "group": "Ngữ pháp — Tổng hợp công thức thì"}, {"front": "almond (n)", "back": "hạnh nhân", "ex": "almond milk", "ex_vi": "sữa hạnh nhân", "pron": "/ˈɑːmənd/", "img": "🌰", "group": "Từ vựng — Hạnh nhân, nghiêm khắc & nâng cao"}, {"front": "severe (a)", "back": "nghiêm khắc, khắc nghiệt (đồng nghĩa: strict)", "ex": "severe weather", "ex_vi": "thời tiết khắc nghiệt", "pron": "/sɪˈvɪr/", "img": "⛈️", "group": "Từ vựng — Hạnh nhân, nghiêm khắc & nâng cao"}, {"front": "severely (adv)", "back": "một cách nghiêm trọng", "ex": "severely damaged", "ex_vi": "bị hư hại nghiêm trọng", "pron": "/sɪˈvɪrli/", "img": "⚠️", "group": "Từ vựng — Hạnh nhân, nghiêm khắc & nâng cao"}, {"front": "advanced level", "back": "trình độ nâng cao", "ex": "an advanced level course", "ex_vi": "một khóa học trình độ nâng cao", "pron": "", "img": "🎓", "group": "Từ vựng — Hạnh nhân, nghiêm khắc & nâng cao"}, {"front": "reimburse (v)", "back": "hoàn trả", "ex": "reimburse travel expenses", "ex_vi": "hoàn trả chi phí đi lại", "pron": "/ˌriːɪmˈbɜːrs/", "img": "💵", "group": "Từ vựng — Hạnh nhân, nghiêm khắc & nâng cao"}, {"front": "make up for", "back": "bù đắp cho", "ex": "make up for lost time", "ex_vi": "bù đắp thời gian đã mất", "pron": "", "img": "⏳", "group": "Từ vựng — Hạnh nhân, nghiêm khắc & nâng cao"}, {"front": "make it to the event", "back": "đến kịp/tham dự được sự kiện", "ex": "I made it to the event on time.", "ex_vi": "Tôi đã đến kịp sự kiện đúng giờ.", "pron": "", "img": "🎉", "group": "Từ vựng — Hạnh nhân, nghiêm khắc & nâng cao"}, {"front": "acquire (v)", "back": "đạt được, giành được (đồng nghĩa: gain)", "ex": "acquire new skills", "ex_vi": "đạt được kỹ năng mới", "pron": "/əˈkwaɪər/", "img": "🎯", "group": "Từ vựng — Đạt được, mua lại & tức thì (dễ nhầm)"}, {"front": "acquisition (n)", "back": "sự tiếp thu; sự mua lại", "ex": "a company acquisition", "ex_vi": "một thương vụ mua lại công ty", "pron": "/ˌækwɪˈzɪʃn/", "img": "🤝", "group": "Từ vựng — Đạt được, mua lại & tức thì (dễ nhầm)"}, {"front": "instant noodle (n)", "back": "mì ăn liền", "ex": "cook instant noodles", "ex_vi": "nấu mì ăn liền", "pron": "/ˈɪnstənt ˈnuːdl/", "img": "🍜", "group": "Từ vựng — Đạt được, mua lại & tức thì (dễ nhầm)"}, {"front": "instant (a)", "back": "tức thì, ngay lập tức (đồng nghĩa: immediate)", "ex": "instant results", "ex_vi": "kết quả tức thì", "pron": "/ˈɪnstənt/", "img": "⚡", "group": "Từ vựng — Đạt được, mua lại & tức thì (dễ nhầm)"}, {"front": "in / into", "back": "in = ở trong", "ex": "walk into the room", "ex_vi": "đi vào phòng", "pron": "", "img": "➡️", "group": "Ngữ pháp & từ vựng — Giới từ chuyển động, ổ cứng"}, {"front": "on / onto", "back": "on = ở trên (vị trí); onto = đi lên trên (chuyển động)", "ex": "jump onto the table", "ex_vi": "nhảy lên bàn", "pron": "", "img": "➡️", "group": "Ngữ pháp & từ vựng — Giới từ chuyển động, ổ cứng"}, {"front": "hard drive (n)", "back": "ổ cứng", "ex": "an external hard drive", "ex_vi": "một ổ cứng ngoài", "pron": "/hɑːrd draɪv/", "img": "💾", "group": "Ngữ pháp & từ vựng — Giới từ chuyển động, ổ cứng"}, {"front": "remain + adj", "back": "vẫn", "ex": "remain calm", "ex_vi": "giữ bình tĩnh", "pron": "", "img": "😌", "group": "Ngữ pháp & từ vựng — Giới từ chuyển động, ổ cứng"}, {"front": "handheld (a)", "back": "cầm tay (đồng nghĩa: portable, compact)", "ex": "a handheld device", "ex_vi": "một thiết bị cầm tay", "pron": "/ˈhændheld/", "img": "📱", "group": "Từ vựng — Cầm tay, gọn nhẹ & từ chức"}, {"front": "portable (a)", "back": "di động, xách tay được (đồng nghĩa: handheld, compact)", "ex": "a portable speaker", "ex_vi": "một loa di động", "pron": "/ˈpɔːrtəbl/", "img": "🔊", "group": "Từ vựng — Cầm tay, gọn nhẹ & từ chức"}, {"front": "compact (a)", "back": "gọn nhẹ (đồng nghĩa: handheld, portable)", "ex": "a compact car", "ex_vi": "một chiếc xe gọn nhẹ", "pron": "/kəmˈpækt/", "img": "🚗", "group": "Từ vựng — Cầm tay, gọn nhẹ & từ chức"}, {"front": "resign (v)", "back": "từ chức", "ex": "resign from the position", "ex_vi": "từ chức khỏi vị trí", "pron": "/rɪˈzaɪn/", "img": "🚪", "group": "Từ vựng — Cầm tay, gọn nhẹ & từ chức"}, {"front": "step down", "back": "từ chức, rút lui (đồng nghĩa: resign)", "ex": "step down as CEO", "ex_vi": "từ chức CEO", "pron": "", "img": "🚪", "group": "Từ vựng — Cầm tay, gọn nhẹ & từ chức"}, {"front": "treasure (n)", "back": "kho báu", "ex": "buried treasure", "ex_vi": "kho báu chôn giấu", "pron": "/ˈtreʒər/", "img": "💰", "group": "Từ vựng — Kho báu, thủ quỹ & tem"}, {"front": "treasurer (n)", "back": "thủ quỹ", "ex": "the club treasurer", "ex_vi": "thủ quỹ của câu lạc bộ", "pron": "/ˈtreʒərər/", "img": "💵", "group": "Từ vựng — Kho báu, thủ quỹ & tem"}, {"front": "stamp (n)", "back": "tem", "ex": "collect stamps", "ex_vi": "sưu tầm tem", "pron": "/stæmp/", "img": "📮", "group": "Từ vựng — Kho báu, thủ quỹ & tem"}, {"front": "post office (n)", "back": "bưu điện", "ex": "go to the post office", "ex_vi": "đến bưu điện", "pron": "", "img": "🏤", "group": "Từ vựng — Kho báu, thủ quỹ & tem"}, {"front": "risk (v)", "back": "mạo hiểm, đối mặt rủi ro", "ex": "risk losing everything", "ex_vi": "mạo hiểm mất tất cả", "pron": "/rɪsk/", "img": "⚠️", "group": "Ngữ pháp — Risk + V-ing & enroll/register"}, {"front": "risk + V-ing", "back": "mạo hiểm làm việc gì", "ex": "risk missing the flight", "ex_vi": "mạo hiểm lỡ chuyến bay", "pron": "", "img": "⚠️", "group": "Ngữ pháp — Risk + V-ing & enroll/register"}, {"front": "enroll in the course", "back": "đăng ký khóa học", "ex": "enroll in the TOEIC course", "ex_vi": "đăng ký khóa học TOEIC", "pron": "", "img": "📝", "group": "Ngữ pháp — Risk + V-ing & enroll/register"}, {"front": "register for the course", "back": "đăng ký khóa học", "ex": "register for the workshop", "ex_vi": "đăng ký hội thảo", "pron": "", "img": "📝", "group": "Ngữ pháp — Risk + V-ing & enroll/register"}, {"front": "kit (n)", "back": "bộ dụng cụ", "ex": "a first-aid kit", "ex_vi": "một bộ dụng cụ sơ cứu", "pron": "/kɪt/", "img": "🧰", "group": "Từ vựng — Bộ dụng cụ & thời tiết khắc nghiệt"}, {"front": "inclement (a)", "back": "khắc nghiệt", "ex": "inclement weather", "ex_vi": "thời tiết khắc nghiệt", "pron": "/ɪnˈklemənt/", "img": "⛈️", "group": "Từ vựng — Bộ dụng cụ & thời tiết khắc nghiệt"}, {"front": "standardize (v)", "back": "chuẩn hóa", "ex": "standardize the process", "ex_vi": "chuẩn hóa quy trình", "pron": "/ˈstændərdaɪz/", "img": "📏", "group": "Từ vựng — Tiêu chuẩn hóa & cho phép"}, {"front": "enable (v)", "back": "cho phép (đồng nghĩa: allow)", "ex": "enable someone to do something", "ex_vi": "cho phép ai đó làm điều gì", "pron": "/ɪˈneɪbl/", "img": "✅", "group": "Từ vựng — Tiêu chuẩn hóa & cho phép"}, {"front": "permit (v)", "back": "cho phép (đồng nghĩa: enable, allow)", "ex": "Smoking is not permitted.", "ex_vi": "Không được phép hút thuốc.", "pron": "/pərˈmɪt/", "img": "✅", "group": "Từ vựng — Tiêu chuẩn hóa & cho phép"}, {"front": "summary (n)", "back": "bản tóm tắt", "ex": "write a summary", "ex_vi": "viết một bản tóm tắt", "pron": "/ˈsʌməri/", "img": "📄", "group": "Từ vựng — Tóm tắt & tiêu dùng"}, {"front": "summarize (v)", "back": "tóm tắt", "ex": "summarize the report", "ex_vi": "tóm tắt báo cáo", "pron": "/ˈsʌməraɪz/", "img": "📄", "group": "Từ vựng — Tóm tắt & tiêu dùng"}, {"front": "consumer (n)", "back": "người tiêu dùng", "ex": "consumer rights", "ex_vi": "quyền của người tiêu dùng", "pron": "/kənˈsuːmər/", "img": "🛒", "group": "Từ vựng — Tóm tắt & tiêu dùng"}, {"front": "consume (v)", "back": "tiêu dùng; ăn, uống", "ex": "consume energy", "ex_vi": "tiêu thụ năng lượng", "pron": "/kənˈsuːm/", "img": "🍽️", "group": "Từ vựng — Tóm tắt & tiêu dùng"}, {"front": "consumption (n)", "back": "sự tiêu dùng", "ex": "energy consumption", "ex_vi": "mức tiêu thụ năng lượng", "pron": "/kənˈsʌmpʃn/", "img": "📊", "group": "Từ vựng — Tóm tắt & tiêu dùng"}, {"front": "assume (v)", "back": "cho rằng, giả định (đồng nghĩa: suppose)", "ex": "assume the worst", "ex_vi": "giả định điều tồi tệ nhất", "pron": "/əˈsuːm/", "img": "🤔", "group": "Từ vựng — Giả định, người xử lý & củng cố"}, {"front": "suppose (v)", "back": "giả sử, cho rằng (đồng nghĩa: assume)", "ex": "Suppose it rains tomorrow.", "ex_vi": "Giả sử ngày mai trời mưa.", "pron": "/səˈpoʊz/", "img": "🤔", "group": "Từ vựng — Giả định, người xử lý & củng cố"}, {"front": "handler (n)", "back": "người xử lý, người quản lý", "ex": "a data handler", "ex_vi": "người xử lý dữ liệu", "pron": "/ˈhændlər/", "img": "🧑‍💼", "group": "Từ vựng — Giả định, người xử lý & củng cố"}, {"front": "reinforce (v)", "back": "củng cố (đồng nghĩa: strengthen)", "ex": "reinforce the structure", "ex_vi": "củng cố kết cấu", "pron": "/ˌriːɪnˈfɔːrs/", "img": "🏗️", "group": "Từ vựng — Giả định, người xử lý & củng cố"}, {"front": "consolidate (v)", "back": "củng cố, hợp nhất (đồng nghĩa: reinforce, strengthen)", "ex": "consolidate power", "ex_vi": "củng cố quyền lực", "pron": "/kənˈsɑːlɪdeɪt/", "img": "🏗️", "group": "Từ vựng — Giả định, người xử lý & củng cố"}, {"front": "solely (adv)", "back": "chỉ, duy nhất", "ex": "solely responsible", "ex_vi": "chỉ chịu trách nhiệm duy nhất", "pron": "/ˈsoʊlli/", "img": "1️⃣", "group": "Từ vựng — Duy nhất, thành lập & cứng cáp"}, {"front": "form (v)", "back": "thành lập", "ex": "form a committee", "ex_vi": "thành lập một ủy ban", "pron": "/fɔːrm/", "img": "🏛️", "group": "Từ vựng — Duy nhất, thành lập & cứng cáp"}, {"front": "firm (a)", "back": "cứng cáp, chắc chắn", "ex": "a firm handshake", "ex_vi": "một cái bắt tay chắc chắn", "pron": "/fɜːrm/", "img": "💪", "group": "Từ vựng — Duy nhất, thành lập & cứng cáp"}, {"front": "solid (a)", "back": "cứng, rắn chắc (đồng nghĩa: firm, hard)", "ex": "solid evidence", "ex_vi": "bằng chứng chắc chắn", "pron": "/ˈsɑːlɪd/", "img": "🧱", "group": "Từ vựng — Duy nhất, thành lập & cứng cáp"}, {"front": "economy (n)", "back": "nền kinh tế", "ex": "a strong economy", "ex_vi": "một nền kinh tế mạnh", "pron": "/ɪˈkɑːnəmi/", "img": "💹", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "economic (a)", "back": "thuộc về kinh tế", "ex": "economic growth", "ex_vi": "tăng trưởng kinh tế", "pron": "/ˌiːkəˈnɑːmɪk/", "img": "💹", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "economize (v)", "back": "tiết kiệm", "ex": "economize on fuel", "ex_vi": "tiết kiệm nhiên liệu", "pron": "/ɪˈkɑːnəmaɪz/", "img": "💰", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "allocate (v)", "back": "phân bổ", "ex": "allocate the budget", "ex_vi": "phân bổ ngân sách", "pron": "/ˈæləkeɪt/", "img": "📊", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "designate (v)", "back": "chỉ định", "ex": "designate a leader", "ex_vi": "chỉ định một người lãnh đạo", "pron": "/ˈdezɪɡneɪt/", "img": "👉", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "appoint (v)", "back": "bổ nhiệm", "ex": "appoint a manager", "ex_vi": "bổ nhiệm một quản lý", "pron": "/əˈpɔɪnt/", "img": "👉", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "rational (a)", "back": "lý trí, hợp lý", "ex": "a rational decision", "ex_vi": "một quyết định hợp lý", "pron": "/ˈræʃənl/", "img": "🧠", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "rationalize (v)", "back": "hợp lý hóa, biện minh", "ex": "rationalize the choice", "ex_vi": "biện minh cho lựa chọn", "pron": "/ˈræʃənəlaɪz/", "img": "🧠", "group": "Từ vựng — Kinh tế, phân bổ & lý trí"}, {"front": "imprint (v)", "back": "đóng dấu, in dấu", "ex": "imprint a logo", "ex_vi": "in dấu logo", "pron": "/ɪmˈprɪnt/", "img": "🖨️", "group": "Từ vựng & ngữ pháp — Đóng dấu, đề cử, chủ động/bị động"}, {"front": "add", "back": "cộng, thêm vào", "ex": "add two numbers", "ex_vi": "cộng hai con số", "pron": "/æd/", "img": "➕", "group": "Từ vựng & ngữ pháp — Đóng dấu, đề cử, chủ động/bị động"}, {"front": "minus", "back": "trừ", "ex": "ten minus three", "ex_vi": "mười trừ ba", "pron": "/ˈmaɪnəs/", "img": "➖", "group": "Từ vựng & ngữ pháp — Đóng dấu, đề cử, chủ động/bị động"}, {"front": "nominate (v)", "back": "đề cử", "ex": "nominate a candidate", "ex_vi": "đề cử một ứng viên", "pron": "/ˈnɑːmɪneɪt/", "img": "🗳️", "group": "Từ vựng & ngữ pháp — Đóng dấu, đề cử, chủ động/bị động"}, {"front": "V + O → câu chủ động", "back": "câu có tân ngữ theo sau động từ thường là câu chủ động", "ex": "She wrote the report.", "ex_vi": "Cô ấy đã viết báo cáo.", "pron": "", "img": "➡️", "group": "Từ vựng & ngữ pháp — Đóng dấu, đề cử, chủ động/bị động"}, {"front": "không có O → có thể là câu bị động", "back": "câu thiếu tân ngữ sau động từ", "ex": "The report was written.", "ex_vi": "Báo cáo đã được viết.", "pron": "", "img": "⬅️", "group": "Từ vựng & ngữ pháp — Đóng dấu, đề cử, chủ động/bị động"}]};
+
+/* ---------- Trạng thái ---------- */
+let deck = (DECK && Array.isArray(DECK.cards) && DECK.cards.length) ? DECK
+         : {title:"🎯 Flashcard", lang:"en-US", cards:[]};
+let lang = deck.lang || "en-US";
+let settings = Object.assign({dir:"fwd", autoAudio:false, dark:false, weakFirst:true}, store.load("fc_settings", {}));
+const PKEY = "fc_progress_" + (deck.title||"deck").replace(/\s+/g,"_");
+let progress = store.load(PKEY, {});   // front -> level 0..5
+
+let queue=[], pos=0, roundCards=[], round=1, flipped=false;
+let forgotten=new Set(), cleared=new Set(), scored=new Set(), sideMap={};
+let currentGroupFilter="all";   // "all" hoặc đúng tên group của thẻ
+let currentMode="study";        // "study" (flashcard) hoặc "quiz" (kiểm tra)
+let quizQueue=[], quizPos=0, quizScore=0, quizAnswered=false, quizAnsweredCount=0;
+let quizStartMs=null, quizDetails=[];  // dùng để tính thời gian làm + ghi chi tiết từng câu về Sheet (nếu có)
+
+const $ = id => document.getElementById(id);
+
+/* Tách emoji dẫn đầu tiêu đề khỏi phần chữ, để chỉ tô gradient phần chữ —
+   emoji giữ nguyên màu gốc (xem ghi chú tại .title-text trong CSS). */
+function setDeckTitle(){
+  const raw = (deck.title||"🎯 Flashcard").replace(/<.*/,"");
+  const m = raw.match(/^(\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*)\s*/u);
+  $("titleIcon").textContent = m ? m[1] : "";
+  $("titleText").textContent = m ? raw.slice(m[0].length) : raw;
+}
+const shuffleArr = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const getLvl = f => Math.max(0, Math.min(5, progress[f] ?? 0));
+function setLvl(f,v){ progress[f]=Math.max(0,Math.min(5,v)); store.save(PKEY,progress); }
+function saveSettings(){ store.save("fc_settings", settings); }
+
+/* ---------- Lọc theo chủ đề (group) ---------- */
+function uniqueGroups(){
+  const seen=new Set(), list=[];
+  deck.cards.forEach(c=>{ const g=(c.group||"").trim(); if(g && !seen.has(g)){ seen.add(g); list.push(g); } });
+  return list;
+}
+function currentPool(){
+  if(currentGroupFilter==="all") return deck.cards;
+  return deck.cards.filter(c=>c.group===currentGroupFilter);
+}
+function activeIndices(){
+  if(currentGroupFilter==="all") return deck.cards.map((_,i)=>i);
+  const out=[]; deck.cards.forEach((c,i)=>{ if(c.group===currentGroupFilter) out.push(i); }); return out;
+}
+function renderGroupNav(){
+  const nav=$("groupSidebar");
+  const groups=uniqueGroups();
+  nav.innerHTML="";
+  if(!groups.length){ nav.classList.add("hidden"); return; }
+  nav.classList.remove("hidden");
+
+  const label=document.createElement("div");
+  label.className="sidebar-label"; label.textContent="Chủ đề";
+  nav.appendChild(label);
+
+  const counts={};
+  deck.cards.forEach(c=>{ const g=(c.group||"").trim(); if(g) counts[g]=(counts[g]||0)+1; });
+
+  function addChip(label, count, key){
+    const b=document.createElement("button");
+    b.type="button"; b.className="group-chip"+(currentGroupFilter===key?" on":"");
+    b.dataset.g=key;
+    const lab=document.createElement("span"); lab.className="chip-label"; lab.textContent=label;
+    const cnt=document.createElement("span"); cnt.className="cnt"; cnt.textContent=count;
+    b.appendChild(lab); b.appendChild(cnt);
+    b.addEventListener("click", ()=>{
+      if(currentGroupFilter===key) return;
+      currentGroupFilter=key; renderGroupNav();
+      if(currentMode==="quiz") startQuiz(); else startSession();
+    });
+    nav.appendChild(b);
+  }
+  addChip("Tất cả", deck.cards.length, "all");
+  groups.forEach(g=> addChip(g, counts[g], g));
+}
+
+/* ---------- Thứ tự học ---------- */
+function orderIndices(){
+  const idxs = activeIndices();
+  const arr = idxs.map(i=>({i, lvl:getLvl(deck.cards[i].front), r:Math.random()}));
+  if(settings.weakFirst) arr.sort((a,b)=> a.lvl-b.lvl || a.r-b.r);
+  else arr.sort((a,b)=> a.r-b.r);
+  return arr.map(o=>o.i);
+}
+function startSession(){
+  round=1; scored=new Set(); sideMap={};
+  if(activeIndices().length===0){ showEmpty(); return; }
+  startRound(orderIndices(), false);
+  showStudy();
+}
+function startRound(indices, doShuffle){
+  roundCards=[...new Set(indices)];
+  queue = doShuffle ? shuffleArr(roundCards.slice()) : roundCards.slice();
+  forgotten=new Set(); cleared=new Set(); pos=0; flipped=false;
+  render();
+}
+
+/* ---------- Hiển thị mặt thẻ ---------- */
+function sideFor(idx){
+  if(settings.dir==="fwd") return "front";
+  if(settings.dir==="rev") return "back";
+  if(!(idx in sideMap)) sideMap[idx] = Math.random()<0.5 ? "front":"back";
+  return sideMap[idx];
+}
+
+function updateStats(){
+  const total = roundCards.length || 1;
+  let nho=0; cleared.forEach(i=>{ if(!forgotten.has(i)) nho++; });
+  $("sKnow").textContent = nho;
+  $("sForget").textContent = forgotten.size;
+  $("sLeft").textContent = Math.max(total - nho - forgotten.size, 0);
+  $("sRound").textContent = round;
+  $("progBar").style.width = Math.min((cleared.size/total)*100,100)+"%";
+  const pool = currentPool();
+  const mastered = pool.filter(c=>getLvl(c.front)>=4).length;
+  $("deckSub").textContent = `Thuộc ${mastered}/${pool.length} từ`;
+}
+
+function render(){
+  setDeckTitle();
+  if(!deck.cards || deck.cards.length===0 || activeIndices().length===0){ showEmpty(); return; }
+  if(pos>=queue.length){ endRound(); return; }
+
+  const idx = queue[pos];
+  const c = deck.cards[idx];
+  const promptWord = sideFor(idx)==="front";   // mặt trước có phải là "từ" không
+
+  flipped=false; $("card").classList.remove("flip");
+  $("frontWord").textContent   = promptWord ? c.front : c.back;
+  $("frontPron").textContent   = promptWord ? (c.pron||"") : "";
+  $("frontKicker").textContent = promptWord ? "Từ vựng" : "Nghĩa";
+  $("backMeaning").textContent = promptWord ? c.back : c.front;
+  $("backKicker").textContent  = promptWord ? "Nghĩa" : "Từ vựng";
+  $("backExample").textContent = c.ex||"";
+  $("backExampleVi").textContent = c.ex_vi||"";
+  // icon minh họa luôn đi kèm mặt "từ vựng", dù mặt đó là front hay back
+  $("frontIcon").textContent = promptWord ? (c.img||"") : "";
+  $("backIcon").textContent  = promptWord ? "" : (c.img||"");
+  $("btnPrev").disabled = pos===0;
+
+  // độ thuộc (chấm)
+  const lvl=getLvl(c.front), dots=$("frontDots"); dots.innerHTML="";
+  for(let i=0;i<5;i++){ const d=document.createElement("i"); if(i<lvl) d.className="on"; dots.appendChild(d); }
+
+  updateStats();
+  animateEnter();
+  if(settings.autoAudio && promptWord) setTimeout(()=>speakWord(c.front), 260);
+}
+
+function endRound(){
+  if(forgotten.size===0){ showDone(); return; }
+  $("reviewTitle").textContent = `Còn ${forgotten.size} từ chưa nhớ`;
+  const list=$("reviewList"); list.innerHTML="";
+  forgotten.forEach(i=>{ const s=document.createElement("span"); s.className="chip"; s.textContent=deck.cards[i].front; list.appendChild(s); });
+  showReview();
+}
+
+/* ---------- Chuyển màn ---------- */
+function hideAll(){ ["studyView","reviewView","doneView","emptyView","quizView","quizResultView"].forEach(v=>$(v).classList.add("hidden")); }
+function showStudy(){ hideAll(); $("studyView").classList.remove("hidden"); render(); }
+function showReview(){ hideAll(); $("reviewView").classList.remove("hidden"); updateStats(); }
+function showDone(){ hideAll(); $("doneView").classList.remove("hidden");
+  const pool=currentPool();
+  const mastered=pool.filter(c=>getLvl(c.front)>=4).length;
+  $("doneSub").textContent=`Bạn đã hoàn thành! Đã thuộc ${mastered}/${pool.length} từ.`;
+  updateStats(); }
+function showEmpty(){ hideAll(); $("emptyView").classList.remove("hidden"); updateStats(); }
+
+/* ---------- Hoạt ảnh ---------- */
+const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function animateEnter(){ if(reduceMotion) return; const s=$("scene"); if(!s) return; s.classList.remove("enter"); void s.offsetWidth; s.classList.add("enter"); }
+function knowFx(){
+  if(reduceMotion) return;
+  const s=$("scene"); if(!s) return;
+  s.classList.remove("knowpop"); void s.offsetWidth; s.classList.add("knowpop");
+  const wrap=document.createElement("div"); wrap.className="confetti";
+  const colors=["#1D9E75","#127c5b","#F4B740","#F08A5D","#94C4B5"];
+  for(let i=0;i<14;i++){
+    const p=document.createElement("i"), ang=Math.random()*Math.PI*2, dist=60+Math.random()*70;
+    p.style.background=colors[i%colors.length];
+    p.style.setProperty("--cx", Math.cos(ang)*dist+"px");
+    p.style.setProperty("--cy", (Math.sin(ang)*dist-24)+"px");
+    p.style.setProperty("--cr", (Math.random()*360)+"deg");
+    p.style.animation="conf .7s ease-out forwards";
+    p.style.animationDelay=(Math.random()*.05)+"s";
+    wrap.appendChild(p);
+  }
+  s.appendChild(wrap); setTimeout(()=>wrap.remove(), 820);
+}
+
+/* ---------- Hành động cốt lõi ---------- */
+function toggleFlip(){ flipped=!flipped; $("card").classList.toggle("flip", flipped); }
+function doKnow(){
+  if(pos>=queue.length) return;
+  const idx=queue[pos], f=deck.cards[idx].front;
+  cleared.add(idx); knowFx();
+  if(!scored.has(idx)){ scored.add(idx); setLvl(f, getLvl(f)+1); }
+  for(let i=queue.length-1;i>pos;i--){ if(queue[i]===idx) queue.splice(i,1); }
+  pos++; render();
+}
+function doForget(){
+  if(pos>=queue.length) return;
+  const idx=queue[pos], f=deck.cards[idx].front;
+  forgotten.add(idx); cleared.delete(idx);
+  if(!scored.has(idx)){ scored.add(idx); setLvl(f, getLvl(f)-1); }
+  let ahead=false;
+  for(let i=pos+1;i<queue.length;i++){ if(queue[i]===idx){ ahead=true; break; } }
+  if(!ahead){ const at=pos+1+Math.floor(Math.random()*(queue.length-pos)); queue.splice(at,0,idx); }
+  pos++; render();
+}
+function doNext(){ if(pos<queue.length-1){ pos++; render(); } }
+function doPrev(){ if(pos>0){ pos--; render(); } }
+
+$("btnKnow").addEventListener("click", doKnow);
+$("btnForget").addEventListener("click", doForget);
+$("btnNext").addEventListener("click", doNext);
+$("btnPrev").addEventListener("click", doPrev);
+$("btnReviewNow").addEventListener("click", ()=>{ round++; startRound([...forgotten], true); showStudy(); });
+$("btnRestart").addEventListener("click", startSession);
+$("btnShuffle").addEventListener("click", ()=>{ const h=queue.slice(0,pos), t=shuffleArr(queue.slice(pos)); queue=h.concat(t); render(); });
+
+/* ---------- Kiểm tra từ vựng (quiz trắc nghiệm) ---------- */
+function setMode(mode){
+  if(mode===currentMode) return;
+  currentMode=mode;
+  [...$("modeToggle").children].forEach(b=> b.classList.toggle("on", b.dataset.mode===mode));
+  if(mode==="study"){
+    $("statsBarWrap").classList.remove("hidden");
+    showStudy();
+  } else {
+    $("statsBarWrap").classList.add("hidden");
+    startQuiz();
+  }
+}
+$("modeToggle").addEventListener("click", e=>{
+  const b=e.target.closest(".mode-btn"); if(!b) return;
+  setMode(b.dataset.mode);
+});
+
+// Chọn tối đa 3 phương án nhiễu — lấy từ toàn bộ deck (không chỉ nhóm đang lọc)
+// để luôn đủ lựa chọn kể cả khi một nhóm chỉ có 1-2 thẻ.
+function pickQuizDistractors(correctCard){
+  const seenBacks = new Set([correctCard.back]);
+  const out = [];
+  shuffleArr(deck.cards.filter(c=>c!==correctCard).slice()).forEach(c=>{
+    if(out.length>=3) return;
+    if(!seenBacks.has(c.back)){ seenBacks.add(c.back); out.push(c.back); }
+  });
+  return out;
+}
+
+function startQuiz(){
+  hideAll(); $("quizView").classList.remove("hidden");
+  const pool = currentPool();
+  if(!pool.length){ hideAll(); $("emptyView").classList.remove("hidden"); return; }
+  quizQueue = shuffleArr(pool.slice());
+  quizPos = 0; quizScore = 0; quizAnswered = false; quizAnsweredCount = 0;
+  quizStartMs = Date.now(); quizDetails = [];
+  updateQuizSubmitBtn();
+  renderQuizQuestion();
+}
+
+// Nút "Nộp bài" chỉ dùng được sau khi đã trả lời ít nhất 1 câu — tránh nộp bài trống.
+function updateQuizSubmitBtn(){
+  $("quizSubmitBtn").disabled = quizAnsweredCount===0;
+}
+
+function renderQuizQuestion(){
+  if(quizPos>=quizQueue.length){ showQuizResult(); return; }
+  const c = quizQueue[quizPos];
+  quizAnswered = false;
+  $("quizCounter").textContent = `Câu ${quizPos+1}/${quizQueue.length}`;
+  $("quizProgFill").style.width = Math.round((quizPos/quizQueue.length)*100)+"%";
+  $("quizScoreLive").textContent = quizScore;
+  $("quizIcon").textContent = c.img||"";
+  $("quizWord").textContent = c.front;
+  $("quizPron").textContent = c.pron||"";
+
+  const options = shuffleArr([c.back, ...pickQuizDistractors(c)]);
+  const wrap = $("quizOptions"); wrap.innerHTML="";
+  options.forEach((opt,i)=>{
+    const btn=document.createElement("button");
+    btn.type="button"; btn.className="quiz-opt";
+    const lab=document.createElement("span"); lab.className="quiz-opt-label"; lab.textContent=String.fromCharCode(65+i);
+    const txt=document.createElement("span"); txt.className="quiz-opt-text"; txt.textContent=opt;
+    btn.appendChild(lab); btn.appendChild(txt);
+    btn.addEventListener("click", ()=> answerQuiz(btn, opt, c.back, c.front));
+    wrap.appendChild(btn);
+  });
+  $("quizFeedback").className="quiz-feedback"; $("quizFeedback").textContent="";
+  $("quizNext").classList.add("hidden");
+}
+
+function answerQuiz(btn, chosen, correct, word){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  [...$("quizOptions").children].forEach(b=>{
+    b.disabled = true;
+    const text = b.querySelector(".quiz-opt-text").textContent;
+    if(text===correct) b.classList.add("correct");
+    else if(b===btn) b.classList.add("wrong");
+  });
+  const fb=$("quizFeedback");
+  const isCorrect = chosen===correct;
+  quizAnsweredCount++;
+  updateQuizSubmitBtn();
+  // Ghi lại chi tiết câu này — dùng để gửi kèm scoreSheetUrl (cột "Xem chi tiết" +
+  // tab thống kê câu hay sai, nếu Apps Script phía giáo viên hỗ trợ detailsJson).
+  quizDetails.push({ no: quizDetails.length+1, label: word||"", given: chosen||"", answer: correct||"", correct: isCorrect });
+  if(isCorrect){
+    quizScore++;
+    fb.className="quiz-feedback correct"; fb.textContent="✅ Chính xác!";
+  } else {
+    fb.className="quiz-feedback wrong"; fb.textContent=`❌ Chưa đúng — đáp án: ${correct}`;
+  }
+  $("quizScoreLive").textContent = quizScore;
+  $("quizNext").classList.remove("hidden");
+}
+
+function nextQuiz(){ quizPos++; renderQuizQuestion(); }
+
+// finishQuiz(partial): partial=false khi đã trả lời hết toàn bộ hàng đợi (đường thường);
+// partial=true khi học sinh chủ động bấm "Nộp bài" giữa chừng — total dùng số câu ĐÃ TRẢ LỜI
+// (quizAnsweredCount), không phải tổng số thẻ, để không tính những câu chưa làm là sai.
+function finishQuiz(partial){
+  const score = quizScore;
+  const total = partial ? Math.max(quizAnsweredCount, 1) : (quizQueue.length || 1);
+  const pct = Math.round((score/total)*100);
+  $("quizScorePct").textContent = pct+"%";
+  $("quizScoreLabel").textContent = partial
+    ? `${score}/${total} câu đúng (nộp giữa chừng — đã làm ${quizAnsweredCount}/${quizQueue.length} câu)`
+    : `${score}/${total} câu đúng`;
+  hideAll(); $("quizResultView").classList.remove("hidden");
+  maybeSubmitScore(score, total, pct);
+}
+
+function showQuizResult(){ finishQuiz(false); }
+
+/* ---------- Nộp bài giữa chừng (bất cứ lúc nào, không cần làm hết thẻ) ---------- */
+function openSubmitConfirm(){
+  if(quizAnsweredCount===0) return; // nút đã bị disable, đây là chốt an toàn thêm
+  $("submitConfirmSub").textContent =
+    `Bạn đã làm ${quizAnsweredCount}/${quizQueue.length} câu, đúng ${quizScore} câu. Nộp bài ngay?`;
+  $("submitConfirmModal").classList.remove("hidden");
+}
+$("quizSubmitBtn").addEventListener("click", openSubmitConfirm);
+$("btnSubmitConfirmNo").addEventListener("click", ()=> $("submitConfirmModal").classList.add("hidden"));
+$("btnSubmitConfirmYes").addEventListener("click", ()=>{
+  $("submitConfirmModal").classList.add("hidden");
+  finishQuiz(true);
+});
+
+$("quizNext").addEventListener("click", nextQuiz);
+$("btnQuizRetry").addEventListener("click", startQuiz);
+$("btnQuizToStudy").addEventListener("click", ()=> setMode("study"));
+
+/* ---------- Ghi điểm Kiểm tra về Google Sheet (tùy chọn, qua Apps Script) ---------- */
+const NAME_KEY = "fc_student_name"; // dùng chung cho mọi bộ thẻ trên máy này, chỉ hỏi 1 lần
+let pendingScoreSubmit = null;
+
+function getStudentName(){ return (store.load(NAME_KEY, "")||"").trim(); }
+function setStudentName(n){ store.save(NAME_KEY, n); }
+
+// Gọi sau mỗi lần xem kết quả Kiểm tra. Không làm gì nếu deck không cấu hình scoreSheetUrl.
+function maybeSubmitScore(score, total, pct){
+  const url = (deck.scoreSheetUrl||"").trim();
+  if(!url) return;
+  const name = getStudentName();
+  if(!name){
+    pendingScoreSubmit = {score, total, pct};
+    $("nameInput").value = "";
+    $("nameModal").classList.remove("hidden");
+    return;
+  }
+  submitScoreToSheet(url, name, score, total, pct);
+}
+
+function fmtMMSS(totalSec){
+  const s = Math.max(0, Math.round(totalSec));
+  const m = Math.floor(s/60), r = s%60;
+  return String(m).padStart(2,"0") + ":" + String(r).padStart(2,"0");
+}
+
+function submitScoreToSheet(url, name, score, total, pct){
+  const nowIso = new Date().toISOString();
+  const elapsedSec = quizStartMs!=null ? Math.round((Date.now()-quizStartMs)/1000) : "";
+  const payload = {
+    name, deck: deck.title||"", score, total, pct,
+    // Trường "ts" giữ để tương thích flashcard-score-sheet.gs (schema đơn giản mặc định
+    // của SKILL_Flashcard); "timestamp"/"class"/"unit"/"level"/"timeSeconds"/
+    // "timeFormatted"/"detailsJson" phục vụ schema phong phú hơn (vd PET calm-wave
+    // logger) — cả hai kiểu Apps Script đều đọc được cùng một payload này.
+    ts: nowIso, timestamp: nowIso,
+    class: deck.classLabel||"", unit: deck.unitLabel||"", level: deck.levelLabel||"",
+    timeSeconds: elapsedSec, timeFormatted: elapsedSec!==""? fmtMMSS(elapsedSec) : "",
+    detailsJson: JSON.stringify(quizDetails)
+  };
+  // Content-Type: text/plain tránh CORS preflight (Apps Script Web App không xử lý OPTIONS).
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload)
+  }).catch(()=>{ /* im lặng bỏ qua — không được làm gián đoạn trải nghiệm học sinh */ });
+}
+
+$("btnSaveName").addEventListener("click", ()=>{
+  const n = $("nameInput").value.trim();
+  if(!n) return;
+  setStudentName(n);
+  $("nameModal").classList.add("hidden");
+  if(pendingScoreSubmit){
+    const { score, total, pct } = pendingScoreSubmit;
+    pendingScoreSubmit = null;
+    submitScoreToSheet((deck.scoreSheetUrl||"").trim(), n, score, total, pct);
+  }
+});
+
+/* ---------- Vuốt + chạm ---------- */
+const drag=$("drag");
+let sx=0, dx=0, down=false, moved=false;
+drag.addEventListener("pointerdown", e=>{
+  if(e.target.closest(".tool")) return;
+  if(pos>=queue.length) return;
+  down=true; moved=false; sx=e.clientX; dx=0;
+  drag.style.transition="none";
+  try{ drag.setPointerCapture(e.pointerId); }catch(_){}
+});
+drag.addEventListener("pointermove", e=>{
+  if(!down) return;
+  dx=e.clientX-sx; if(Math.abs(dx)>8) moved=true;
+  drag.style.transform=`translateX(${dx}px) rotate(${dx/45}deg)`;
+  $("hintKnow").style.opacity   = dx>0 ? Math.min(dx/90,1) : 0;
+  $("hintForget").style.opacity = dx<0 ? Math.min(-dx/90,1) : 0;
+});
+function resetDrag(){ drag.style.transition="transform .25s ease"; drag.style.transform=""; $("hintKnow").style.opacity=0; $("hintForget").style.opacity=0; }
+drag.addEventListener("pointerup", ()=>{
+  if(!down) return; down=false;
+  const d=dx, T=90; resetDrag();
+  if(d>T) doKnow();
+  else if(d<-T) doForget();
+  else if(!moved) toggleFlip();
+});
+drag.addEventListener("pointercancel", ()=>{ down=false; resetDrag(); });
+
+/* ---------- Phát âm ---------- */
+function speakWord(text){
+  try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang=lang; u.rate=.9; speechSynthesis.speak(u); }catch(e){}
+}
+$("btnSpeak").addEventListener("click", e=>{ e.stopPropagation(); const c=deck.cards[queue[pos]]; if(c) speakWord(c.front); });
+$("btnImage").addEventListener("click", e=>{ e.stopPropagation(); const c=deck.cards[queue[pos]]; if(c) window.open("https://www.google.com/search?tbm=isch&q="+encodeURIComponent(c.front),"_blank"); });
+
+/* ---------- Cài đặt ---------- */
+function applySettings(){
+  document.documentElement.setAttribute("data-theme", settings.dark?"dark":"light");
+  [...$("segDir").children].forEach(b=> b.classList.toggle("on", b.dataset.v===settings.dir));
+  $("tglAudio").classList.toggle("on", settings.autoAudio);
+  $("tglDark").classList.toggle("on", settings.dark);
+  $("tglWeak").classList.toggle("on", settings.weakFirst);
+}
+$("btnSettings").addEventListener("click", ()=> $("setModal").classList.remove("hidden"));
+$("btnCloseSet").addEventListener("click", ()=> $("setModal").classList.add("hidden"));
+$("segDir").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; settings.dir=b.dataset.v; saveSettings(); applySettings(); render(); });
+$("tglAudio").addEventListener("click", ()=>{ settings.autoAudio=!settings.autoAudio; saveSettings(); applySettings(); });
+$("tglDark").addEventListener("click", ()=>{ settings.dark=!settings.dark; saveSettings(); applySettings(); });
+$("tglWeak").addEventListener("click", ()=>{ settings.weakFirst=!settings.weakFirst; saveSettings(); applySettings(); });
+$("btnResetProg").addEventListener("click", ()=>{
+  if(confirm("Đặt lại toàn bộ độ thuộc của các từ về 0?")){
+    progress={}; store.save(PKEY,progress);
+    $("setModal").classList.add("hidden"); startSession();
+  }
+});
+
+/* ---------- Đóng modal khi chạm nền ---------- */
+document.querySelectorAll(".modal-bg").forEach(bg=> bg.addEventListener("click", e=>{ if(e.target===bg) bg.classList.add("hidden"); }));
+
+/* ---------- Bàn phím ---------- */
+document.addEventListener("keydown", e=>{
+  if($("studyView").classList.contains("hidden")) return;
+  if(e.key===" "){ e.preventDefault(); toggleFlip(); }
+  else if(e.key==="ArrowRight") doNext();
+  else if(e.key==="ArrowLeft") doPrev();
+  else if(e.key==="Enter") doKnow();
+  else if(e.key==="Backspace"){ e.preventDefault(); doForget(); }
+});
+
+/* ---------- Chạy ---------- */
+applySettings();
+renderGroupNav();
+startSession();
+</script>
+</body>
+</html>

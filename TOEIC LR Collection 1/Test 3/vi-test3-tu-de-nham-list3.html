@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 3/6 (Vi, C1 Test 3)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 3/6</h1>
+    <p>Part 7 · câu 159–161 · Câu 55–75/152. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • TOEIC LR Collection 1 – Test 3</div>
+  </div>
+
+  <div class="nav">
+    <a class="" href="vi-test3-tu-de-nham-list1.html">List 1 · P5</a>
+    <a class="" href="vi-test3-tu-de-nham-list2.html">List 2 · 153–155</a>
+    <a class="active" href="vi-test3-tu-de-nham-list3.html">List 3 · 159–161</a>
+    <a class="" href="vi-test3-tu-de-nham-list4.html">List 4 · 176–178</a>
+    <a class="" href="vi-test3-tu-de-nham-list5.html">List 5 · 191–195</a>
+    <a class="" href="vi-test3-tu-de-nham-list6.html">List 6 · 198–200</a>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/21 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "The store's ______ sale starts this weekend, with up to 70% off.", "options": ["clearly", "clearing", "clearance", "clarity"], "answer": 2, "explain": "clearance sale = đợt BÁN XẢ HÀNG.", "translation": "Đợt bán xả hàng của cửa hàng bắt đầu cuối tuần này, giảm đến 70%.", "meanings": ["rõ ràng (trạng từ)", "sự dọn dẹp (không đi với sale)", "xả hàng — đúng", "sự rõ ràng (sai nghĩa)"]}, {"q": "We will do the ______ for the event on Friday afternoon.", "options": ["setup", "outset", "upset", "set up"], "answer": 0, "explain": "do the setup: sau 'the' cần DANH TỪ (setup viết liền). set up (2 từ) là động từ.", "translation": "Chúng ta sẽ sắp xếp chuẩn bị cho sự kiện vào chiều thứ Sáu.", "meanings": ["việc chuẩn bị (danh từ) — đúng", "lúc bắt đầu (sai nghĩa)", "buồn bực (sai nghĩa)", "sắp đặt (cụm động từ, sai từ loại)"]}, {"q": "Cleaning products are in ______ 7, next to the paper towels.", "options": ["alley", "aisle", "isle", "lane"], "answer": 1, "explain": "aisle = LỐI ĐI giữa các kệ hàng (siêu thị). isle = hòn đảo (đồng âm).", "translation": "Sản phẩm tẩy rửa ở lối đi số 7, cạnh khăn giấy.", "meanings": ["ngõ hẻm (sai ngữ cảnh)", "lối đi giữa các kệ — đúng", "hòn đảo (đồng âm, sai nghĩa)", "làn đường (sai ngữ cảnh)"]}, {"q": "You can find pots and pans in our ______ section.", "options": ["housework", "household", "warehouse", "housewares"], "answer": 3, "explain": "housewares = ĐỒ GIA DỤNG (khu hàng). housework = việc nhà; warehouse = nhà kho.", "translation": "Bạn có thể tìm nồi chảo ở khu đồ gia dụng.", "meanings": ["việc nhà (sai nghĩa)", "hộ gia đình (sai nghĩa)", "nhà kho (sai nghĩa)", "đồ gia dụng — đúng"]}, {"q": "Please check that all ______ shows the correct sale prices.", "options": ["signage", "signal", "signature", "significance"], "answer": 0, "explain": "signage = BẢNG BIỂN (nói chung, không đếm được) → động từ số ít shows.", "translation": "Hãy kiểm tra để mọi bảng biển hiển thị đúng giá khuyến mãi.", "meanings": ["bảng biển — đúng", "tín hiệu (sai nghĩa)", "chữ ký (sai nghĩa)", "tầm quan trọng (sai nghĩa)"]}, {"q": "The information desk is located near the front ______.", "options": ["entrant", "enhance", "entrance", "entry"], "answer": 2, "explain": "front entrance = LỐI VÀO chính.", "translation": "Quầy thông tin nằm gần lối vào chính.", "meanings": ["người dự thi (sai nghĩa)", "nâng cao (động từ)", "lối vào — đúng", "bài dự thi; sự đi vào (không đi với 'front')"]}, {"q": "We have plenty of ______ in the storage room, so don't order more yet.", "options": ["stuck", "stack", "stake", "stock"], "answer": 3, "explain": "stock = HÀNG TỒN, hàng trong kho.", "translation": "Trong kho còn nhiều hàng, nên đừng đặt thêm vội.", "meanings": ["bị kẹt (sai nghĩa)", "chồng, đống (sai nghĩa)", "cổ phần; cọc (sai nghĩa)", "hàng tồn kho — đúng"]}, {"q": "All new items must be ______ with prices before going on the shelves.", "options": ["tapped", "tagged", "tackled", "tugged"], "answer": 1, "explain": "tag (v) = GẮN NHÃN giá. Bị động: be tagged with prices.", "translation": "Mọi mặt hàng mới phải được gắn nhãn giá trước khi lên kệ.", "meanings": ["được gõ nhẹ (sai nghĩa)", "được gắn nhãn — đúng", "được giải quyết (sai nghĩa)", "bị kéo mạnh (sai nghĩa)"]}, {"q": "The aisle must be ______ of boxes before customers arrive.", "options": ["clarified", "closed", "cleaned", "cleared"], "answer": 3, "explain": "clear sth of sth = DỌN TRỐNG cái gì khỏi đâu.", "translation": "Lối đi phải được dọn hết thùng trước khi khách đến.", "meanings": ["được làm rõ (sai nghĩa)", "bị đóng (sai nghĩa)", "được lau chùi (không đi với 'of boxes')", "được dọn trống — đúng"]}, {"q": "It took two of us an hour to put the shelves ______.", "options": ["off", "forward", "away", "together"], "answer": 3, "explain": "put sth together = LẮP RÁP.", "translation": "Hai chúng tôi mất một giờ để lắp ráp các kệ.", "meanings": ["hoãn lại (put off, sai nghĩa)", "đề xuất (put forward, sai nghĩa)", "cất đi (put away, sai nghĩa)", "lắp ráp — đúng"]}, {"q": "Could you bring ______ the extra chairs from the basement?", "options": ["over", "up", "about", "out"], "answer": 1, "explain": "bring up (from basement) = MANG LÊN.", "translation": "Bạn mang giúp mấy cái ghế thêm từ tầng hầm lên được không?", "meanings": ["mang qua (sai hướng)", "mang lên — đúng", "gây ra (sai nghĩa)", "mang ra; ra mắt (sai hướng)"]}, {"q": "Ms. Wong is ______ the garden section during the sale.", "options": ["holding", "handing", "handling", "hanging"], "answer": 2, "explain": "handle = PHỤ TRÁCH, xử lý (= be in charge of). Dễ nhầm handing (đưa).", "translation": "Chị Wong phụ trách khu làm vườn trong đợt giảm giá.", "meanings": ["cầm, tổ chức (sai nghĩa)", "đưa, trao (sai nghĩa)", "phụ trách — đúng", "treo (sai nghĩa)"]}, {"q": "Could anyone give me a ______ moving these boxes?", "options": ["handle", "hand", "hold", "help"], "answer": 1, "explain": "Thành ngữ: give sb a hand = giúp ai một tay. 'give me a help' sai.", "translation": "Có ai giúp tôi một tay chuyển mấy thùng này không?", "meanings": ["tay cầm (sai thành ngữ)", "một tay (give sb a hand) — đúng", "sự nắm (sai thành ngữ)", "sự giúp đỡ (không nói 'give a help')"]}, {"q": "I can't lift this table on my ______.", "options": ["self", "alone", "own", "mine"], "answer": 2, "explain": "on my own = một mình, tự mình.", "translation": "Tôi không thể tự mình nhấc cái bàn này.", "meanings": ["sai (phải là by myself)", "sai (alone không đi với on my)", "on my own — đúng", "sai cấu trúc"]}, {"q": "I can't get ______ the storage room because the door is locked.", "options": ["over", "into", "onto", "across"], "answer": 1, "explain": "get into + nơi = VÀO ĐƯỢC.", "translation": "Tôi không vào được phòng kho vì cửa bị khóa.", "meanings": ["vượt qua (sai)", "vào được — đúng", "lên trên (sai)", "băng qua (sai)"]}, {"q": "Only the shift ______ has the key to the safe.", "options": ["supervise", "supervision", "supervisory", "supervisor"], "answer": 3, "explain": "The + shift + N chỉ NGƯỜI có chìa khóa → supervisor (trưởng ca).", "translation": "Chỉ trưởng ca mới có chìa khóa két sắt.", "meanings": ["giám sát (động từ)", "sự giám sát (việc)", "thuộc giám sát (tính từ)", "trưởng ca (người) — đúng"]}, {"q": "Mr. Ruiz had to ______ the invitation because he was busy.", "options": ["decrease", "descend", "deliver", "decline"], "answer": 3, "explain": "decline an invitation / a request = TỪ CHỐI.", "translation": "Anh Ruiz phải từ chối lời mời vì bận.", "meanings": ["giảm (sai nghĩa)", "đi xuống (sai nghĩa)", "giao (sai nghĩa)", "từ chối — đúng"]}, {"q": "Only managers have ______ to the storage room.", "options": ["excess", "assess", "access", "accept"], "answer": 2, "explain": "have access to = có QUYỀN RA VÀO / sử dụng. Đừng nhầm excess (dư thừa), assess (đánh giá).", "translation": "Chỉ quản lý mới có quyền vào phòng kho.", "meanings": ["sự dư thừa (sai nghĩa)", "đánh giá (động từ)", "quyền ra vào — đúng", "chấp nhận (động từ)"]}, {"q": "The technician can't come today, but he can help us the ______ morning.", "options": ["following", "follower", "followed", "follow"], "answer": 0, "explain": "the following morning = SÁNG HÔM SAU.", "translation": "Kỹ thuật viên hôm nay không đến được, nhưng sáng hôm sau có thể giúp.", "meanings": ["tiếp theo (the following morning) — đúng", "người theo dõi (danh từ)", "V3 (sai)", "động từ (sai)"]}, {"q": "We got to the station just ______ time to catch the last train.", "options": ["on", "at", "in", "by"], "answer": 2, "explain": "just in time (to do sth) = vừa KỊP LÚC. on time = đúng giờ đã định.", "translation": "Chúng tôi đến ga vừa kịp lúc để bắt chuyến tàu cuối.", "meanings": ["on time = đúng giờ đã định (không dùng với 'just … to catch')", "sai cụm", "in time = kịp lúc — đúng", "sai cụm"]}, {"q": "I'll call the supplier first ______ tomorrow morning.", "options": ["time", "thing", "place", "step"], "answer": 1, "explain": "first thing (in the morning) = VIỆC ĐẦU TIÊN, ngay khi bắt đầu ngày.", "translation": "Sáng mai việc đầu tiên tôi sẽ gọi cho nhà cung cấp.", "meanings": ["sai cụm", "first thing — đúng", "sai cụm", "sai cụm"]}];
+const QSTART = 55;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

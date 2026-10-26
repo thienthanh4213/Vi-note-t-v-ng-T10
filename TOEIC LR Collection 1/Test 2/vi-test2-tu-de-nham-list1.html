@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEIC — Từ dễ nhầm · List 1/5 (Vi, C1 Test 2)</title>
+<style>
+  :root{--primary:#1D9E75;--primary-dark:#127c5b;--primary-light:#e8f7f2;--text:#1e293b;--muted:#94a3b8;--wrong:#dc2626;--wrong-bg:#fef2f2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit','Segoe UI',Arial,sans-serif;background:var(--primary-light);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 60px;}
+  .hero{max-width:680px;width:100%;text-align:center;margin-bottom:14px;}
+  .kicker{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-dark);margin-bottom:8px;}
+  .hero h1{font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;line-height:1.25;}
+  .hero p{color:#475569;font-size:.92rem;line-height:1.5;}
+  .byline{font-style:italic;color:var(--muted);font-size:.8rem;margin-top:8px;}
+  .nav{max-width:680px;width:100%;display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .nav a{flex:1;min-width:60px;text-align:center;padding:10px 4px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.82rem;border:1.5px solid var(--primary);color:var(--primary-dark);background:#fff;}
+  .nav a.active{background:var(--primary);color:#fff;}
+  .scorebar{max-width:680px;width:100%;background:#fff;border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--primary-dark);font-weight:700;text-align:center;border:1.5px solid var(--primary);}
+  .card{max-width:680px;width:100%;background:#fff;border:1px solid #d7f0e6;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(18,124,91,0.08);}
+  .qnum-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .qnum{font-weight:800;color:var(--primary-dark);font-size:.85rem;}
+  .btn-submit-q{padding:5px 12px;border:1.5px solid var(--primary);border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;background:#fff;color:var(--primary-dark);transition:.15s;white-space:nowrap;flex-shrink:0;}
+  .btn-submit-q:hover{background:var(--primary);color:#fff;}
+  .btn-submit-q:disabled{background:#f1f5f9;border-color:#cbd5e1;color:#94a3b8;cursor:default;}
+  .qtext{font-size:1rem;line-height:1.55;margin-bottom:12px;}
+  .qtext b{color:var(--primary-dark)}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.15s;font-size:.95rem;}
+  .opt:hover{border-color:var(--primary);background:var(--primary-light);}
+  .opt input{accent-color:var(--primary);width:16px;height:16px;flex-shrink:0;}
+  .opt.correct{border-color:var(--primary);background:var(--primary-light);font-weight:700;color:var(--primary-dark);}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .result{display:none;margin-top:12px;}
+  .result.show{display:block;}
+  .result-box{padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.65;margin-top:8px;background:#f8fafc;border-left:3px solid var(--primary);color:#334155;}
+  .result-box b{color:var(--primary-dark);}
+  .meanings-list{margin-top:4px;padding-left:2px;}
+  .meanings-list div{margin-bottom:2px;}
+  .actions{max-width:680px;width:100%;display:flex;gap:12px;margin:18px 0;}
+  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+  .btn-submit-all{background:var(--primary);color:#fff;}
+  .btn-submit-all:hover{background:var(--primary-dark);}
+  .btn-reset{background:#fff;color:var(--primary-dark);border:1.5px solid var(--primary);}
+  .btn-reset:hover{background:var(--primary-light);}
+  .wm-footer{margin-top:10px;font-size:.72rem;color:#b0b0b0;font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">TOEIC · TỪ DỄ NHẦM</div>
+    <h1>Chọn từ vựng phù hợp — List 1/5</h1>
+    <p>Part 5 (các câu sai) · Câu 1–23/112. Bấm "Nộp" nhỏ cạnh mỗi câu để kiểm tra ngay, hoặc làm hết rồi bấm "Nộp bài" ở cuối để chấm một lần.</p>
+    <div class="byline">Ms. Thủy Tiên • Học viên Vi (TOEIC 1-1) • TOEIC LR Collection 1 – Test 2</div>
+  </div>
+
+  <div class="nav">
+    <a class="active" href="vi-test2-tu-de-nham-list1.html">List 1 · P5</a>
+    <a class="" href="vi-test2-tu-de-nham-list2.html">List 2 · 131–134</a>
+    <a class="" href="vi-test2-tu-de-nham-list3.html">List 3 · 139–142</a>
+    <a class="" href="vi-test2-tu-de-nham-list4.html">List 4 · 165–167</a>
+    <a class="" href="vi-test2-tu-de-nham-list5.html">List 5 · 168–170</a>
+  </div>
+
+  <div class="scorebar" id="scorebar">Đã nộp: 0/23 — Đúng: 0</div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="btn btn-submit-all" onclick="submitAll()">Nộp bài (chấm tất cả)</button>
+    <button class="btn btn-reset" onclick="resetQuiz()">Làm lại toàn bộ</button>
+  </div>
+
+  <div class="wm-footer">© Ms. Thủy Tiên · 0388929741</div>
+
+<script>
+const QUESTIONS = [{"q": "All reports must be submitted ______ the posted due date.", "options": ["because", "aside from", "beforehand", "ahead of"], "answer": 3, "explain": "Chỗ trống đứng trước cụm danh từ \"the posted due date\" → cần giới từ. \"ahead of + N\" = trước (thời hạn).", "translation": "Tất cả báo cáo phải được nộp trước hạn chót đã thông báo.", "meanings": ["bởi vì (liên từ, + mệnh đề)", "ngoài ra, ngoại trừ (sai nghĩa)", "trước đó (trạng từ, không có tân ngữ theo sau)", "trước (giới từ, + N) — đúng"]}, {"q": "If you want a front-row seat, please book ______.", "options": ["beforehand", "because of", "aside from", "ahead of"], "answer": 0, "explain": "Cuối câu, không có danh từ theo sau → cần trạng từ \"beforehand\" (trước đó).", "translation": "Nếu bạn muốn ghế hàng đầu, vui lòng đặt trước.", "meanings": ["trước đó (trạng từ) — đúng", "bởi vì (giới từ, cần danh từ phía sau)", "ngoại trừ (giới từ, cần danh từ phía sau)", "trước (giới từ, cần danh từ phía sau)"]}, {"q": "______ a few minor errors, the proposal was excellent.", "options": ["Aside from", "Ahead of", "Because", "Beforehand"], "answer": 0, "explain": "\"Aside from + N\" = ngoài ra, ngoại trừ — câu nói \"ngoại trừ vài lỗi nhỏ thì đề xuất rất tốt\".", "translation": "Ngoại trừ vài lỗi nhỏ, bản đề xuất rất xuất sắc.", "meanings": ["ngoại trừ, ngoài ra — đúng", "trước (thời hạn) — sai nghĩa", "bởi vì (liên từ, cần mệnh đề)", "trước đó (trạng từ, không có tân ngữ)"]}, {"q": "The ______ for the electricity bill is March 15.", "options": ["referral", "response", "due date", "reminder"], "answer": 2, "explain": "\"due date\" = hạn chót, ngày phải thanh toán — đi với hóa đơn (bill).", "translation": "Hạn chót thanh toán hóa đơn tiền điện là ngày 15 tháng 3.", "meanings": ["giấy giới thiệu chuyển khám (sai nghĩa)", "phản hồi (sai nghĩa)", "hạn chót, ngày đến hạn — đúng", "lời nhắc (sai nghĩa)"]}, {"q": "Tenants must make monthly ______ for the extra space in the warehouse.", "options": ["referrals", "reminders", "guided tours", "storage payments"], "answer": 3, "explain": "\"warehouse\" (nhà kho) + \"extra space\" → trả \"storage payments\" (tiền phí lưu kho).", "translation": "Người thuê phải trả phí lưu kho hằng tháng cho phần diện tích thêm trong nhà kho.", "meanings": ["giấy giới thiệu chuyển khám (sai nghĩa)", "lời nhắc (sai nghĩa)", "chuyến tham quan có hướng dẫn (sai nghĩa)", "tiền phí lưu kho — đúng"]}, {"q": "Visitors can exchange their tickets ______ a free audio guide.", "options": ["toward", "from", "for", "on"], "answer": 2, "explain": "Cấu trúc cố định: exchange A FOR B = đổi A lấy B (giống trade/swap A for B).", "translation": "Khách tham quan có thể đổi vé lấy một thiết bị hướng dẫn âm thanh miễn phí.", "meanings": ["về phía (sai nghĩa)", "từ (không có cấu trúc exchange from)", "lấy, để đổi lấy — đúng", "trên (sai giới từ)"]}, {"q": "Every Saturday, the castle offers a ______ led by a local historian.", "options": ["vendor agreement", "due date", "guided tour", "control booth"], "answer": 2, "explain": "\"led by a historian\" (do nhà sử học dẫn) → chuyến tham quan có hướng dẫn.", "translation": "Mỗi thứ Bảy, lâu đài có chuyến tham quan do một nhà sử học địa phương hướng dẫn.", "meanings": ["hợp đồng nhà cung cấp (sai nghĩa)", "hạn chót (sai nghĩa)", "chuyến tham quan có hướng dẫn — đúng", "phòng điều khiển (sai nghĩa)"]}, {"q": "The dental clinic sends patients a text ______ one day before their appointment.", "options": ["reminder", "schedule", "referral", "response"], "answer": 0, "explain": "\"one day before their appointment\" → tin nhắn NHẮC lịch hẹn = reminder.", "translation": "Phòng khám nha khoa gửi tin nhắn nhắc lịch cho bệnh nhân trước cuộc hẹn một ngày.", "meanings": ["lời nhắc, tin nhắc lịch — đúng", "lịch trình (sai nghĩa)", "giấy giới thiệu chuyển khám (cùng chủ đề bệnh viện, sai nghĩa)", "phản hồi (sai nghĩa)"]}, {"q": "Your family doctor can give you a ______ to see a heart specialist.", "options": ["reminder", "referral", "reference", "response"], "answer": 1, "explain": "\"to see a specialist\" → giấy GIỚI THIỆU chuyển đến bác sĩ chuyên khoa = referral. Khác reference (thư giới thiệu xin việc / tài liệu tham khảo).", "translation": "Bác sĩ gia đình có thể viết giấy giới thiệu để bạn đi khám bác sĩ tim mạch.", "meanings": ["lời nhắc (sai nghĩa)", "giấy giới thiệu chuyển khám — đúng", "thư giới thiệu xin việc, tham khảo (sai ngữ cảnh)", "phản hồi (sai nghĩa)"]}, {"q": "We received over 200 ______ to our customer survey.", "options": ["responsive", "referrals", "responses", "reminders"], "answer": 2, "explain": "Sau số lượng \"200\" cần danh từ số nhiều; \"responses to a survey\" = câu trả lời khảo sát.", "translation": "Chúng tôi nhận được hơn 200 phản hồi cho cuộc khảo sát khách hàng.", "meanings": ["phản hồi nhanh (tính từ, sai từ loại)", "giấy giới thiệu (sai nghĩa)", "phản hồi, câu trả lời — đúng", "lời nhắc (sai nghĩa)"]}, {"q": "Patients should arrive 15 minutes before each ______.", "options": ["storage payment", "scheduled visit", "guided tour", "due date"], "answer": 1, "explain": "\"Patients\" (bệnh nhân) → lịch hẹn khám = scheduled visit.", "translation": "Bệnh nhân nên đến sớm 15 phút trước mỗi buổi hẹn khám.", "meanings": ["phí lưu kho (sai nghĩa)", "lịch hẹn khám đã đặt — đúng", "chuyến tham quan (sai ngữ cảnh)", "hạn chót (sai nghĩa)"]}, {"q": "The new contract outlines the payment terms ______ all contractors.", "options": ["both", "and", "for", "so"], "answer": 2, "explain": "\"terms for sb\" = điều khoản dành cho ai. Cần giới từ nối danh từ \"terms\" với \"all contractors\"; and/so là liên từ, both phải đi cặp both … and.", "translation": "Hợp đồng mới trình bày các điều khoản thanh toán dành cho tất cả nhà thầu.", "meanings": ["cả hai (phải đi với and)", "và (liên từ, phải nối 2 thành phần tương đương)", "dành cho (giới từ) — đúng", "vì vậy (liên từ, cần mệnh đề)"]}, {"q": "The purchasing department signed a revised ______ with three suppliers.", "options": ["vendor agreement", "control booth", "referral", "reminder"], "answer": 0, "explain": "\"signed … with suppliers\" → ký hợp đồng với nhà cung cấp = vendor agreement.", "translation": "Phòng thu mua đã ký hợp đồng nhà cung cấp sửa đổi với ba nhà cung cấp.", "meanings": ["hợp đồng với nhà cung cấp — đúng", "phòng điều khiển (sai nghĩa)", "giấy giới thiệu (sai nghĩa)", "lời nhắc (sai nghĩa)"]}, {"q": "In her speech, the director ______ the company's plans for next year.", "options": ["reminded", "exchanged", "monitored", "outlined"], "answer": 3, "explain": "\"outline plans\" = trình bày khái quát kế hoạch.", "translation": "Trong bài phát biểu, giám đốc đã trình bày khái quát kế hoạch năm sau của công ty.", "meanings": ["nhắc nhở (remind sb of sth — sai cấu trúc)", "trao đổi, đổi (sai nghĩa)", "giám sát (sai nghĩa)", "trình bày khái quát — đúng"]}, {"q": "The design team is famous for its ______ ideas.", "options": ["innovatively", "innovate", "innovation", "innovative"], "answer": 3, "explain": "its + ___ + N (ideas) → cần TÍNH TỪ: innovative.", "translation": "Nhóm thiết kế nổi tiếng với những ý tưởng sáng tạo.", "meanings": ["một cách sáng tạo (trạng từ, sai từ loại)", "đổi mới (động từ, sai từ loại)", "sự đổi mới (danh từ, sai từ loại)", "sáng tạo, đổi mới (tính từ) — đúng"]}, {"q": "Mr. Park is a respected ______ who has developed many new products.", "options": ["innovator", "innovation", "innovative", "innovate"], "answer": 0, "explain": "a + adj + ___ + who → cần danh từ chỉ NGƯỜI (who): innovator.", "translation": "Ông Park là một nhà cải tiến được kính trọng, người đã phát triển nhiều sản phẩm mới.", "meanings": ["nhà cải tiến, người đổi mới (danh từ người) — đúng", "sự đổi mới (danh từ vật/việc, không đi với who)", "sáng tạo (tính từ, sai từ loại)", "đổi mới (động từ, sai từ loại)"]}, {"q": "The new ______ vacuum can be used anywhere without a power outlet.", "options": ["cordless", "innovative", "operable", "responsive"], "answer": 0, "explain": "\"without a power outlet\" (không cần ổ cắm) → máy KHÔNG DÂY = cordless.", "translation": "Máy hút bụi không dây mới có thể dùng ở bất cứ đâu mà không cần ổ cắm điện.", "meanings": ["không dây — đúng", "sáng tạo (không khớp manh mối 'không cần ổ cắm')", "có thể vận hành được (sai nghĩa)", "phản hồi nhanh (sai nghĩa)"]}, {"q": "The restaurant is ______ the best seafood place in town.", "options": ["widely consider", "widely considering", "wide considered", "widely considered"], "answer": 3, "explain": "Bị động: is + (adv) + V3 → is widely considered = được coi rộng rãi là.", "translation": "Nhà hàng này được nhiều người coi là quán hải sản ngon nhất thị trấn.", "meanings": ["sai: sau is không dùng V nguyên mẫu", "sai: chủ động V-ing không hợp nghĩa", "sai: cần trạng từ widely, không dùng tính từ wide", "được coi rộng rãi là (bị động) — đúng"]}, {"q": "Only a trained ______ is allowed to use the crane.", "options": ["operable", "operating", "operator", "operation"], "answer": 2, "explain": "a + adj (trained) + N; chủ ngữ được phép dùng cần cẩu phải là NGƯỜI → operator.", "translation": "Chỉ người vận hành đã qua đào tạo mới được phép sử dụng cần cẩu.", "meanings": ["có thể vận hành được (tính từ)", "đang vận hành (V-ing)", "người vận hành — đúng", "sự vận hành (danh từ chỉ việc, không phải người)"]}, {"q": "The factory's ______ will be stopped for maintenance next week.", "options": ["operate", "operations", "operator", "operable"], "answer": 1, "explain": "Sở hữu cách \"The factory's\" + N; cái bị dừng để bảo trì là HOẠT ĐỘNG (việc), không phải người → operations.", "translation": "Hoạt động của nhà máy sẽ tạm dừng để bảo trì vào tuần sau.", "meanings": ["vận hành (động từ, sai từ loại)", "các hoạt động vận hành (danh từ việc) — đúng", "người vận hành (người không 'bị dừng để bảo trì')", "có thể vận hành (tính từ, sai từ loại)"]}, {"q": "A nurse is always ______ duty at night in this ward.", "options": ["in", "at", "on", "for"], "answer": 2, "explain": "Cụm cố định: on duty = đang trực ca (off duty = hết ca).", "translation": "Luôn có một y tá trực đêm ở khu bệnh này.", "meanings": ["sai giới từ", "sai giới từ", "on duty = đang trực — đúng", "sai giới từ"]}, {"q": "Security cameras ______ the parking area 24 hours a day.", "options": ["monitor", "remind", "outline", "refer"], "answer": 0, "explain": "Camera an ninh → GIÁM SÁT bãi đỗ xe = monitor.", "translation": "Camera an ninh giám sát bãi đỗ xe 24 giờ mỗi ngày.", "meanings": ["giám sát, theo dõi — đúng", "nhắc nhở (sai nghĩa)", "trình bày khái quát (sai nghĩa)", "giới thiệu, nhắc đến (sai nghĩa)"]}, {"q": "The technician sat in the central ______, watching all the screens.", "options": ["control booth", "guided tour", "vendor agreement", "due date"], "answer": 0, "explain": "\"sat in … watching all the screens\" → ngồi trong phòng điều khiển = control booth.", "translation": "Kỹ thuật viên ngồi trong phòng điều khiển trung tâm, theo dõi tất cả màn hình.", "meanings": ["phòng / buồng điều khiển — đúng", "chuyến tham quan (sai nghĩa)", "hợp đồng nhà cung cấp (sai nghĩa)", "hạn chót (sai nghĩa)"]}];
+const QSTART = 1;
+let submittedCount = 0;
+let correctCount = 0;
+const doneFlags = new Array(QUESTIONS.length).fill(false);
+
+function renderQuiz(){
+  submittedCount = 0;
+  correctCount = 0;
+  doneFlags.fill(false);
+  updateScorebar();
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  QUESTIONS.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="qnum-row">
+        <div class="qnum">Câu ${qi+QSTART}</div>
+        <button class="btn-submit-q" id="submit-${qi}" onclick="submitOne(${qi})">Nộp</button>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${qi}">
+        ${item.options.map((opt, oi) => `
+          <label class="opt" id="opt-${qi}-${oi}">
+            <input type="radio" name="q${qi}" value="${oi}">
+            <span>${String.fromCharCode(65+oi)}. ${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="result" id="result-${qi}">
+        <div class="result-box"><b>Dịch câu:</b> ${item.translation}</div>
+        <div class="result-box"><b>Giải thích:</b> ${item.explain}</div>
+        <div class="result-box"><b>Nghĩa từng từ:</b>
+          <div class="meanings-list">
+            ${item.options.map((opt, oi) => `<div>${String.fromCharCode(65+oi)}. <b>${opt}</b> — ${item.meanings[oi]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function gradeOne(qi, silent){
+  if (doneFlags[qi]) return;
+  const item = QUESTIONS[qi];
+  const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+  const selVal = selected ? parseInt(selected.value) : -1;
+  if (selVal === -1) {
+    if (!silent) alert('Vui lòng chọn một đáp án trước khi nộp.');
+    return false;
+  }
+  item.options.forEach((opt, oi) => {
+    const optEl = document.getElementById(`opt-${qi}-${oi}`);
+    optEl.querySelector('input').disabled = true;
+    if (oi === item.answer) optEl.classList.add('correct');
+    else if (oi === selVal) optEl.classList.add('wrong');
+  });
+  document.getElementById(`submit-${qi}`).disabled = true;
+  document.getElementById(`submit-${qi}`).textContent = selVal === item.answer ? '✓' : '✗';
+  document.getElementById(`result-${qi}`).classList.add('show');
+  doneFlags[qi] = true;
+  submittedCount++;
+  if (selVal === item.answer) correctCount++;
+  return true;
+}
+
+function submitOne(qi){
+  gradeOne(qi, false);
+  updateScorebar();
+}
+
+function submitAll(){
+  for (let qi = 0; qi < QUESTIONS.length; qi++) {
+    gradeOne(qi, true);
+  }
+  updateScorebar();
+  document.getElementById('scorebar').scrollIntoView({behavior:'smooth'});
+}
+
+function updateScorebar(){
+  document.getElementById('scorebar').textContent = `Đã nộp: ${submittedCount}/${QUESTIONS.length} — Đúng: ${correctCount}`;
+}
+
+function resetQuiz(){
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
